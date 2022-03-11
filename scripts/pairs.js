@@ -94,7 +94,7 @@ async function getAllPairs() {
   return filtered;
 }
 
-async function main() {
+async function pairsMain() {
   getAllPairs().then((allpairs) => {
     console.log(allpairs);
     let pair_string = JSON.stringify(allpairs);
@@ -102,4 +102,4 @@ async function main() {
   });
 }
 
-main();
+pairsMain();
