@@ -35,8 +35,8 @@ let token_address = dx.token_address;
 let factory_address = dx.factory_address;
 let router_address = dx.router_address;
 
-let triangles = JSON.parse(fs.readFileSync("triangular.json"));
-let token_data = JSON.parse(fs.readFileSync("tokens.json"));
+let triangles = JSON.parse(fs.readFileSync("data/triangular.json"));
+let token_data = JSON.parse(fs.readFileSync("data/tokens.json"));
 
 async function getPair(token0, token1, dex, conn) {
   const factory_contract = new ethers.Contract(
@@ -69,9 +69,9 @@ async function getTri(token0, token1, token2, dexa, dexb, dexc, conn) {
 }
 
 const test_data = getTri(
+  "SUSHI",
   "FTM",
-  "SPIRIT",
-  "MIM",
+  "USDC",
   "spooky",
   "spooky",
   "spooky",
