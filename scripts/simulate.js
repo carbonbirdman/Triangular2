@@ -72,11 +72,12 @@ async function simulateTrade(tri, input_dollars = "1") {
     conn
   );
 
-  const input_wei = ethers.utils.parseUnits(
-    String(input_tokens),
-    token0_decimal
-  );
   try {
+    const input_wei = ethers.utils.parseUnits(
+      String(input_tokens),
+      token0_decimal
+    );
+
     const amount_out_a = await router_contract_a.getAmountsOut(input_wei, [
       token_address[token0],
       token_address[token1]
