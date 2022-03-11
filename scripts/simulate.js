@@ -24,9 +24,9 @@ let token_price = JSON.parse(fs.readFileSync("data/token_price.json"));
 
 async function simulateTrade(tri, input_dollars = "1") {
   try {
-    var price_line = token_price.filter((i) => i[0].token === tri.token0);
-    if (price_line.usdPrice) {
-      var usd_price = price_line.usdPrice;
+    var price_line = token_price.filter((i) => i.token === tri.token0);
+    if (price_line[0].usdPrice) {
+      var usd_price = price_line[0].usdPrice;
     } else {
       console.log("no price");
       console.log(price_line);
