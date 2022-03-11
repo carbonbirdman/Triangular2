@@ -39,7 +39,7 @@ async function main() {
   getDecimals().then((tokens) => {
     //console.log(allpairs);
     let token_string = JSON.stringify(tokens);
-    fs.writeFileSync("tokens.json", token_string, "utf8");
+    fs.writeFileSync("data/tokens.json", token_string, "utf8");
   });
 }
 
