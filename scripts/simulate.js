@@ -28,6 +28,7 @@ async function simulateTrade(tri, input_dollars = "1") {
     if (price_line.usdPrice) {
       var usd_price = price_line.usdPrice;
     } else {
+      console.log("no price");
       var usd_price = 1;
     }
     console.log("Price", usd_price);
@@ -123,6 +124,7 @@ async function simulateTrade(tri, input_dollars = "1") {
     let wei_outputs = { input_wei, n1_wei, n2_wei, output_wei };
     let trade_outputs = { input_tokens, n1_wei, n2_wei, output_wei };
   } catch (err) {
+    console.log("trade error");
     var output_dollars = "NA";
   }
   let dollar_dollar_bills_yall = { input_dollars, output_dollars };
@@ -166,6 +168,8 @@ async function simLoop(input_dollars = "10") {
 
     stream.write(
       trade_output.input_dollars +
+        "," +
+        trade_output.output_dollars +
         "," +
         tri.dexa +
         tri.token0 +
