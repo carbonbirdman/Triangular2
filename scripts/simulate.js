@@ -126,6 +126,7 @@ async function simulateTrade(tri, input_dollars = "1") {
   } catch (err) {
     console.log("trade error");
     console.log(err);
+    console.log(tri);
     var output_dollars = "NA";
   }
   let dollar_dollar_bills_yall = { input_dollars, output_dollars };
