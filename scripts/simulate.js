@@ -24,11 +24,12 @@ let token_price = JSON.parse(fs.readFileSync("data/token_price.json"));
 
 async function simulateTrade(tri, input_dollars = "1") {
   try {
-    var price_line = token_price.filter((i) => i.token == tri.token0);
+    var price_line = token_price.filter((i) => i.token === tri.token0);
     if (price_line.usdPrice) {
       var usd_price = price_line.usdPrice;
     } else {
       console.log("no price");
+      console.log(price_line);
       var usd_price = 1;
     }
     console.log("Price", usd_price);
@@ -37,7 +38,7 @@ async function simulateTrade(tri, input_dollars = "1") {
     var usd_price = 1;
   }
   let input_tokens = input_dollars / usd_price;
-  console.log(input_tokens, usd_price);
+  //console.log(input_tokens, usd_price);
 
   const [dexa, dexb, dexc] = [tri.dexa, tri.dexb, tri.dexc];
   const [token0, token1, token2] = [tri.token0, tri.token1, tri.token2];
@@ -82,7 +83,7 @@ async function simulateTrade(tri, input_dollars = "1") {
     ]);
     let [amount_in_token0, amount_out_token1] = amount_out_a;
     const n1_wei = amount_out_token1;
-    console.log("First sale", n1_wei);
+    //console.log("First sale", n1_wei);
 
     const amount_out_b = await router_contract_b.getAmountsOut(n1_wei, [
       token_address[token1],
@@ -90,7 +91,7 @@ async function simulateTrade(tri, input_dollars = "1") {
     ]);
     let [amount_in_token1, amount_out_token2] = amount_out_b;
     const n2_wei = amount_out_token2;
-    console.log("Second sale", n2_wei);
+    //console.log("Second sale", n2_wei);
 
     const amount_out_c = await router_contract_c.getAmountsOut(n2_wei, [
       token_address[token2],
@@ -98,7 +99,7 @@ async function simulateTrade(tri, input_dollars = "1") {
     ]);
     let [amount_in_token2, amount_out_token0] = amount_out_c;
     const output_wei = amount_out_token0;
-    console.log("Final sale", output_wei);
+    //console.log("Final sale", output_wei);
 
     const output_tokens = output_wei * Math.pow(10, -token0_decimal);
     const output_dollars = output_tokens * usd_price;
