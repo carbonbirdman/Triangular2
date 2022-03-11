@@ -1,0 +1,218 @@
+[
+  {
+    "dex": "spooky",
+    "token0": "FTM",
+    "token1": "MIM",
+    "pair_address": "0x6f86e65b255c9111109d2D2325ca2dFc82456efc",
+    "reserves0": "4826396531922266029195266",
+    "reserves1": "5694580980238762385440844",
+    "usdVal": 0
+  },
+  {
+    "dex": "spooky",
+    "token0": "FTM",
+    "token1": "SPIRIT",
+    "pair_address": "0x67deB4877b129fe324285e47C0c419e34649E250",
+    "reserves0": "172954607910092297906",
+    "reserves1": "2345730675713582941355",
+    "usdVal": 0
+  },
+  {
+    "dex": "spooky",
+    "token0": "FTM",
+    "token1": "LQDR",
+    "pair_address": "0x506DdcC751C7d500F983FfdA6DdEfbE458Ba2c33",
+    "reserves0": "29442340110671825370134",
+    "reserves1": "261628666700007946702882",
+    "usdVal": 2.760618244943569e24
+  },
+  {
+    "dex": "spooky",
+    "token0": "MIM",
+    "token1": "FTM",
+    "pair_address": "0x6f86e65b255c9111109d2D2325ca2dFc82456efc",
+    "reserves0": 0,
+    "reserves1": 0,
+    "usdVal": 0
+  },
+  {
+    "dex": "spooky",
+    "token0": "MIM",
+    "token1": "SPIRIT",
+    "pair_address": "0x3681A7229f418126B0EcD1B2f67FC9754f6b1206",
+    "reserves0": "2361",
+    "reserves1": "425",
+    "usdVal": 0
+  },
+  {
+    "dex": "spooky",
+    "token0": "MIM",
+    "token1": "LQDR",
+    "pair_address": "0x0000000000000000000000000000000000000000",
+    "reserves0": 0,
+    "reserves1": 0,
+    "usdVal": 0
+  },
+  {
+    "dex": "spooky",
+    "token0": "SPIRIT",
+    "token1": "FTM",
+    "pair_address": "0x67deB4877b129fe324285e47C0c419e34649E250",
+    "reserves0": 0,
+    "reserves1": 0,
+    "usdVal": 0
+  },
+  {
+    "dex": "spooky",
+    "token0": "SPIRIT",
+    "token1": "MIM",
+    "pair_address": "0x3681A7229f418126B0EcD1B2f67FC9754f6b1206",
+    "reserves0": 0,
+    "reserves1": 0,
+    "usdVal": 0
+  },
+  {
+    "dex": "spooky",
+    "token0": "SPIRIT",
+    "token1": "LQDR",
+    "pair_address": "0x0000000000000000000000000000000000000000",
+    "reserves0": 0,
+    "reserves1": 0,
+    "usdVal": 0
+  },
+  {
+    "dex": "spooky",
+    "token0": "LQDR",
+    "token1": "FTM",
+    "pair_address": "0x506DdcC751C7d500F983FfdA6DdEfbE458Ba2c33",
+    "reserves0": 0,
+    "reserves1": 0,
+    "usdVal": 0
+  },
+  {
+    "dex": "spooky",
+    "token0": "LQDR",
+    "token1": "MIM",
+    "pair_address": "0x0000000000000000000000000000000000000000",
+    "reserves0": 0,
+    "reserves1": 0,
+    "usdVal": 0
+  },
+  {
+    "dex": "spooky",
+    "token0": "LQDR",
+    "token1": "SPIRIT",
+    "pair_address": "0x0000000000000000000000000000000000000000",
+    "reserves0": 0,
+    "reserves1": 0,
+    "usdVal": 0
+  },
+  {
+    "dex": "spirit",
+    "token0": "FTM",
+    "token1": "MIM",
+    "pair_address": "0xB32b31DfAfbD53E310390F641C7119b5B9Ea0488",
+    "reserves0": "1626167432510605336948045",
+    "reserves1": "1912976459951362334182816",
+    "usdVal": 0
+  },
+  {
+    "dex": "spirit",
+    "token0": "FTM",
+    "token1": "SPIRIT",
+    "pair_address": "0x30748322B6E34545DBe0788C421886AEB5297789",
+    "reserves0": "5303821222444956306386290",
+    "reserves1": "72894890794102365891021717",
+    "usdVal": 0
+  },
+  {
+    "dex": "spirit",
+    "token0": "FTM",
+    "token1": "LQDR",
+    "pair_address": "0x4Fe6f19031239F105F753D1DF8A0d24857D0cAA2",
+    "reserves0": "393093692723151056404983",
+    "reserves1": "3494981919002250040594261",
+    "usdVal": 3.687763121648953e25
+  },
+  {
+    "dex": "spirit",
+    "token0": "MIM",
+    "token1": "FTM",
+    "pair_address": "0xB32b31DfAfbD53E310390F641C7119b5B9Ea0488",
+    "reserves0": 0,
+    "reserves1": 0,
+    "usdVal": 0
+  },
+  {
+    "dex": "spirit",
+    "token0": "MIM",
+    "token1": "SPIRIT",
+    "pair_address": "0x8EdC3Aec5771450B70f3EEC11315Af8d3D1c1Bb1",
+    "reserves0": "348098597214331436642",
+    "reserves1": "30074743749264433311",
+    "usdVal": 0
+  },
+  {
+    "dex": "spirit",
+    "token0": "MIM",
+    "token1": "LQDR",
+    "pair_address": "0x9f03b7b50a064F3367adA92358D1D426C6CB3366",
+    "reserves0": "39466280697746142424",
+    "reserves1": "418729692942495437177",
+    "usdVal": 0
+  },
+  {
+    "dex": "spirit",
+    "token0": "SPIRIT",
+    "token1": "FTM",
+    "pair_address": "0x30748322B6E34545DBe0788C421886AEB5297789",
+    "reserves0": 0,
+    "reserves1": 0,
+    "usdVal": 0
+  },
+  {
+    "dex": "spirit",
+    "token0": "SPIRIT",
+    "token1": "MIM",
+    "pair_address": "0x8EdC3Aec5771450B70f3EEC11315Af8d3D1c1Bb1",
+    "reserves0": 0,
+    "reserves1": 0,
+    "usdVal": 0
+  },
+  {
+    "dex": "spirit",
+    "token0": "SPIRIT",
+    "token1": "LQDR",
+    "pair_address": "0xFeBbfeA7674720cEdD35e9384d07F235365c1B3e",
+    "reserves0": "19679289032710794891650",
+    "reserves1": "2397048936395183782083479",
+    "usdVal": 0
+  },
+  {
+    "dex": "spirit",
+    "token0": "LQDR",
+    "token1": "FTM",
+    "pair_address": "0x4Fe6f19031239F105F753D1DF8A0d24857D0cAA2",
+    "reserves0": 0,
+    "reserves1": 0,
+    "usdVal": 0
+  },
+  {
+    "dex": "spirit",
+    "token0": "LQDR",
+    "token1": "MIM",
+    "pair_address": "0x9f03b7b50a064F3367adA92358D1D426C6CB3366",
+    "reserves0": 0,
+    "reserves1": 0,
+    "usdVal": 0
+  },
+  {
+    "dex": "spirit",
+    "token0": "LQDR",
+    "token1": "SPIRIT",
+    "pair_address": "0xFeBbfeA7674720cEdD35e9384d07F235365c1B3e",
+    "reserves0": 0,
+    "reserves1": 0,
+    "usdVal": 0
+  }
+]

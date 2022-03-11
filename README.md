@@ -1,2 +1,2 @@
-# Triangular2
+# smashboard
 Created with CodeSandbox

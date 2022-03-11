@@ -1,0 +1,227 @@
+const ethers = require("ethers");
+var rpc_url = "https://rpc.ftm.tools/";
+const factoryABI = require("../src/factory.json");
+const conn = new ethers.providers.JsonRpcProvider(rpc_url);
+console.log("Starting up");
+const dx = require("../src/dexes");
+const pairABI = require("../src/pairs.json");
+const fs = require("fs");
+
+const cfg = require("./config");
+let token_address = cfg.token_address;
+let factory_address = cfg.factory_address;
+
+//token_address = dx.token_address;
+//factory_address = dx.factory_address;
+var tokens = Object.keys(token_address);
+var dexes = Object.keys(factory_address);
+
+console.log(tokens);
+
+function getAllFactories() {
+  let factory_contracts_string = fs.readFileSync("data/factory_contracts.json");
+  return JSON.parse(factory_contracts_string);
+}
+
+function getAllPairs() {
+  return JSON.parse(fs.readFileSync("data/all_pairs.json"));
+}
+
+function newTriangleElement(
+  dexa,
+  dexb,
+  dexc,
+  token0,
+  token1,
+  token2,
+  token0_address,
+  token1_address,
+  token2_address,
+  paira,
+  pairb,
+  pairc
+) {
+  return {
+    dexa: dexa,
+    dexb: dexb,
+    dexc: dexc,
+    token0: token0,
+    token1: token1,
+    token2: token2,
+    token0_address: token0_address,
+    token1_address: token1_address,
+    token2_address: token2_address,
+    paira: paira,
+    pairb: pairb,
+    pairc: pairc
+  };
+}
+
+function pairstring(pair) {
+  return (
+    pair.dex + " " + pair.token0 + " " + pair.token1 + " " + pair.pair_address
+  );
+}
+
+//console.log(pairstring({ dex: "wtf" }));
+
+async function main() {
+  var dexa_address;
+  var dexb_address;
+  var dexc_address;
+
+  var factory_contract_a;
+  var factory_contract_b;
+  var factory_contract_c;
+
+  var factory_contracts = getAllFactories();
+  var pairArray = getAllPairs();
+  var dexArray;
+  var tokenArray;
+
+  var pair0_address_a;
+  var pair1_address_b;
+  var pair1_address_c;
+
+  var triangleArray = [];
+  for (const dexa of dexes) {
+    for (const dexb of dexes) {
+      for (const dexc of dexes) {
+        if (dexa === dexb || dexa === dexc || dexb === dexc) {
+          //continue;
+          console.log("same dex");
+        }
+
+        dexa_address = dx.factory_address[dexa];
+        dexb_address = dx.factory_address[dexb];
+        dexc_address = dx.factory_address[dexc];
+
+        // DEX COMBINATION
+        for (const token0 of tokens) {
+          for (const token1 of tokens) {
+            for (const token2 of tokens) {
+              if (token0 === token1 || token0 === token2 || token1 === token2) {
+                continue;
+                console.log("same same");
+              }
+
+              console.log(
+                dexa,
+                ":",
+                token0,
+                token1,
+                ".",
+                dexb,
+                ":",
+                token1,
+                token2,
+                ".",
+                dexc,
+                ":",
+                token2,
+                token0
+              );
+
+              dexArray = [dexa_address, dexb_address, dexc_address];
+              tokenArray = [token0, token1, token2];
+
+              let pair_a = pairArray.filter(function (element) {
+                return (
+                  element.dex === dexa &&
+                  ((element.token0 === token0 && element.token1 === token1) ||
+                    (element.token0 === token1 && element.token1 === token0))
+                ); //return
+              });
+              if (pair_a.length > 0) {
+                console.log(pair_a);
+                console.log("A", pairstring(pair_a[0]));
+              } else {
+                console.log("nopair");
+                continue;
+              }
+
+              let pair_b = pairArray.filter(function (element) {
+                return (
+                  element.dex === dexb &&
+                  ((element.token0 === token2 && element.token1 === token1) ||
+                    (element.token0 === token1 && element.token1 === token2))
+                ); //return
+              });
+
+              if (pair_b.length > 0) {
+                console.log("B", pairstring(pair_b[0]));
+              } else {
+                console.log("nopair");
+                continue;
+              }
+
+              let pair_c = pairArray.filter(function (element) {
+                return (
+                  element.dex === dexc &&
+                  ((element.token0 === token0 && element.token1 === token2) ||
+                    (element.token0 === token2 && element.token1 === token0))
+                ); //return
+              });
+
+              if (pair_c.length > 0) {
+                console.log("C", pairstring(pair_c[0]));
+              } else {
+                console.log("nopair");
+                continue;
+              }
+
+              //const null_address = ethers.utils.getAddress(
+              //  "0x0000000000000000000000000000000000000000"
+              //);
+              //let pairs_exist = [pair_a[0], pair_b[0], pair_c[0]].map(function (
+              //  x
+              //) {
+              //return ethers.utils.getAddress(x.pair_address) !== null_address;
+              //  return x.pair_address !== null_address;
+              //});
+              //console.log(
+              //  pair_a.pair_address,
+              //  pair_b.pair_address,
+              //  pair_c.pair_address
+              //);
+              //console.log(pairs_exist);
+
+              //if (pairs_exist[0] && pairs_exist[1] && pairs_exist[2]) {
+              triangleArray.push(
+                newTriangleElement(
+                  dexa,
+                  dexb,
+                  dexc,
+                  token0,
+                  token1,
+                  token2,
+                  token_address[token0],
+                  token_address[token1],
+                  token_address[token2],
+                  pair_a[0].pair_address,
+                  pair_b[0].pair_address,
+                  pair_c[0].pair_address
+                )
+              );
+
+              console.log("exists");
+              //} else {
+              //  console.log("missing");
+              //}
+              //if (pair_contract)
+            }
+          }
+          console.log("WRITE");
+          //let tristring = JSON.stringify(triangleArray);
+          //let fname = dexa + "_" + dexb + "_" + dexc + "_.json";
+          //console.log(fname);
+          //fs.writeFileSync(fname, tristring, "utf8");
+        }
+      } //dexc
+    } //dexb
+  } //dexa
+  //console.log(triangleArray);
+  let tristring = JSON.stringify(triangleArray);
+  fs.writeFileSync("data/triangular.json", tristring, "utf8");
+}
+main();
