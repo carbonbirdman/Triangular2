@@ -82,7 +82,7 @@ async function simulateTrade(tri, input_dollars = "1") {
     ]);
     let [amount_in_token0, amount_out_token1] = amount_out_a;
     const n1_wei = amount_out_token1;
-    //console.log("First sale", n1_wei);
+    console.log("First sale", n1_wei);
 
     const amount_out_b = await router_contract_b.getAmountsOut(n1_wei, [
       token_address[token1],
@@ -90,7 +90,7 @@ async function simulateTrade(tri, input_dollars = "1") {
     ]);
     let [amount_in_token1, amount_out_token2] = amount_out_b;
     const n2_wei = amount_out_token2;
-    //console.log("Second sale", n2_wei);
+    console.log("Second sale", n2_wei);
 
     const amount_out_c = await router_contract_c.getAmountsOut(n2_wei, [
       token_address[token2],
@@ -98,7 +98,7 @@ async function simulateTrade(tri, input_dollars = "1") {
     ]);
     let [amount_in_token2, amount_out_token0] = amount_out_c;
     const output_wei = amount_out_token0;
-    //console.log("Final sale", output_wei);
+    console.log("Final sale", output_wei);
 
     const output_tokens = output_wei * Math.pow(10, -token0_decimal);
     const output_dollars = output_tokens * usd_price;
