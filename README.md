@@ -1,2 +1,1 @@
-# smashboard
-Created with CodeSandbox
+# Triangular searcher

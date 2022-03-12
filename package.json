@@ -14,6 +14,7 @@
   "dependencies": {
     "axios": "0.26.0",
     "coingecko-api": "1.0.10",
+    "csvtojson": "2.0.10",
     "ejs": "3.1.6",
     "eta": "1.12.3",
     "ethers": "5.5.4",
