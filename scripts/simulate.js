@@ -17,14 +17,16 @@ let factory_address = cfg.factory_address;
 let router_address = dx.router_address;
 
 //let triangles = JSON.parse(fs.readFileSync("data/trikes.json"));
-let goodTriangles = JSON.parse(fs.readFileSync("data/triangular.json"));
+//let goodTriangles = JSON.parse(fs.readFileSync("data/triangular.json"));
+let goodTriangles = JSON.parse(fs.readFileSync("data/simulation.json"));
 let token_data = JSON.parse(fs.readFileSync("data/tokens.json"));
 let token_price = JSON.parse(fs.readFileSync("data/token_price.json"));
 let reserves = JSON.parse(fs.readFileSync("data/reserves.json"));
-//let goodTriangles = triangles.filter((i) => i.output > i.input);
+goodTriangles = goodTriangles.filter((i) => i.output > i.input-i.input/10);
 
 async function simulateTrade(tri, input_dollars = "1") {
   var [input_tokens, input_wei,n1_wei, n2_wei, output_wei,output_tokens] = [0,0,0,0,0,0]
+  var output_dollars = "NA";
   try {
     var price_line = token_price.filter((i) => i.token === tri.token0);
     if (price_line[0].usdPrice) {
@@ -124,8 +126,7 @@ try{
     console.log(err);
     console.log("Final sale",token2,token0 );
 }
-
-    const output_dollars = output_tokens * usd_price;
+    output_dollars = output_tokens * usd_price;
 
     console.log(
       input_dollars +
@@ -152,11 +153,11 @@ try{
     console.log("input",input_tokens);
     console.log(err);
     console.log(tri);
-    var output_dollars = "NA";
+    output_dollars = "NA";
   }
   let dollar_dollar_bills_yall = { input_dollars, output_dollars };
   // let trade_outputs = { n1_wei, n1, n2_wei, n2, out };
-  //console.log(trade_outputs);
+  console.log("DDB",dollar_dollar_bills_yall);
   return dollar_dollar_bills_yall;
 } //simulate
 
@@ -224,7 +225,7 @@ async function timeLoop() {
   let currentTime = Date.now();
   //while (currentTime < finalTime) {
   while (i < 1) {
-    const resultsArray = await simLoop("10");
+    var resultsArray = await simLoop("10");
     fs.writeFileSync(
       "data/sim" + currentTime + ".json",
       //"simulation.json",
@@ -236,6 +237,11 @@ async function timeLoop() {
     currentTime = Date.now();
     i = i + 1;
   }
+    fs.writeFileSync(
+      "data/simulation.json",
+      JSON.stringify(resultsArray),
+      "utf8"
+    );
   console.log("Simulation done");
 }
 

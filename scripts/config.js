@@ -6,14 +6,14 @@ let factory_address = {
 let token_address = {
   FTM: "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83",
   MIM: "0x82f0B8B456c1A451378467398982d4834b6829c1",
-  //SPIRIT: "0x5Cc61A78F164885776AA610fb0FE1257df78E59B",
-  //LQDR: "0x10b620b2dbac4faa7d7ffd71da486f5d44cd86f9",
+  SPIRIT: "0x5Cc61A78F164885776AA610fb0FE1257df78E59B",
+  LQDR: "0x10b620b2dbac4faa7d7ffd71da486f5d44cd86f9",
   ETH: "0x74b23882a30290451A17c44f4F05243b6b58C76d"
 };
 
-//const dx = require("../src/dexes");
-//let token_address = dx.token_address;
-//let factory_address = dx.factory_address;
+const dx = require("../src/dexes");
+token_address = dx.token_address;
+factory_address = dx.factory_address;
 
 module.exports = {
   token_address: token_address,

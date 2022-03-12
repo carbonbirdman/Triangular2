@@ -1,7 +1,9 @@
 const fs = require("fs");
-let token_data = JSON.parse(fs.readFileSync("sales.json"));
-let profitable = token_data.filter((i) => i.output > i.input);
-//console.log(profitable);
+let token_data = JSON.parse(fs.readFileSync("data/simulation.json"));
+console.log(token_data);
+//let profitable = token_data.filter((i) => i.output > i.input);
+let profitable = token_data.filter((i) => i.output > 8);
+console.log(profitable);
 
 const ethers = require("ethers");
 var rpc_url = "https://rpc.ftm.tools/";
@@ -14,4 +16,4 @@ let pairContractA = new ethers.Contract(
   conn
 );
 
-console.log(pairContractA);
+//console.log(pairContractA);
