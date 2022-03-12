@@ -1,3 +1,4 @@
+#! /bin/bash
 node prices.js
 node reserves.js
 node factories.js
