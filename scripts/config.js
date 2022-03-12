@@ -11,9 +11,9 @@ let token_address = {
   ETH: "0x74b23882a30290451A17c44f4F05243b6b58C76d"
 };
 
-const dx = require("../src/dexes");
-token_address = dx.token_address;
-factory_address = dx.factory_address;
+//const dx = require("../src/dexes");
+//token_address = dx.token_address;
+//factory_address = dx.factory_address;
 
 module.exports = {
   token_address: token_address,

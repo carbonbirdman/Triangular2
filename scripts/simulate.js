@@ -17,12 +17,12 @@ let factory_address = cfg.factory_address;
 let router_address = dx.router_address;
 
 //let triangles = JSON.parse(fs.readFileSync("data/trikes.json"));
-//let goodTriangles = JSON.parse(fs.readFileSync("data/triangular.json"));
-let goodTriangles = JSON.parse(fs.readFileSync("data/simulation.json"));
+let goodTriangles = JSON.parse(fs.readFileSync("data/triangular.json"));
+//let goodTriangles = JSON.parse(fs.readFileSync("data/simulation.json"));
 let token_data = JSON.parse(fs.readFileSync("data/tokens.json"));
 let token_price = JSON.parse(fs.readFileSync("data/token_price.json"));
 let reserves = JSON.parse(fs.readFileSync("data/reserves.json"));
-goodTriangles = goodTriangles.filter((i) => i.output > i.input-i.input/10);
+//goodTriangles = goodTriangles.filter((i) => i.output > i.input-i.input/10);
 
 async function simulateTrade(tri, input_dollars = "1") {
   var [input_tokens, input_wei,n1_wei, n2_wei, output_wei,output_tokens] = [0,0,0,0,0,0]
@@ -224,16 +224,15 @@ async function timeLoop() {
   let finalTime = startTime + 20000;
   let currentTime = Date.now();
   //while (currentTime < finalTime) {
-  while (i < 1) {
+  while (i < 12) {
     var resultsArray = await simLoop("10");
     fs.writeFileSync(
       "data/sim" + currentTime + ".json",
-      //"simulation.json",
       JSON.stringify(resultsArray),
       "utf8"
     );
     console.log("WROTE", i);
-    await delay(10000);
+    await delay(1000000);
     currentTime = Date.now();
     i = i + 1;
   }
