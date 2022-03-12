@@ -7,7 +7,9 @@
     "start": "nodemon index.js",
     "test": "jest",
     "setup": "node scripts/decimals.js && node scripts/prices.js && node scripts/factories.js && node scripts/pairs.js && node scripts/reserves.js",
-    "routes": "node scripts/generate.js"
+    "routes": "node scripts/generate.js",
+    "simulate": "node scripts/simulate.js",
+    "runall": "node scripts/decimals.js && node scripts/prices.js && node scripts/factories.js && node scripts/pairs.js && node scripts/reserves.js && node scripts/generate.js && node scripts/simulate.js"
   },
   "dependencies": {
     "axios": "0.26.0",
