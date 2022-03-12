@@ -35,12 +35,13 @@ async function getDecimals() {
   }
 } //mget
 
-async function main() {
+async function allDecimals() {
   getDecimals().then((tokens) => {
     //console.log(allpairs);
     let token_string = JSON.stringify(tokens);
     fs.writeFileSync("data/tokens.json", token_string, "utf8");
   });
 }
-
-main();
+if (require.main === module) {
+  allDecimals();
+}

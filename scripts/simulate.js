@@ -34,11 +34,12 @@ async function simulateTrade(tri, input_dollars = "1") {
     }
     console.log("Price", usd_price);
   } catch (err) {
+    w;
     console.log("no price");
     var usd_price = 1;
   }
   let input_tokens = input_dollars / usd_price;
-  //console.log(input_tokens, usd_price);
+  console.log(input_tokens, usd_price);
 
   const [dexa, dexb, dexc] = [tri.dexa, tri.dexb, tri.dexc];
   const [token0, token1, token2] = [tri.token0, tri.token1, tri.token2];
