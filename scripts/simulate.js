@@ -20,9 +20,11 @@ let router_address = dx.router_address;
 let goodTriangles = JSON.parse(fs.readFileSync("data/triangular.json"));
 let token_data = JSON.parse(fs.readFileSync("data/tokens.json"));
 let token_price = JSON.parse(fs.readFileSync("data/token_price.json"));
+let reserves = JSON.parse(fs.readFileSync("data/reserves.json"));
 //let goodTriangles = triangles.filter((i) => i.output > i.input);
 
 async function simulateTrade(tri, input_dollars = "1") {
+  var [input_tokens, input_wei,n1_wei, n2_wei, output_wei,output_tokens] = [0,0,0,0,0,0]
   try {
     var price_line = token_price.filter((i) => i.token === tri.token0);
     if (price_line[0].usdPrice) {
@@ -34,12 +36,9 @@ async function simulateTrade(tri, input_dollars = "1") {
     }
     console.log("Price", usd_price);
   } catch (err) {
-    w;
     console.log("no price");
     var usd_price = 1;
   }
-  let input_tokens = input_dollars / usd_price;
-  console.log(input_tokens, usd_price);
 
   const [dexa, dexb, dexc] = [tri.dexa, tri.dexb, tri.dexc];
   const [token0, token1, token2] = [tri.token0, tri.token1, tri.token2];
@@ -47,16 +46,24 @@ async function simulateTrade(tri, input_dollars = "1") {
   const token0_data = token_data.filter((i) => i.symbol === tri.token0);
   const token1_data = token_data.filter((i) => i.symbol === tri.token1);
   const token2_data = token_data.filter((i) => i.symbol === tri.token2);
+  
 
   const token0_decimal = token0_data[0].decimal;
   const token1_decimal = token1_data[0].decimal;
   const token2_decimal = token2_data[0].decimal;
 
+  input_tokens = input_dollars / usd_price;
+  //input_tokens = input_tokens.toFixed(token0_decimal);
+  console.log(input_tokens,tri.token0,"for $", usd_price);
+  const input_fixed = input_tokens.toFixed(token0_decimal);
+  console.log(input_fixed,"fixed");
+
   let pairContractA = new ethers.Contract(tri.paira, pairABI, conn);
   let pairContractB = new ethers.Contract(tri.pairb, pairABI, conn);
   let pairContractC = new ethers.Contract(tri.pairc, pairABI, conn);
   let [posa, posb, posc] = [3, 3, 3];
-
+  //const token0_reserves = reserves_data.filter((i) => i.pair_address === tri.paira);
+//  console.log("token-reserves",token0_reserves);
   const router_contract_a = new ethers.Contract(
     router_address[dexa],
     routerABI,
@@ -74,36 +81,50 @@ async function simulateTrade(tri, input_dollars = "1") {
   );
 
   try {
-    const input_wei = ethers.utils.parseUnits(
-      String(input_tokens),
+    input_wei = ethers.utils.parseUnits(
+     input_fixed,
       token0_decimal
     );
+  console.log("wei",input_wei);
 
+try{
     const amount_out_a = await router_contract_a.getAmountsOut(input_wei, [
       token_address[token0],
       token_address[token1]
     ]);
     let [amount_in_token0, amount_out_token1] = amount_out_a;
-    const n1_wei = amount_out_token1;
-    //console.log("First sale", n1_wei);
+    n1_wei = amount_out_token1;
+} catch(err){
+    console.log("First sale", token0, token1);
+    console.log(token_address[token0], token_address[token1]);
+    console.log(err);
+}
 
+try{
     const amount_out_b = await router_contract_b.getAmountsOut(n1_wei, [
       token_address[token1],
       token_address[token2]
     ]);
     let [amount_in_token1, amount_out_token2] = amount_out_b;
-    const n2_wei = amount_out_token2;
-    //console.log("Second sale", n2_wei);
+    n2_wei = amount_out_token2;
+} catch(err){
+    console.log("Second sale", token1, token2);
+    console.log(err);
+}
 
+try{
     const amount_out_c = await router_contract_c.getAmountsOut(n2_wei, [
       token_address[token2],
       token_address[token0]
     ]);
     let [amount_in_token2, amount_out_token0] = amount_out_c;
-    const output_wei = amount_out_token0;
-    //console.log("Final sale", output_wei);
+    output_wei = amount_out_token0;
+    output_tokens = output_wei * Math.pow(10, -token0_decimal);
+} catch(err){
+    console.log(err);
+    console.log("Final sale",token2,token0 );
+}
 
-    const output_tokens = output_wei * Math.pow(10, -token0_decimal);
     const output_dollars = output_tokens * usd_price;
 
     console.log(
@@ -127,7 +148,8 @@ async function simulateTrade(tri, input_dollars = "1") {
     let wei_outputs = { input_wei, n1_wei, n2_wei, output_wei };
     let trade_outputs = { input_tokens, n1_wei, n2_wei, output_wei };
   } catch (err) {
-    console.log("trade error");
+    console.log("trade error:",token0,token1,token2);
+    console.log("input",input_tokens);
     console.log(err);
     console.log(tri);
     var output_dollars = "NA";
@@ -142,7 +164,7 @@ async function simLoop(input_dollars = "10") {
   let resultsArray = [];
   let naTri = [];
   let loliqTri = [];
-  var stream = fs.createWriteStream("simulation.txt", { flags: "a" });
+  var stream = fs.createWriteStream("data/simulation.txt", { flags: "a" });
   for (const tri of goodTriangles) {
     let trade_output = await simulateTrade(tri, input_dollars);
 
@@ -204,7 +226,7 @@ async function timeLoop() {
   while (i < 1) {
     const resultsArray = await simLoop("10");
     fs.writeFileSync(
-      "sim" + currentTime + ".json",
+      "data/sim" + currentTime + ".json",
       //"simulation.json",
       JSON.stringify(resultsArray),
       "utf8"
