@@ -174,14 +174,25 @@ async function simulateTrade(tri, input_dollars = "1") {
   return dollar_dollar_bills_yall;
 } //simulate
 
-async function simLoop(input_dollars = "10") {
+async function simLoop(inputTriangles, input_dollars = "10") {
   let resultsArray = [];
   let naTri = [];
   let loliqTri = [];
-  var stream = fs.createWriteStream("data/simulation.txt", { flags: "a" });
-  //write header
-  stream.write("time,input,output,dexa,dexb,dexc,token0,token1,token2 \n");
-  for (const tri of goodTriangles) {
+  let stream_file_name = "data/simulation.txt";
+
+  try {
+    if (fs.existsSync("data/simulation.txt")) {
+      var stream = fs.createWriteStream(stream_file_name, { flags: "a" });
+    } else {
+      var stream = fs.createWriteStream(stream_file_name, { flags: "a" });
+      //write header
+      stream.write("time,input,output,dexa,dexb,dexc,token0,token1,token2 \n");
+    }
+  } catch (err) {
+    console.error(err);
+  }
+
+  for (const tri of inputTriangles) {
     let trade_output = await simulateTrade(tri, input_dollars);
 
     let triOut = {
@@ -244,8 +255,8 @@ async function timeLoop() {
   let finalTime = startTime + 20000;
   let currentTime = Date.now();
   //while (currentTime < finalTime) {
-  while (i < 100) {
-    var resultsArray = await simLoop("10");
+  while (i < 3) {
+    var resultsArray = await simLoop(goodTriangles, "10");
     fs.writeFileSync(
       "data/sim" + currentTime + ".json",
       JSON.stringify(resultsArray),

@@ -1,5 +1,6 @@
 const express = require("express");
 const dx = require("./src/dexes");
+const sl = require("./scripts/shortlist");
 var path = require("path");
 const fs = require("fs");
 
@@ -7,7 +8,7 @@ const app = express();
 var eta = require("eta");
 app.set("view engine", "eta");
 
-app.set("views", "./views");
+//app.set("views", "./views");
 const port = 3000;
 
 var indexTemplate = `
@@ -19,7 +20,9 @@ var indexTemplate = `
 `;
 
 app.get("/", (req, res) => {
-  res.send(eta.render(indexTemplate, ["home", "reserves", "simulation"]));
+  res.send(
+    eta.render(indexTemplate, ["home", "reserves", "simulation", "shortlist"])
+  );
 });
 
 var inputTemplate = `
@@ -56,8 +59,16 @@ var simTemplate = `
 `;
 
 app.get("/simulation", function (req, res) {
-  //array with items to send
   let items = JSON.parse(fs.readFileSync("data/simulation.json"));
+  console.log(items);
+  res.send(eta.render(simTemplate, items));
+});
+
+app.get("/shortlist", function (req, res) {
+  let items = sl.shortlist(
+    "data/simulation.json",
+    (i) => i.output > i.input - i.input / 10
+  );
   console.log(items);
   res.send(eta.render(simTemplate, items));
 });

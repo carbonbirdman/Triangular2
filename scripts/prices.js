@@ -10,9 +10,8 @@ const cfg = require("./config");
 let token_address = cfg.token_address;
 
 //token_address = dx.token_address;
-var tokens = Object.keys(token_address);
-
-console.log(tokens);
+var all_tokens = Object.keys(token_address);
+console.log(all_tokens);
 
 function newElement(token, usdPrice) {
   return {
@@ -21,9 +20,9 @@ function newElement(token, usdPrice) {
   };
 }
 
-async function getPrice() {
+async function getPrice(tokenlist) {
   var tokenArray = [];
-  for (const token of tokens) {
+  for (const token of tokenlist) {
     let usdPrice = "NA";
     try {
       const cg_url =
@@ -46,10 +45,16 @@ async function getPrice() {
   return tokenArray;
 } //function getPrice
 
-async function main() {
-  getPrice().then((price) => {
-    fs.writeFileSync("data/token_price.json", JSON.stringify(price), "utf8");
+async function mainPrice() {
+  getPrice(all_tokens).then((pricelist) => {
+    fs.writeFileSync(
+      "data/token_price.json",
+      JSON.stringify(pricelist),
+      "utf8"
+    );
   });
 }
 
-main();
+if (require.main === module) {
+  mainPrice();
+}
