@@ -20,6 +20,22 @@ function newElement(token, usdPrice) {
   };
 }
 
+function getUSDPrice(tokenSymbol) {
+  let token_price = JSON.parse(fs.readFileSync("data/token_price.json"));
+  let usd_price = 1;
+  try {
+    var price_line = token_price.filter((i) => i.token === tokenSymbol);
+    if (price_line[0].usdPrice) {
+      usd_price = price_line[0].usdPrice;
+    } else {
+      console.log("no price:", price_line);
+    }
+  } catch (err) {
+    console.log("error getting price");
+  }
+  return usd_price;
+}
+
 async function getPrice(tokenlist) {
   var tokenArray = [];
   for (const token of tokenlist) {
@@ -61,5 +77,6 @@ if (require.main === module) {
 
 //exports.token_address = token_address;
 module.exports = {
-  getPrice: getPrice
+  getPrice: getPrice,
+  getUSDPrice: getUSDPrice
 };

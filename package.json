@@ -6,9 +6,9 @@
   "scripts": {
     "start": "nodemon index.js",
     "test": "jest",
-    "setup": "node scripts/decimals.js && node scripts/prices.js && node scripts/factories.js && node scripts/pairs.js && node scripts/reserves.js",
+    "setup": "node scripts/decimals.js && node scripts/prices.js && node scripts/factories.js && node scripts/pairs.js && node scripts/reserves.js && node scripts/validate_pairs.js",
     "routes": "node scripts/generate.js",
-    "simulate": "node scripts/simulate.js",
+    "simulate": "node scripts/simulate_solid.js",
     "runall": "node scripts/decimals.js && node scripts/prices.js && node scripts/factories.js && node scripts/pairs.js && node scripts/reserves.js && node scripts/generate.js && node scripts/simulate.js"
   },
   "dependencies": {

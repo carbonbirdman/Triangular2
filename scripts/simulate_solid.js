@@ -153,7 +153,7 @@ async function simulateTrade(tri, input_dollars = "1") {
       let [amount_in_token2, amount_out_token0] = amount_out_c;
       output_wei = amount_out_token0;
       //output_tokens = output_wei * Math.pow(10, -token0_decimal);
-      let output_token = ethers.utils.formatUnits(output_wei, token1_decimal);
+      let output_tokens = ethers.utils.formatUnits(output_wei, token1_decimal);
     } catch (err) {
       console.log(err);
       console.log("Final sale", token2, token0);
