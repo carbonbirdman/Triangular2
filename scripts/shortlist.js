@@ -1,10 +1,16 @@
 const fs = require("fs");
 
 function shortlist(
-  inputFile = "data/simulation.json",
-  myfilter = (i) => i.output > i.input - i.input / 2
+  inputFile = "data/trade_pairs.json",
+  myfilter = (i) =>
+    i.output_dollars >
+    parseFloat(i.input_dollars) - parseFloat(i.input_dollars) / 2
 ) {
   let triangles = JSON.parse(fs.readFileSync(inputFile));
+  console.log(triangles);
+  triangles.forEach((element) => {
+    console.log(element.output_dollars);
+  });
   //const asArray = Object.entries(triangles);
   //console.log(asArray[0]);
   // let filtered = asArray[0].filter(myfilter);

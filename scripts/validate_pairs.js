@@ -126,12 +126,12 @@ async function simulateTrade(pair, input_dollars = "1") {
       token1,
       pair.dex
     );
-    output_dollars = output_tokens * token1_usd_price;
+    output_dollars = (output_tokens * token1_usd_price).toString();
 
     console.log(
       input_dollars +
-        "->" +
-        output_dollars.toPrecision(3) +
+      "->" +
+      output_dollars + //.toPrecision(3) +
         "(" +
         pair.token0 +
         "," +
@@ -163,16 +163,17 @@ async function getTrades(pairs) {
       console.log("pair", pair);
       // Save data
       pairArray.push(
-        newElement({
+        //newElement({
+        {
           dex: pair.dex,
           token0: pair.token0,
           token1: pair.token1,
-          pair: pair.pair_address,
+          pair_address: pair.pair_address,
           input_tokens: trade_data.input_tokens,
           output_tokens: trade_data.output_tokens,
           input_dollars: trade_data.input_dollars,
           output_dollars: trade_data.output_dollars
-        })
+        }
       );
     } catch (err) {
       console.log(i);
@@ -188,7 +189,7 @@ async function main() {
   getTrades(pairs).then((allpairs) => {
     //console.log(allpairs);
     let pair_string = JSON.stringify(allpairs);
-    fs.writeFileSync("data/trades.json", pair_string, "utf8");
+    fs.writeFileSync("data/trade_pairs.json", pair_string, "utf8");
   });
 }
 

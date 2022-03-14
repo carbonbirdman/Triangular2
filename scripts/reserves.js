@@ -41,7 +41,7 @@ async function getReserves() {
       let pairContract = new ethers.Contract(pair.pair_address, pairABI, conn);
       let reserves = await pairContract.getReserves();
       [reserves0, reserves1] = [reserves[0].toString(), reserves[1].toString()];
-      console.log(reserves[0].toString(), reserves[0]);
+      console.log(pair.token0, pair.token1, reserves0, reserves1);
     } catch (err) {
       console.log("Problem getting reserves");
       console.log(err);

@@ -8,6 +8,7 @@ const dx = require("../src/dexes");
 const pairABI = require("../src/pairs.json");
 const routerABI = require("../src/router.json");
 const fs = require("fs");
+const null_address = "0x0000000000000000000000000000000000000000";
 
 const cfg = require("./config");
 let token_address = cfg.token_address;
@@ -88,9 +89,13 @@ async function getAllPairs() {
           //console.log("CHECK");
           //console.log(pair_check);
           //console.log(pair_check.length);
-          if (pair_check.length == 0) {
-            pairArray.push(newElement(dex, token0, token1, pair_address));
-            console.log(dex, token0, token1, pair_address, "exists");
+          if (pair_check.length === 0) {
+            if (pair_address === null_address) {
+              console.log(dex, token0, token1, pair_address, "null address");
+            } else {
+              pairArray.push(newElement(dex, token0, token1, pair_address));
+            }
+            console.log(dex, token0, token1, pair_address, "added");
           } else {
             console.log(dex, token0, token1, pair_address, "dupe exists");
           }
@@ -104,7 +109,7 @@ async function getAllPairs() {
     }
   }
   //console.log(pairArray);
-  const null_address = "0x0000000000000000000000000000000000000000";
+
   const filtered = pairArray.filter(
     (pairArray) => pairArray.pair_address !== null_address
   );

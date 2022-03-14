@@ -27,6 +27,18 @@ function getAllPairs() {
   return JSON.parse(fs.readFileSync("data/all_pairs.json"));
 }
 
+function getFilteredPairs() {
+  let pairs = JSON.parse(fs.readFileSync("data/trade_pairs.json"));
+  let pair_array = pairs.fromEntries();
+  console.log(pair_array.map((i) => i.output));
+  const myfilter = (i) => i.output > i.input - i.input / 2;
+  return pairs.filter(myfilter);
+}
+
+function getShortlistPairs() {
+  return JSON.parse(fs.readFileSync("data/shortlist.json"));
+}
+
 function newTriangleElement(
   dexa,
   dexb,
@@ -75,7 +87,8 @@ async function main() {
   var factory_contract_c;
 
   var factory_contracts = getAllFactories();
-  var pairArray = getAllPairs();
+  var pairArray = getShortlistPairs();
+  //var pairArray = getAllPairs();
   var dexArray;
   var tokenArray;
 
@@ -136,7 +149,7 @@ async function main() {
                 console.log(pair_a);
                 console.log("A", pairstring(pair_a[0]));
               } else {
-                console.log("nopair");
+                console.log("nopair:", dexa, token0, token1);
                 continue;
               }
 
@@ -151,7 +164,7 @@ async function main() {
               if (pair_b.length > 0) {
                 console.log("B", pairstring(pair_b[0]));
               } else {
-                console.log("nopair");
+                console.log("nopair", dexb, token1, token2);
                 continue;
               }
 
@@ -166,7 +179,7 @@ async function main() {
               if (pair_c.length > 0) {
                 console.log("C", pairstring(pair_c[0]));
               } else {
-                console.log("nopair");
+                console.log("nopair", dexc, token2, token0);
                 continue;
               }
 
@@ -204,14 +217,14 @@ async function main() {
                 )
               );
 
-              console.log("exists");
+              //console.log("exists");
               //} else {
               //  console.log("missing");
               //}
               //if (pair_contract)
             }
           }
-          console.log("WRITE");
+          // console.log("WRITE");
           //let tristring = JSON.stringify(triangleArray);
           //let fname = dexa + "_" + dexb + "_" + dexc + "_.json";
           //console.log(fname);
@@ -220,8 +233,9 @@ async function main() {
       } //dexc
     } //dexb
   } //dexa
-  //console.log(triangleArray);
+  console.log(triangleArray.length, "routes");
   let tristring = JSON.stringify(triangleArray);
   fs.writeFileSync("data/triangular.json", tristring, "utf8");
+  console.log(triangleArray);
 }
 main();

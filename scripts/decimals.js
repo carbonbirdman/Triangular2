@@ -15,13 +15,13 @@ var tokenArray = [];
 async function getDecimals() {
   try {
     for (const token of tokens) {
-      console.log(token);
       const token_contract = new ethers.Contract(
         token_address[token],
         tokenABI,
         conn
       );
       const token_decimal = await token_contract.decimals();
+      console.log(token, token_decimal);
       tokenArray.push({
         symbol: token,
         address: token_address[token],
