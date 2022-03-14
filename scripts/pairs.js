@@ -1,6 +1,7 @@
 const ethers = require("ethers");
 var rpc_url = "https://rpc.ftm.tools/";
 const factoryABI = require("../src/factory.json");
+const solidFactoryABI = require("../src/solidFactory.json");
 const conn = new ethers.providers.JsonRpcProvider(rpc_url);
 console.log("Starting up");
 const dx = require("../src/dexes");
@@ -22,11 +23,19 @@ console.log(tokens);
 function getAllFactories() {
   var factory_contracts = [];
   for (const dex of dexes) {
-    factory_contracts[dex] = new ethers.Contract(
-      factory_address[dex],
-      factoryABI,
-      conn
-    );
+    if (dex === "solid") {
+      factory_contracts[dex] = new ethers.Contract(
+        factory_address[dex],
+        solidFactoryABI,
+        conn
+      );
+    } else {
+      factory_contracts[dex] = new ethers.Contract(
+        factory_address[dex],
+        factoryABI,
+        conn
+      );
+    }
   }
   return factory_contracts;
 }
@@ -56,10 +65,19 @@ async function getAllPairs() {
           continue;
         }
         try {
-          let pair_address = await factory_contract.getPair(
-            dx.token_address[token0],
-            dx.token_address[token1]
-          );
+          var pair_address = "None";
+          if (dex == "solid") {
+            pair_address = await factory_contract.getPair(
+              dx.token_address[token0],
+              dx.token_address[token1],
+              false //this argument is whether the stable pool or volatile
+            );
+          } else {
+            pair_address = await factory_contract.getPair(
+              dx.token_address[token0],
+              dx.token_address[token1]
+            );
+          }
           let pair_check = pairArray.filter(function (element) {
             return (
               element.dex === dex &&

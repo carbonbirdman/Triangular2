@@ -58,3 +58,8 @@ async function mainPrice() {
 if (require.main === module) {
   mainPrice();
 }
+
+//exports.token_address = token_address;
+module.exports = {
+  getPrice: getPrice
+};

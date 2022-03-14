@@ -4,12 +4,12 @@ const factoryABI = require("../src/factory.json");
 const routerABI = require("../src/router.json");
 const solidRouterABI = require("../src/solidRouter.json");
 const conn = new ethers.providers.JsonRpcProvider(rpc_url);
-console.log("Onesim starting up");
+console.log("Simulation starting up");
 const axios = require("axios");
 //const CoinGecko = require("coingecko-api");
+
 const dx = require("../src/dexes");
 const pairABI = require("../src/pairs.json");
-const solidFactoryABI = require("../src/solidFactory.json");
 const fs = require("fs");
 
 const cfg = require("./config");
@@ -17,7 +17,11 @@ let token_address = cfg.token_address;
 let factory_address = cfg.factory_address;
 let router_address = dx.router_address;
 
-let token_data = JSON.parse(fs.readFileSync("data/tokens.json"));
+//let triangles = JSON.parse(fs.readFileSync("data/trikes.json"));
+let goodTriangles = JSON.parse(fs.readFileSync("data/triangular.json"));
+//let goodTriangles = JSON.parse(fs.readFileSync("data/simulation.json"));
+let reserves = JSON.parse(fs.readFileSync("data/reserves.json"));
+//goodTriangles = goodTriangles.filter((i) => i.output > i.input-i.input/10);
 
 function getUSDPrice(tokenSymbol) {
   let token_price = JSON.parse(fs.readFileSync("data/token_price.json"));
@@ -35,53 +39,7 @@ function getUSDPrice(tokenSymbol) {
   return usd_price;
 }
 
-async function getPair(token0, token1, dex, conn) {
-  var pair_address = "None";
-  var factory_contract = "None";
-  if (dex === "solid") {
-    factory_contract = new ethers.Contract(
-      factory_address[dex],
-      solidFactoryABI,
-      conn
-    );
-    pair_address = await factory_contract.getPair(
-      dx.token_address[token0],
-      dx.token_address[token1],
-      false //this argument is whether the stable pool or volatile
-    );
-  } else {
-    factory_contract = new ethers.Contract(
-      factory_address[dex],
-      factoryABI,
-      conn
-    );
-    pair_address = await factory_contract.getPair(
-      dx.token_address[token0],
-      dx.token_address[token1]
-    );
-  }
-  return pair_address;
-}
-
-async function getTri(token0, token1, token2, dexa, dexb, dexc, conn) {
-  return {
-    dexa: dexa,
-    dexb: dexb,
-    dexc: dexc,
-    token0: token0,
-    token1: token1,
-    token2: token2,
-    token0_address: token_address[token0],
-    token1_address: token_address[token1],
-    token2_address: token_address[token2],
-    paira: await getPair(token0, token1, dexa, conn),
-    pairb: await getPair(token0, token1, dexb, conn),
-    pairc: await getPair(token0, token1, dexc, conn)
-  };
-}
-
 async function simulateTrade(tri, input_dollars = "1") {
-  console.log("simming");
   let token_data = JSON.parse(fs.readFileSync("data/tokens.json"));
 
   var input_tokens = 0;
@@ -120,6 +78,11 @@ async function simulateTrade(tri, input_dollars = "1") {
   const input_fixed = input_tokens.toFixed(token0_decimal);
   console.log(input_fixed, "fixed");
 
+  let pairContractA = new ethers.Contract(tri.paira, pairABI, conn);
+  let pairContractB = new ethers.Contract(tri.pairb, pairABI, conn);
+  let pairContractC = new ethers.Contract(tri.pairc, pairABI, conn);
+  let [posa, posb, posc] = [3, 3, 3];
+
   function getRouter(dex) {
     if (dex === "solid") {
       return new ethers.Contract(router_address[dex], solidRouterABI, conn);
@@ -137,27 +100,26 @@ async function simulateTrade(tri, input_dollars = "1") {
     let addy1 = ethers.utils.getAddress(token_address[token1]);
     let addy2 = ethers.utils.getAddress(token_address[token2]);
 
-    function getRoute(dex, add0, add1) {
+    function getRoute(dex, address0, address1) {
       if (dex === "solid") {
         return [
           {
-            from: add0,
-            to: add1,
+            from: address0,
+            to: address1,
             stable: false
           }
         ];
       } else {
-        return [add0, add1];
+        return [address0, address1];
       } //else
     } //getRouter
 
     let routea = getRoute(dexa, addy0, addy1);
-    let routeb = getRoute(dexb, addy1, addy2);
-    let routec = getRoute(dexc, addy2, addy0);
+    let routeb = getRoute(dexa, addy1, addy2);
+    let routec = getRoute(dexa, addy2, addy0);
 
     input_wei = ethers.utils.parseUnits(input_fixed, token0_decimal);
     console.log("wei", input_wei);
-    // TRADE 1
     try {
       const amount_out_a = await router_contract_a.getAmountsOut(
         input_wei,
@@ -165,41 +127,23 @@ async function simulateTrade(tri, input_dollars = "1") {
       );
       let [amount_in_token0, amount_out_token1] = amount_out_a;
       n1_wei = amount_out_token1;
-      console.log(n1_wei.toString());
-      let n1_tokens = ethers.utils.formatUnits(n1_wei, token1_decimal);
-      //input_tokens.toFixed(token0_decimal);
-      console.log("First sale", input_fixed, token0, n1_tokens, token1, dexb);
     } catch (err) {
-      console.log("First sale", token0, token1, dexa);
+      console.log("First sale", token0, token1);
       console.log(token_address[token0], token_address[token1]);
       console.log(err);
     }
 
-    // TRADE 2
     try {
       const amount_out_b = await router_contract_b.getAmountsOut(
         n1_wei,
-        // token_address[token1],
-        // token_address[token2]
         routeb
       );
       let [amount_in_token1, amount_out_token2] = amount_out_b;
       n2_wei = amount_out_token2;
-      let n2_tokens = ethers.utils.formatUnits(n2_wei, token2_decimal);
-      console.log("Second sale", n2_tokens, token2, dexb);
     } catch (err) {
-      console.log(
-        "Second sale error",
-        token1,
-        token2,
-        ethers.utils.formatUnits(n1_wei, token1_decimal),
-        routeb,
-        dexb
-      );
+      console.log("Second sale", token1, token2);
       console.log(err);
     }
-
-    console.log(routec);
 
     try {
       const amount_out_c = await router_contract_c.getAmountsOut(
@@ -208,12 +152,11 @@ async function simulateTrade(tri, input_dollars = "1") {
       );
       let [amount_in_token2, amount_out_token0] = amount_out_c;
       output_wei = amount_out_token0;
-      console.log("WEi out:", output_wei);
-      output_tokens = output_wei * Math.pow(10, -token0_decimal);
-      console.log("Final sale", output_tokens, token0, dexc);
+      //output_tokens = output_wei * Math.pow(10, -token0_decimal);
+      let output_token = ethers.utils.formatUnits(output_wei, token1_decimal);
     } catch (err) {
-      //console.log(err);
-      console.log("Final sale", token2, token0, dexc);
+      console.log(err);
+      console.log("Final sale", token2, token0);
     }
     output_dollars = output_tokens * usd_price;
 
@@ -233,7 +176,12 @@ async function simulateTrade(tri, input_dollars = "1") {
         tri.dexb +
         "," +
         tri.dexc +
-        ")"
+        ")" //+
+      //"[" +
+      //tri.input +
+      //"->" +
+      //tri.output.toPrecision(3) +
+      //"]"
     );
 
     let wei_outputs = { input_wei, n1_wei, n2_wei, output_wei };
@@ -241,7 +189,7 @@ async function simulateTrade(tri, input_dollars = "1") {
   } catch (err) {
     console.log("trade error:", token0, token1, token2);
     console.log("input", input_tokens);
-    //console.log(err);
+    console.log(err);
     console.log(tri);
     output_dollars = "NA";
   }
@@ -251,24 +199,115 @@ async function simulateTrade(tri, input_dollars = "1") {
   return dollar_dollar_bills_yall;
 } //simulate
 
-async function main() {
+async function simLoop(inputTriangles, input_dollars = "10") {
+  let resultsArray = [];
+  let naTri = [];
+  let loliqTri = [];
+  let stream_file_name = "data/simulation.txt";
+
   try {
-    const test_data = await getTri(
-      "FTM",
-      "LQDR",
-      "SPIRIT",
-      "solid",
-      "spirit",
-      "solid",
-      conn
-    );
-    console.log("Test", test_data);
-    let trade_output = simulateTrade(test_data, "1");
-    //console.log(trade_output);
+    if (fs.existsSync("data/simulation.txt")) {
+      var stream = fs.createWriteStream(stream_file_name, { flags: "a" });
+    } else {
+      var stream = fs.createWriteStream(stream_file_name, { flags: "a" });
+      //write header
+      stream.write("time,input,output,dexa,dexb,dexc,token0,token1,token2 \n");
+    }
   } catch (err) {
-    console.log(err);
-    console.log("Simulation failed");
+    console.error(err);
   }
+
+  for (const tri of inputTriangles) {
+    let trade_output = await simulateTrade(tri, input_dollars);
+
+    let triOut = {
+      dexa: tri.dexa,
+      dexb: tri.dexb,
+      dexc: tri.dexc,
+      token0: tri.token0,
+      token1: tri.token1,
+      token2: tri.token2,
+      token0_address: tri.token0_address,
+      token1_address: tri.token1_address,
+      token2_address: tri.token2_address,
+      paira: tri.paira,
+      pairb: tri.pairb,
+      pairc: tri.pairc,
+      input: trade_output.input_dollars,
+      output: trade_output.output_dollars
+    };
+
+    if (trade_output.output_dollars == "NA") {
+      naTri.push(triOut);
+    } else if (trade_output.output_dollars < input_dollars / 10) {
+      loliqTri.push(triOut);
+    } else {
+      resultsArray.push(triOut);
+    }
+
+    let currentTime = Date.now();
+    stream.write(
+      currentTime +
+        "," +
+        trade_output.input_dollars +
+        "," +
+        trade_output.output_dollars +
+        "," +
+        tri.dexa +
+        "," +
+        tri.dexb +
+        "," +
+        tri.dexb +
+        "," +
+        tri.token0 +
+        "," +
+        tri.token1 +
+        "," +
+        tri.token2 +
+        "\n"
+    );
+  }
+  return resultsArray;
 }
 
-main();
+function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function timeLoop() {
+  let i = 0;
+  let startTime = Date.now();
+  let finalTime = startTime + 20000;
+  let currentTime = Date.now();
+  //while (currentTime < finalTime) {
+  while (i < 3) {
+    var resultsArray = await simLoop(goodTriangles, "10");
+    fs.writeFileSync(
+      "data/sim" + currentTime + ".json",
+      JSON.stringify(resultsArray),
+      "utf8"
+    );
+    console.log("WROTE", i);
+    await delay(20000);
+    currentTime = Date.now();
+    i = i + 1;
+  }
+  fs.writeFileSync(
+    "data/simulation.json",
+    JSON.stringify(resultsArray),
+    "utf8"
+  );
+  console.log("Simulation done");
+}
+
+async function main() {
+  await timeLoop();
+}
+
+if (require.main === module) {
+  main();
+}
+
+module.exports = {
+  timeLoop: timeLoop
+};

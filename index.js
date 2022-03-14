@@ -1,6 +1,7 @@
 const express = require("express");
 const dx = require("./src/dexes");
 const sl = require("./scripts/shortlist");
+const sim = require("./scripts/simulate");
 var path = require("path");
 const fs = require("fs");
 
@@ -59,6 +60,13 @@ var simTemplate = `
 `;
 
 app.get("/simulation", function (req, res) {
+  let items = JSON.parse(fs.readFileSync("data/simulation.json"));
+  console.log(items);
+  res.send(eta.render(simTemplate, items));
+});
+
+app.get("/simulate", function (req, res) {
+  sim.timeLoop();
   let items = JSON.parse(fs.readFileSync("data/simulation.json"));
   console.log(items);
   res.send(eta.render(simTemplate, items));
