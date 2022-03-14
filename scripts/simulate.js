@@ -279,4 +279,6 @@ async function main() {
   await timeLoop();
 }
 
-main();
+if (require.main === module) {
+  main();
+}

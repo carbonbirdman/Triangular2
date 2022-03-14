@@ -26,7 +26,7 @@ function newElement(dex, token0, token1, pair_address, reserves0, reserves1) {
     dex: dex,
     token0: token0,
     token1: token1,
-    pair_address: ethers.utils.getAddress(pair_address),
+    pair_address: pair_address,
     reserves0: reserves0,
     reserves1: reserves1
   };
@@ -73,7 +73,6 @@ function getRoute(dex, add0, add1) {
 async function simulateTrade(pair, input_dollars = "1") {
   console.log("simming");
   let token_data = JSON.parse(fs.readFileSync("data/tokens.json"));
-
   var input_tokens = 0;
   var input_wei = 0;
   var output_wei = 0;
@@ -118,7 +117,7 @@ async function simulateTrade(pair, input_dollars = "1") {
 
     output_wei = amount_out_token1;
     console.log("WEi out:", output_wei);
-    let output_tokens = ethers.utils.formatUnits(output_wei, token1_decimal);
+    output_tokens = ethers.utils.formatUnits(output_wei, token1_decimal);
     console.log(
       "First sale",
       input_fixed,
@@ -149,15 +148,19 @@ async function simulateTrade(pair, input_dollars = "1") {
     console.log(err);
     output_dollars = "NA";
   }
+
   return { input_tokens, output_tokens, input_dollars, output_dollars };
 } //simulate
 
 async function getTrades(pairs) {
   var pairArray = [];
+  var i = 0;
   for (const pair of pairs) {
+    i = i + 1;
     try {
-      let trade_data = simulateTrade(pair, "100");
-      console.log(trade_data);
+      let trade_data = await simulateTrade(pair, "100");
+      console.log("trade", trade_data);
+      console.log("pair", pair);
       // Save data
       pairArray.push(
         newElement({
@@ -172,7 +175,9 @@ async function getTrades(pairs) {
         })
       );
     } catch (err) {
+      console.log(i);
       console.log("Problem getting trade");
+      console.log("pair", pair);
       console.log(err);
     }
   } //for
