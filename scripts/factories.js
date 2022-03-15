@@ -33,7 +33,7 @@ function main() {
       conn
     );
   }
-  console.log(factory_contracts);
+  //console.log(factory_contracts);
   //console.log(Object.keys(factory_contracts));
   // console.log(Object.keys(factory_contracts_1));
   //console.log(factory_contracts["spooky"]);

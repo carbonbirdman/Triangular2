@@ -29,10 +29,12 @@ function getAllPairs() {
 
 function getFilteredPairs() {
   let pairs = JSON.parse(fs.readFileSync("data/trade_pairs.json"));
-  let pair_array = pairs.fromEntries();
-  console.log(pair_array.map((i) => i.output));
-  const myfilter = (i) => i.output > i.input - i.input / 2;
+  //let pair_array = pairs.fromEntries();
+  console.log(pairs.map((i) => i.output_dollars));
+  const myfilter = (i) =>
+    i.output_dollars > i.input_dollars - i.input_dollars / 2;
   return pairs.filter(myfilter);
+  //return pairs;
 }
 
 function getShortlistPairs() {
@@ -88,6 +90,7 @@ async function main() {
 
   var factory_contracts = getAllFactories();
   var pairArray = getShortlistPairs();
+  var pairArray = getFilteredPairs();
   //var pairArray = getAllPairs();
   var dexArray;
   var tokenArray;
@@ -236,6 +239,6 @@ async function main() {
   console.log(triangleArray.length, "routes");
   let tristring = JSON.stringify(triangleArray);
   fs.writeFileSync("data/triangular.json", tristring, "utf8");
-  console.log(triangleArray);
+  //console.log(triangleArray);
 }
 main();
