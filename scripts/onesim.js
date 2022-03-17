@@ -2,8 +2,10 @@ const ethers = require("ethers");
 var rpc_url = "https://rpc.ftm.tools/";
 const factoryABI = require("../src/factory.json");
 const routerABI = require("../src/router.json");
+const tokenABI = require("../src/token.json");
 const solidRouterABI = require("../src/solidRouter.json");
 const conn = new ethers.providers.JsonRpcProvider(rpc_url);
+const signer = conn.getSigner();
 console.log("Onesim starting up");
 const axios = require("axios");
 //const CoinGecko = require("coingecko-api");
@@ -124,7 +126,7 @@ async function simulateTrade(tri, input_dollars = "1") {
     if (dex === "solid") {
       return new ethers.Contract(router_address[dex], solidRouterABI, conn);
     } else {
-      return new ethers.Contract(router_address[dex], routerABI, conn);
+      return new ethers.Contract(router_address[dex], routerABI, signer);
     } //else
   } //getRouter
 
@@ -157,6 +159,7 @@ async function simulateTrade(tri, input_dollars = "1") {
 
     input_wei = ethers.utils.parseUnits(input_fixed, token0_decimal);
     console.log("wei", input_wei);
+
     // TRADE 1
     try {
       const amount_out_a = await router_contract_a.getAmountsOut(
@@ -206,7 +209,7 @@ async function simulateTrade(tri, input_dollars = "1") {
         n2_wei,
         routec
       );
-      let [amount_in_token2, amount_out_token0] = amount_out_c;
+      var [amount_in_token2, amount_out_token0] = amount_out_c;
       output_wei = amount_out_token0;
       console.log("WEi out:", output_wei);
       output_tokens = output_wei * Math.pow(10, -token0_decimal);
@@ -216,6 +219,31 @@ async function simulateTrade(tri, input_dollars = "1") {
       console.log("Final sale", token2, token0, dexc);
     }
     output_dollars = output_tokens * usd_price;
+
+    try {
+      //console.log("gas_price");
+      console.log(conn);
+      const gasPrice = await conn.getGasPrice();
+      console.log("gas", gasPrice);
+      let wallet = "0x831CEf5CC6d5ee48a8E33711c2AC70c5a6B30Cfb";
+      // swapExactTokensForTokens(uint256,uint256,address[],address,uint256)
+      console.log(Date.now());
+      const gas_estimate = await router_contract_b.estimateGas.swapExactTokensForTokens(
+        n1_wei,
+        n2_wei,
+        [token_address[1], token_address[2]],
+        Date.now() + 1000 * 60 * 10,
+        {
+          gasPrice: conn.getGasPrice(),
+          gasLimit: 310000,
+          value: n2_wei
+        }
+      );
+      console.log(gas_estimate);
+    } catch (err) {
+      console.log(err);
+      console.log("Gas error");
+    }
 
     console.log(
       input_dollars +
