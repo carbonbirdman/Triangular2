@@ -19,6 +19,7 @@ let router_address = dx.router_address;
 
 //let triangles = JSON.parse(fs.readFileSync("data/trikes.json"));
 let goodTriangles = JSON.parse(fs.readFileSync("data/triangular.json"));
+//let goodTriangles = JSON.parse(fs.readFileSync("data/trade_pairs.json"));
 //let goodTriangles = JSON.parse(fs.readFileSync("data/simulation.json"));
 let reserves = JSON.parse(fs.readFileSync("data/reserves.json"));
 //goodTriangles = goodTriangles.filter((i) => i.output > i.input-i.input/10);
@@ -302,7 +303,7 @@ async function timeLoop() {
   let finalTime = startTime + 20000;
   let currentTime = Date.now();
   //while (currentTime < finalTime) {
-  while (i < 3) {
+  while (i < 10) {
     var resultsArray = await simLoop(goodTriangles, "5");
     fs.writeFileSync(
       "data/sim" + currentTime + ".json",
@@ -310,7 +311,7 @@ async function timeLoop() {
       "utf8"
     );
     console.log("WROTE", i);
-    await delay(20000);
+    await delay(2000000);
     currentTime = Date.now();
     i = i + 1;
   }
