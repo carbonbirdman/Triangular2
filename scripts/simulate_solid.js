@@ -20,6 +20,7 @@ let router_address = dx.router_address;
 //let triangles = JSON.parse(fs.readFileSync("data/trikes.json"));
 let goodTriangles = JSON.parse(fs.readFileSync("data/triangular.json"));
 //let goodTriangles = JSON.parse(fs.readFileSync("data/trade_pairs.json"));
+let goodTriangles = JSON.parse(fs.readFileSync("data/generated.json"));
 //let goodTriangles = JSON.parse(fs.readFileSync("data/simulation.json"));
 let reserves = JSON.parse(fs.readFileSync("data/reserves.json"));
 //goodTriangles = goodTriangles.filter((i) => i.output > i.input-i.input/10);

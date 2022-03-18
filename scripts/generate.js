@@ -28,7 +28,7 @@ function getAllPairs() {
 }
 
 function getFilteredPairs() {
-  let pairs = JSON.parse(fs.readFileSync("data/trade_pairs.json"));
+  let pairs = JSON.parse(fs.readFileSync("data/validated_pairs.json"));
   //let pair_array = pairs.fromEntries();
   console.log(pairs.map((i) => i.output_dollars));
   const myfilter = (i) =>
@@ -89,7 +89,7 @@ async function main() {
   var factory_contract_c;
 
   var factory_contracts = getAllFactories();
-  var pairArray = getShortlistPairs();
+  //var pairArray = getShortlistPairs();
   var pairArray = getFilteredPairs();
   //var pairArray = getAllPairs();
   var dexArray;
@@ -149,7 +149,7 @@ async function main() {
                 ); //return
               });
               if (pair_a.length > 0) {
-                console.log(pair_a);
+                //console.log(pair_a);
                 console.log("A", pairstring(pair_a[0]));
               } else {
                 console.log("nopair:", dexa, token0, token1);
@@ -238,7 +238,7 @@ async function main() {
   } //dexa
   console.log(triangleArray.length, "routes");
   let tristring = JSON.stringify(triangleArray);
-  fs.writeFileSync("data/triangular.json", tristring, "utf8");
+  fs.writeFileSync("data/generated.json", tristring, "utf8");
   //console.log(triangleArray);
 }
 main();

@@ -63,11 +63,11 @@ async function getAllPairs() {
     //console.log(factory_contract);
     for (var tokena of tokens) {
       for (var tokenb of tokens) {
-        console.log("getting");
-        console.log(tokena, tokenb);
+        //console.log("getting");
+        //console.log(tokena, tokenb);
         let address_a = await ethers.utils.getAddress(token_address[tokena]);
         let address_b = await ethers.utils.getAddress(token_address[tokenb]);
-        console.log(tokena, tokenb);
+        //console.log(tokena, tokenb);
         if (tokena === tokenb) {
           console.log(dex, tokena, tokenb, "identical");
           continue;
@@ -93,7 +93,7 @@ async function getAllPairs() {
             //console.log(pairContract);
             let ptoken0 = await pairContract.token0();
             let ptoken1 = await pairContract.token1();
-            console.log(ptoken0, ptoken1);
+            //console.log(ptoken0, ptoken1);
             if (address_a == ptoken0 && address_b == ptoken1) {
               token0 = tokena;
               token1 = tokenb;
@@ -102,7 +102,7 @@ async function getAllPairs() {
               token1 = tokena;
             }
           } catch (err) {
-            console.log("no contract", pair_address);
+            //console.log("no contract", pair_address);
             // console.log(err);
           }
 
@@ -128,8 +128,8 @@ async function getAllPairs() {
             console.log(dex, token0, token1, pair_address, "dupe exists");
           }
         } catch (err) {
-          console.log("no match");
-          console.log(err);
+          //console.log("no match");
+          //console.log(err);
           pairArray.push(newElement(dex, token0, token1, "None"));
           console.log(dex, token0, token1, "null");
         }
