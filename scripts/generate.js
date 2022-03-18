@@ -149,7 +149,7 @@ async function main() {
                 ); //return
               });
               if (pair_a.length > 0) {
-                console.log(pair_a);
+                //console.log(pair_a);
                 console.log("A", pairstring(pair_a[0]));
               } else {
                 console.log("nopair:", dexa, token0, token1);

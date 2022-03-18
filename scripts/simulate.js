@@ -1,5 +1,6 @@
 const ethers = require("ethers");
-var rpc_url = "https://rpc.ftm.tools/";
+const cfg = require("./config");
+let rpc_url = cfg.rpc_url;
 const factoryABI = require("../src/factory.json");
 const routerABI = require("../src/router.json");
 const conn = new ethers.providers.JsonRpcProvider(rpc_url);
@@ -11,7 +12,6 @@ const dx = require("../src/dexes");
 const pairABI = require("../src/pairs.json");
 const fs = require("fs");
 
-const cfg = require("./config");
 let token_address = cfg.token_address;
 let factory_address = cfg.factory_address;
 let router_address = dx.router_address;

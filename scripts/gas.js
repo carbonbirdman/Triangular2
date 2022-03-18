@@ -1,6 +1,7 @@
 //https://github.com/ethers-io/ethers.js/discussions/2439
 const ethers = require("ethers");
-var rpc_url = "https://rpc.ftm.tools/";
+const cfg = require("./config");
+let rpc_url = cfg.rpc_url;
 const factoryABI = require("../src/factory.json");
 const routerABI = require("../src/router.json");
 const tokenABI = require("../src/token.json");
@@ -15,7 +16,6 @@ const pairABI = require("../src/pairs.json");
 const solidFactoryABI = require("../src/solidFactory.json");
 const fs = require("fs");
 
-const cfg = require("./config");
 let token_address = cfg.token_address;
 let factory_address = cfg.factory_address;
 let router_address = dx.router_address;

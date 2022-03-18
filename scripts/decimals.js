@@ -1,16 +1,18 @@
 const ethers = require("ethers");
-var rpc_url = "https://rpc.ftm.tools/";
-const conn = new ethers.providers.JsonRpcProvider(rpc_url);
-console.log("Starting up decimal script");
-const dx = require("../src/dexes");
 const fs = require("fs");
+
+const dx = require("../src/dexes");
 const tokenABI = require("../src/token.json");
 
 const cfg = require("./config");
 let token_address = cfg.token_address;
+let rpc_url = cfg.rpc_url;
+const conn = new ethers.providers.JsonRpcProvider(rpc_url);
 
 let tokens = Object.keys(token_address);
 var tokenArray = [];
+
+console.log("Starting up decimal script");
 
 async function getDecimals() {
   try {

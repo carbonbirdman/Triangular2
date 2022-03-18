@@ -1,3 +1,6 @@
+const rpc_url = "https://rpc.ftm.tools/";
+//const rpc_url = "http://35.225.3.28:8545";
+
 let factory_address = {
   spooky: "0x152eE697f2E276fA89E96742e9bB9aB1F2E61bE3", //,
   spirit: "0xEF45d134b73241eDa7703fa787148D9C9F4950b0",
@@ -35,6 +38,7 @@ token_address = {
 //factory_address = dx.factory_address;
 
 module.exports = {
+  rpc_url: rpc_url,
   token_address: token_address,
   factory_address: factory_address
 };
