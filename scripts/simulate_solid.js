@@ -1,21 +1,21 @@
 const ethers = require("ethers");
-var rpc_url = "https://rpc.ftm.tools/";
+
 const factoryABI = require("../src/factory.json");
 const routerABI = require("../src/router.json");
 const solidRouterABI = require("../src/solidRouter.json");
-const conn = new ethers.providers.JsonRpcProvider(rpc_url);
 console.log("Simulation starting up");
-const axios = require("axios");
-//const CoinGecko = require("coingecko-api");
 
 const dx = require("../src/dexes");
 const pairABI = require("../src/pairs.json");
 const fs = require("fs");
 
 const cfg = require("./config");
+let rpc_url = cfg.rpc_url;
 let token_address = cfg.token_address;
 let factory_address = cfg.factory_address;
 let router_address = dx.router_address;
+
+const conn = new ethers.providers.JsonRpcProvider(rpc_url);
 
 //let triangles = JSON.parse(fs.readFileSync("data/trikes.json"));
 //let goodTriangles = JSON.parse(fs.readFileSync("data/triangular.json"));
@@ -217,29 +217,39 @@ async function simulateTrade(tri, input_dollars = "1") {
     console.log(tri);
     output_dollars = "NA";
   }
-  let dollar_dollar_bills_yall = { input_dollars, output_dollars };
+  let input_output = { input_dollars, output_dollars };
   // let trade_outputs = { n1_wei, n1, n2_wei, n2, out };
   //console.log("Profit/loss:", dollar_dollar_bills_yall);
-  return dollar_dollar_bills_yall;
+  return input_output;
 } //simulate
 
 async function simLoop(inputTriangles, input_dollars = "10") {
   let resultsArray = [];
-  let naTri = [];
-  let loliqTri = [];
+  let naArray = [];
+  let loliqArray = [];
+  let profitableArray = [];
   let stream_file_name = "data/simulation.txt";
+  let profit_file_name = "data/profitable.txt";
 
-  try {
-    if (fs.existsSync("data/simulation.txt")) {
-      var stream = fs.createWriteStream(stream_file_name, { flags: "a" });
-    } else {
-      var stream = fs.createWriteStream(stream_file_name, { flags: "a" });
-      //write header
-      stream.write("time,input,output,dexa,dexb,dexc,token0,token1,token2 \n");
+  const create_stream = function () {
+    try {
+      if (fs.existsSync(stream_file_name)) {
+        var stream = fs.createWriteStream(stream_file_name, { flags: "a" });
+      } else {
+        //write header
+        var stream = fs.createWriteStream(stream_file_name, { flags: "a" });
+        stream.write(
+          "time,input,output,dexa,dexb,dexc,token0,token1,token2 \n"
+        );
+      }
+    } catch (err) {
+      console.error(err);
     }
-  } catch (err) {
-    console.error(err);
-  }
+    return stream;
+  };
+
+  let all_stream = create_stream(stream_file_name);
+  let profit_stream = create_stream(profit_file_name);
 
   for (const tri of inputTriangles) {
     let trade_output = await simulateTrade(tri, input_dollars);
@@ -261,35 +271,41 @@ async function simLoop(inputTriangles, input_dollars = "10") {
       output: trade_output.output_dollars
     };
 
+    const writerow = function (tri, trade_output, stream) {
+      let currentTime = Date.now();
+      stream.write(
+        currentTime +
+          "," +
+          trade_output.input_dollars +
+          "," +
+          trade_output.output_dollars +
+          "," +
+          tri.dexa +
+          "," +
+          tri.dexb +
+          "," +
+          tri.dexb +
+          "," +
+          tri.token0 +
+          "," +
+          tri.token1 +
+          "," +
+          tri.token2 +
+          "\n"
+      );
+    };
+
     if (trade_output.output_dollars == "NA") {
-      naTri.push(triOut);
+      naArray.push(triOut);
     } else if (trade_output.output_dollars < input_dollars / 10) {
-      loliqTri.push(triOut);
+      loliqArray.push(triOut);
+    } else if (trade_output.output_dollars > input_dollars) {
+      profitableArray.push(triOut);
+      writerow(tri, trade_output, profit_stream);
     } else {
       resultsArray.push(triOut);
     }
-
-    let currentTime = Date.now();
-    stream.write(
-      currentTime +
-        "," +
-        trade_output.input_dollars +
-        "," +
-        trade_output.output_dollars +
-        "," +
-        tri.dexa +
-        "," +
-        tri.dexb +
-        "," +
-        tri.dexb +
-        "," +
-        tri.token0 +
-        "," +
-        tri.token1 +
-        "," +
-        tri.token2 +
-        "\n"
-    );
+    writerow(tri, trade_output, all_stream);
   }
   return resultsArray;
 }
