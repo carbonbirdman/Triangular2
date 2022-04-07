@@ -1,34 +1,64 @@
 # Triangular searcher
 
-"tokens":
-"node scripts/decimals.js
-&& node scripts/prices.js
-&& node scripts/factories.js",
+Scripts create json files which are then served.
 
-    "pairs":
-    "node scripts/pairs.js
-    && node scripts/reserves.js
-    &
+scripts/config.json contains token and factory addresses and
+rpc url.
 
-    "routes":
-    "node scripts/generate.js",
+Use yarn to run the scripts.
 
-    "simulate":
-     "node scripts/simulate_solid.js",
+_yarn tokens_
 
-    "runall":
-    "node scripts/decimals.js  -> "data/tokens.json"
-    && node scripts/prices.js  -> data/token_price.json
-    && node scripts/factories.js
-    && node scripts/pairs.js -> "data/all_pairs.json"
-    && node scripts/reserves.js  ->  data/reserves.json
-     && node scripts/validate_pairs.js", "data/validated_pairs.json
-    "data/validated_pairs.json > node scripts/generate.js -> "data/generated.json"
-    && node scripts/simulate_solid.js"
+- decimals.js -> data/tokens.json
+- prices.js -> token_price.json
+- factories.js
 
-},
+_yarn pairs_
+
+- pairs.js -> all_pairs.json
+- reserves.js -> reserves.json
+- validate_pairs.js -> validated_pairs.json
+
+_yarn routes_
+
+- generate.js
+
+_yarn simulate_
+simulate_solid.js",
+
+yarn runall
+
+decimals.js
+prices.js -> data/token_price.json
+factories.js
+pairs.js -> "data/all_pairs.json"
+reserves.js -> data/reserves.json
+validate_pairs.js", "data/validated_pairs.json
+"data/validated_pairs.json > node scripts/generate.js -> "data/generated.json
+simulate_solid.js
 
 https://github.com/solidlyexchange/solidly
 
 The solidly code is very useful:
 https://github.com/solidlyexchange/solidly.exchange/blob/b5faba84f64dd7367dc0a63b149c782bea0c3ac0/stores/stableSwapStore.js
+
+https://dev.to/lennythedev/quick-server-with-node-and-express-in-5-minutes-17m7
+
+https://betterprogramming.pub/build-a-simple-web-server-using-node-js-and-express-27f3d6eb4e86
+
+server.get("/", (req, res) => {
+res.sendFile(\_\_dirname + '/index.html');
+});
+
+server.get("/json", (req, res) => {
+res.json({ message: "Hello world" });
+});
+
+app.get("/header", (req, res) => {
+res.setHeader("Content-Type", "application/json");
+res.send(dx.token_address);
+});
+
+app.get("/json", (req, res) => {
+res.json(dx.token_address);
+});

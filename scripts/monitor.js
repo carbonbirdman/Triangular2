@@ -24,7 +24,7 @@ let token_data = JSON.parse(fs.readFileSync("data/tokens.json"));
 
 async function getTriPrice(input = "1") {
   var resultsArray = [];
-  var stream = fs.createWriteStream("trice.txt", { flags: "a" });
+  var stream = fs.createWriteStream("monitor.txt", { flags: "a" });
   for (const tri of triangles) {
     //console.log(tri);
     //console.log("TRI");

@@ -333,5 +333,6 @@ if (require.main === module) {
 }
 
 module.exports = {
-  timeLoop: timeLoop
+  timeLoop: timeLoop,
+  simLoop: simLoop
 };

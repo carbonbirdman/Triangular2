@@ -1,3 +1,4 @@
+// Produces "data/tokens.json"
 const ethers = require("ethers");
 const fs = require("fs");
 
