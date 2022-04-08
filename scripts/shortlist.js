@@ -20,9 +20,9 @@ function shortlist(
   return goodTriangles;
 }
 
-async function save_shortlist(
+function save_shortlist(
   inputFile = "data/simulation.json",
-  myfilter = (i) => i.output > i.input - i.input / 2
+  myfilter = (i) => i.output_dollars > i.input_dollars - i.input_dollars / 2
 ) {
   let goodTriangles = shortlist(inputFile, myfilter);
   let shortlist_filename = "data/shortlist.json";
@@ -31,7 +31,7 @@ async function save_shortlist(
 }
 
 if (require.main === module) {
-  const slist = shortlist();
+  const slist = save_shortlist();
   console.log(slist);
 }
 

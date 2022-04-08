@@ -5,8 +5,8 @@ const factoryABI = require("../src/factory.json");
 const routerABI = require("../src/router.json");
 const solidRouterABI = require("../src/solidRouter.json");
 console.log("Simulation starting up");
-
 const dx = require("../src/dexes");
+const simulate = require("../scripts/simulate_solid");
 const pairABI = require("../src/pairs.json");
 const fs = require("fs");
 
@@ -29,11 +29,6 @@ const argv = yargs
     alias: "n",
     description: "how many iterations",
     type: "integer"
-  })
-  .option("loop", {
-    alias: "loop",
-    description: "loop?",
-    type: "boolean"
   })
   .help()
   .alias("help", "h").argv;
@@ -343,8 +338,38 @@ async function runSim(inputTriangles, input_dollars = "10") {
   return resultsArray;
 }
 
+function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function timeLoop() {
+  let i = 0;
+  let startTime = Date.now();
+  let finalTime = startTime + 20000;
+  let currentTime = Date.now();
+  //while (currentTime < finalTime) {
+  while (i < 10) {
+    var resultsArray = await simulate.runSim(goodTriangles, "5");
+    fs.writeFileSync(
+      "data/sim" + currentTime + ".json",
+      JSON.stringify(resultsArray),
+      "utf8"
+    );
+    console.log("WROTE", i);
+    await delay(2000000);
+    currentTime = Date.now();
+    i = i + 1;
+  }
+  fs.writeFileSync(
+    "data/simulation.json",
+    JSON.stringify(resultsArray),
+    "utf8"
+  );
+  console.log("Simulation done");
+}
+
 async function main() {
-  await runSim(goodTriangles, "5");
+  await timeLoop();
 }
 
 if (require.main === module) {
@@ -352,5 +377,5 @@ if (require.main === module) {
 }
 
 module.exports = {
-  runSim: runSim
+  timeLoop: timeLoop
 };
