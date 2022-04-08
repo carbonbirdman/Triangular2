@@ -46,7 +46,7 @@ function newElement(dex, token0, token1, pair_address) {
     dex: dex,
     token0: token0,
     token1: token1,
-    pair_address: ethers.utils.getAddress(pair_address)
+    pair_address: pair_address //ethers.utils.getAddress(pair_address)
   };
 }
 
@@ -61,19 +61,18 @@ async function getAllPairs() {
   for (const dex of dexes) {
     const factory_contract = factory_contracts[dex];
     //console.log(factory_contract);
-    for (var tokena of tokens) {
-      for (var tokenb of tokens) {
+    for (const tokena of tokens) {
+      for (const tokenb of tokens) {
         //console.log("getting");
-        //console.log(tokena, tokenb);
+        console.log(tokena, tokenb);
         let address_a = await ethers.utils.getAddress(token_address[tokena]);
         let address_b = await ethers.utils.getAddress(token_address[tokenb]);
-        //console.log(tokena, tokenb);
         if (tokena === tokenb) {
           console.log(dex, tokena, tokenb, "identical");
           continue;
         }
         try {
-          var pair_address = "None";
+          let pair_address = "None";
           if (dex === "solid") {
             pair_address = await factory_contract.getPair(
               dx.token_address[tokena],
