@@ -65,8 +65,8 @@ async function getAllPairs() {
       for (const tokenb of tokens) {
         //console.log("getting");
         console.log(tokena, tokenb);
-        let address_a = await ethers.utils.getAddress(token_address[tokena]);
-        let address_b = await ethers.utils.getAddress(token_address[tokenb]);
+        const address_a = await ethers.utils.getAddress(token_address[tokena]);
+        const address_b = await ethers.utils.getAddress(token_address[tokenb]);
         if (tokena === tokenb) {
           console.log(dex, tokena, tokenb, "identical");
           continue;
@@ -75,14 +75,14 @@ async function getAllPairs() {
           let pair_address = "None";
           if (dex === "solid") {
             pair_address = await factory_contract.getPair(
-              dx.token_address[tokena],
-              dx.token_address[tokenb],
+              token_address[tokena],
+              token_address[tokenb],
               false //this argument is whether the stable pool or volatile
             );
           } else {
             pair_address = await factory_contract.getPair(
-              dx.token_address[tokena],
-              dx.token_address[tokenb]
+              token_address[tokena],
+              token_address[tokenb]
             );
           }
 
