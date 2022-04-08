@@ -225,7 +225,7 @@ async function simulateTrade(tri, input_dollars = "1") {
     console.log(
       input_dollars +
         "->" +
-        output_dollars.toPrecision(3) +
+        output_dollars +
         "(" +
         tri.token0 +
         "," +
@@ -330,11 +330,11 @@ async function runSim(inputTriangles, input_dollars = "10") {
 
     if (trade_output.output_dollars == "NA") {
       naArray.push(triOut);
-    } else if (trade_output.output_dollars < input_dollars / 10) {
-      loliqArray.push(triOut);
-    } else if (trade_output.output_dollars > input_dollars) {
-      profitableArray.push(triOut);
-      writerow(tri, trade_output, profit_stream);
+      //} else if (trade_output.output_dollars < input_dollars / 10) {
+      //  loliqArray.push(triOut);
+      //} else if (trade_output.output_dollars > input_dollars) {
+      //  profitableArray.push(triOut);
+      //  writerow(tri, trade_output, profit_stream);
     } else {
       resultsArray.push(triOut);
     }
@@ -344,12 +344,15 @@ async function runSim(inputTriangles, input_dollars = "10") {
 }
 
 async function main() {
-  let resultsArray = await runSim(goodTriangles, "5");
-  fs.writeFileSync(
-    "data/simulation.json",
-    JSON.stringify(resultsArray),
-    "utf8"
-  );
+  let currentTime = Date.now();
+  fs.writeFileSync("data/last_run.txt", currentTime.toString(), "utf8");
+  console.log(Date(fs.readFileSync("data/last_run.txt")));
+  //let resultsArray = await runSim(goodTriangles, "5");
+  //fs.writeFileSync(
+  //  "data/simulation.json",
+  // JSON.stringify(resultsArray),
+  // "utf8"
+  //);
 }
 
 if (require.main === module) {

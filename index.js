@@ -136,7 +136,7 @@ var simTemplate = `
 <a href="/">home</a>
 <ul>
 <% it.forEach(function(entry) {%>
-<li> <%= entry.input%> -> <%= entry.output.toPrecision(3)%> 
+<li> <%= entry.input_dollars%> -> <%= entry.output_dollars.toPrecision(3)%> 
 (<%= entry.token0%>,
 <%= entry.token1%>,
 <%= entry.token2%>)
