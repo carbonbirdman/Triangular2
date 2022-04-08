@@ -344,7 +344,12 @@ async function runSim(inputTriangles, input_dollars = "10") {
 }
 
 async function main() {
-  await runSim(goodTriangles, "5");
+  let resultsArray = await runSim(goodTriangles, "5");
+  fs.writeFileSync(
+    "data/simulation.json",
+    JSON.stringify(resultsArray),
+    "utf8"
+  );
 }
 
 if (require.main === module) {

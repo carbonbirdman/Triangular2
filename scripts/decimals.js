@@ -13,7 +13,7 @@ const conn = new ethers.providers.JsonRpcProvider(rpc_url);
 let tokens = Object.keys(token_address);
 var tokenArray = [];
 
-console.log("Starting up decimal script");
+console.log("Starting up token info script ...");
 
 async function getDecimals() {
   try {

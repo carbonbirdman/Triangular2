@@ -71,7 +71,7 @@ function getRoute(dex, add0, add1) {
 } //getRouter
 
 async function simulateTrade(pair, input_dollars = "1") {
-  console.log("simming");
+  console.log("Simulate trade for pair ...");
   let token_data = JSON.parse(fs.readFileSync("data/tokens.json"));
   var input_tokens = 0;
   var input_wei = 0;
@@ -101,7 +101,6 @@ async function simulateTrade(pair, input_dollars = "1") {
     token0_usd_price
   );
   const input_fixed = input_tokens.toFixed(token0_decimal);
-  console.log(input_fixed, "fixed");
   const router_contract = getRouter(pair.dex);
 
   try {
@@ -110,13 +109,13 @@ async function simulateTrade(pair, input_dollars = "1") {
 
     let route = getRoute(pair.dex, token_address0, token_address1);
     input_wei = ethers.utils.parseUnits(input_fixed, token0_decimal);
-    console.log("wei", input_wei);
+    console.log("wei in", input_wei);
 
     const amount_out_a = await router_contract.getAmountsOut(input_wei, route);
     let [amount_in_token0, amount_out_token1] = amount_out_a;
 
     output_wei = amount_out_token1;
-    console.log("WEi out:", output_wei);
+    console.log("wei out:", output_wei);
     output_tokens = ethers.utils.formatUnits(output_wei, token1_decimal);
     console.log(
       "First sale",

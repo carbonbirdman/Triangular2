@@ -1,7 +1,7 @@
 // External API price
 const ethers = require("ethers");
 var rpc_url = "https://rpc.ftm.tools/";
-console.log("Starting up");
+
 const dx = require("../src/dexes");
 const fs = require("fs");
 const axios = require("axios");
@@ -11,6 +11,7 @@ let token_address = cfg.token_address;
 
 //token_address = dx.token_address;
 var all_tokens = Object.keys(token_address);
+console.log("Starting up price script");
 console.log(all_tokens);
 
 function newElement(token, usdPrice) {
@@ -49,7 +50,6 @@ async function getPrice(tokenlist) {
       if (res) {
         console.log(res.data);
         usdPrice = res.data[token_address[token].toLowerCase()].usd;
-        console.log("Price", usdPrice);
       } //if
     } catch (err) {
       console.log("Problem getting prices");
