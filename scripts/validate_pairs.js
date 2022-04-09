@@ -206,3 +206,25 @@ async function main() {
 if (require.main === module) {
   main();
 }
+
+//"data/trikes.json"
+//"data/triangular.json"
+//"data/trade_pairs.json"
+//data/simulation.json
+function getAllPairs() {
+  return JSON.parse(fs.readFileSync("data/all_pairs.json"));
+}
+
+function getFilteredPairs() {
+  let pairs = JSON.parse(fs.readFileSync("data/validated_pairs.json"));
+  //let pair_array = pairs.fromEntries();
+  console.log(pairs.map((i) => i.output_dollars));
+  const myfilter = (i) =>
+    i.output_dollars > i.input_dollars - i.input_dollars / 2;
+  return pairs.filter(myfilter);
+  //return pairs;
+}
+
+function getShortlistPairs() {
+  return JSON.parse(fs.readFileSync("data/shortlist.json"));
+}

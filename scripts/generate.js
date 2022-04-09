@@ -1,4 +1,5 @@
 const ethers = require("ethers");
+const yargs = require("yargs");
 var rpc_url = "https://rpc.ftm.tools/";
 const factoryABI = require("../src/factory.json");
 const conn = new ethers.providers.JsonRpcProvider(rpc_url);
@@ -11,8 +12,6 @@ const cfg = require("./config");
 let token_address = cfg.token_address;
 let factory_address = cfg.factory_address;
 
-//token_address = dx.token_address;
-//factory_address = dx.factory_address;
 var tokens = Object.keys(token_address);
 var dexes = Object.keys(factory_address);
 
@@ -23,23 +22,23 @@ function getAllFactories() {
   return JSON.parse(factory_contracts_string);
 }
 
-function getAllPairs() {
-  return JSON.parse(fs.readFileSync("data/all_pairs.json"));
+var infile = "data/validated_pairs.json";
+
+const argv = yargs
+  .option("file", {
+    description: "file",
+    alias: "f",
+    type: "string"
+  })
+  .help()
+  .alias("help", "h").argv;
+
+if (argv.file) {
+  infile = argv.file;
+  console.log("Input file: ", infile);
 }
 
-function getFilteredPairs() {
-  let pairs = JSON.parse(fs.readFileSync("data/validated_pairs.json"));
-  //let pair_array = pairs.fromEntries();
-  console.log(pairs.map((i) => i.output_dollars));
-  const myfilter = (i) =>
-    i.output_dollars > i.input_dollars - i.input_dollars / 2;
-  return pairs.filter(myfilter);
-  //return pairs;
-}
-
-function getShortlistPairs() {
-  return JSON.parse(fs.readFileSync("data/shortlist.json"));
-}
+let goodTriangles = JSON.parse(fs.readFileSync(infile));
 
 function newTriangleElement(
   dexa,

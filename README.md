@@ -17,7 +17,7 @@ _yarn pairs_
 
 - pairs.js -> all_pairs.json
 - reserves.js -> reserves.json
-- validate_pairs.js -> validated_pairs.json
+- validate_pairs.js -> tradeable_pairs.json, validated_pairs.json
 
 _yarn routes_
 
