@@ -305,7 +305,8 @@ async function runSim(inputTriangles, input_dollars = "10") {
       pairb: tri.pairb,
       pairc: tri.pairc,
       input_dollars: trade_output.input_dollars,
-      output_dollars: trade_output.output_dollars
+      output_dollars: trade_output.output_dollars,
+      time: Date.now()
     };
 
     const writerow = function (tri, trade_output, stream) {
