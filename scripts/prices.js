@@ -65,7 +65,7 @@ async function mainPrice() {
   getPrice(all_tokens).then((pricelist) => {
     fs.writeFileSync(
       "data/token_price.json",
-      JSON.stringify(pricelist), undefined, 4),
+      JSON.stringify(pricelist, undefined, 4),
       "utf8"
     );
   });
