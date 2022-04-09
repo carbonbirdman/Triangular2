@@ -347,12 +347,12 @@ async function main() {
   let currentTime = Date.now();
   fs.writeFileSync("data/last_run.txt", currentTime.toString(), "utf8");
   console.log(Date(fs.readFileSync("data/last_run.txt")));
-  //let resultsArray = await runSim(goodTriangles, "5");
-  //fs.writeFileSync(
-  //  "data/simulation.json",
-  // JSON.stringify(resultsArray),
-  // "utf8"
-  //);
+  let resultsArray = await runSim(goodTriangles, "5");
+  fs.writeFileSync(
+    "data/simulation.json",
+    JSON.stringify(resultsArray),
+    "utf8"
+  );
 }
 
 if (require.main === module) {

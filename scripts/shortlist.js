@@ -7,22 +7,24 @@ function shortlist(
     parseFloat(i.input_dollars) - parseFloat(i.input_dollars) / 2
 ) {
   let triangles = JSON.parse(fs.readFileSync(inputFile));
-  console.log(triangles);
-  triangles.forEach((element) => {
-    console.log(element.output_dollars);
-  });
+  console.log(triangles.length, "attempted trades");
+  //triangles.forEach((element) => {
+  // console.log(element.output_dollars);
+  //});
   //const asArray = Object.entries(triangles);
   //console.log(asArray[0]);
   // let filtered = asArray[0].filter(myfilter);
   //console.log(filtered);
   //const goodTriangles = Object.fromEntries(filtered);
   let goodTriangles = triangles.filter(myfilter);
+  console.log(goodTriangles);
+  console.log(goodTriangles.length, "viable trades");
   return goodTriangles;
 }
 
 function save_shortlist(
   inputFile = "data/simulation.json",
-  myfilter = (i) => i.output_dollars > i.input_dollars - i.input_dollars / 2
+  myfilter = (i) => parseFloat(i.output_dollars) > parseFloat(i.input_dollars)
 ) {
   let goodTriangles = shortlist(inputFile, myfilter);
   let shortlist_filename = "data/shortlist.json";
