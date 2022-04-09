@@ -137,7 +137,7 @@ async function getAllLiquidty(pairs) {
 async function main() {
   getAllLiquidty(pairs).then((allpairs) => {
     //console.log(allpairs);
-    let pair_string = JSON.stringify(allpairs);
+    let pair_string = JSON.stringify(allpairs, undefined, 4);
     fs.writeFileSync("data/pair_liquidity.json", pair_string, "utf8");
     //console.log(allpairs);
   });

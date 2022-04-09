@@ -28,7 +28,11 @@ function save_shortlist(
 ) {
   let goodTriangles = shortlist(inputFile, myfilter);
   let shortlist_filename = "data/shortlist.json";
-  fs.writeFileSync(shortlist_filename, JSON.stringify(goodTriangles), "utf8");
+  fs.writeFileSync(
+    shortlist_filename,
+    JSON.stringify(goodTriangles, undefined, 4),
+    "utf8"
+  );
   return shortlist_filename;
 }
 

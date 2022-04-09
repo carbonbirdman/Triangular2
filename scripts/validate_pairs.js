@@ -187,7 +187,7 @@ async function getTrades(pairs) {
 async function main() {
   getTrades(pairs).then((allpairs) => {
     console.log(allpairs);
-    let pair_string = JSON.stringify(allpairs);
+    let pair_string = JSON.stringify(allpairs, undefined, 4);
     fs.writeFileSync("data/validated_pairs.json", pair_string, "utf8");
   });
 }

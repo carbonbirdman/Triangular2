@@ -44,11 +44,11 @@ let token_address = {
   TREEB: "0xc60d7067dfbc6f2caf30523a064f416a5af52963"
 };
 
-//token_address = {
-//  FTM: "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83",
-//  SPIRIT: "0x5Cc61A78F164885776AA610fb0FE1257df78E59B",
-//  LQDR: "0x10b620b2dbac4faa7d7ffd71da486f5d44cd86f9"
-//};
+token_address = {
+  FTM: "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83",
+  SPIRIT: "0x5Cc61A78F164885776AA610fb0FE1257df78E59B",
+  LQDR: "0x10b620b2dbac4faa7d7ffd71da486f5d44cd86f9"
+};
 
 //const dx = require("../src/dexes");
 //token_address = dx.token_address;

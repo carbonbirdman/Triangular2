@@ -41,7 +41,7 @@ async function getDecimals() {
 async function allDecimals() {
   getDecimals().then((tokens) => {
     //console.log(allpairs);
-    let token_string = JSON.stringify(tokens);
+    let token_string = JSON.stringify(tokens, undefined, 4);
     fs.writeFileSync("data/tokens.json", token_string, "utf8");
   });
 }

@@ -354,7 +354,7 @@ async function main() {
   let resultsArray = await runSim(goodTriangles, "5");
   fs.writeFileSync(
     "data/simulation.json",
-    JSON.stringify(resultsArray),
+    JSON.stringify(resultsArray, undefined, 4),
     "utf8"
   );
 }
