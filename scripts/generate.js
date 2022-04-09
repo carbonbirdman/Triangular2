@@ -38,8 +38,6 @@ if (argv.file) {
   console.log("Input file: ", infile);
 }
 
-let goodTriangles = JSON.parse(fs.readFileSync(infile));
-
 function newTriangleElement(
   dexa,
   dexb,
@@ -76,8 +74,6 @@ function pairstring(pair) {
   );
 }
 
-//console.log(pairstring({ dex: "wtf" }));
-
 async function main() {
   var dexa_address;
   var dexb_address;
@@ -88,9 +84,8 @@ async function main() {
   var factory_contract_c;
 
   var factory_contracts = getAllFactories();
-  //var pairArray = getShortlistPairs();
-  var pairArray = getFilteredPairs();
-  //var pairArray = getAllPairs();
+  var pairArray = JSON.parse(fs.readFileSync(infile));
+
   var dexArray;
   var tokenArray;
 
@@ -110,9 +105,9 @@ async function main() {
           console.log("same dex");
         }
 
-        dexa_address = dx.factory_address[dexa];
-        dexb_address = dx.factory_address[dexb];
-        dexc_address = dx.factory_address[dexc];
+        dexa_address = factory_address[dexa];
+        dexb_address = factory_address[dexb];
+        dexc_address = factory_address[dexc];
 
         // DEX COMBINATION
         for (const token0 of tokens) {
@@ -192,22 +187,6 @@ async function main() {
                 continue;
               }
 
-              //const null_address = ethers.utils.getAddress(
-              //  "0x0000000000000000000000000000000000000000"
-              //);
-              //let pairs_exist = [pair_a[0], pair_b[0], pair_c[0]].map(function (
-              //  x
-              //) {
-              //return ethers.utils.getAddress(x.pair_address) !== null_address;
-              //  return x.pair_address !== null_address;
-              //});
-              //console.log(
-              //  pair_a.pair_address,
-              //  pair_b.pair_address,
-              //  pair_c.pair_address
-              //);
-              //console.log(pairs_exist);
-
               //if (pairs_exist[0] && pairs_exist[1] && pairs_exist[2]) {
               triangleArray.push(
                 newTriangleElement(
@@ -226,10 +205,10 @@ async function main() {
                 )
               );
 
-              //console.log("exists");
+              //console.log("exists")
               //} else {
               //  console.log("missing");
-              //}
+              //
               //if (pair_contract)
             }
           }
