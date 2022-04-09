@@ -188,7 +188,18 @@ async function main() {
   getTrades(pairs).then((allpairs) => {
     console.log("Valid pairs:", allpairs.length);
     let pair_string = JSON.stringify(allpairs, undefined, 4);
-    fs.writeFileSync("data/validated_pairs.json", pair_string, "utf8");
+    fs.writeFileSync("data/tradeable_pairs.json", pair_string, "utf8");
+
+    // Valid pairs are any pairs where you get back more than half
+    // the dollar value from a trade
+    const myfilter = (i) =>
+      i.output_dollars > i.input_dollars - i.input_dollars / 2;
+    let valid_pairs = allpairs.filter(myfilter);
+    fs.writeFileSync(
+      "data/validated_pairs.json",
+      JSON.stringify(valid_pairs, undefined, 4),
+      "utf8"
+    );
   });
 }
 
