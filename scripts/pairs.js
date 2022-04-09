@@ -57,7 +57,7 @@ async function getAllPairs() {
   let token0 = "NA";
   let token1 = "NA";
 
-  let npairs = tokens.length * tokens.length;
+  let npairs = dexes.length * tokens.length * tokens.length;
   let ipair = 1;
 
   //get pairs that exist
@@ -69,14 +69,16 @@ async function getAllPairs() {
         //console.log("getting");
         console.log(ipair, "of", npairs, ":", tokena, tokenb);
         ipair = ipair + 1;
-        const address_a = await ethers.utils.getAddress(token_address[tokena]);
-        const address_b = await ethers.utils.getAddress(token_address[tokenb]);
         if (tokena === tokenb) {
           console.log(dex, tokena, tokenb, "identical");
           continue;
         }
+        const address_a = await ethers.utils.getAddress(token_address[tokena]);
+        const address_b = await ethers.utils.getAddress(token_address[tokenb]);
+
+        let pair_address = "None";
         try {
-          let pair_address = "None";
+          //Get pair address
           if (dex === "solid") {
             pair_address = await factory_contract.getPair(
               token_address[tokena],
@@ -90,7 +92,9 @@ async function getAllPairs() {
             );
           }
 
-          //get contract to check order
+          token0 = tokena;
+          token1 = tokenb;
+          // Get pair contract to check order
           try {
             let pairContract = new ethers.Contract(pair_address, pairABI, conn);
             //console.log(pairContract);
@@ -105,10 +109,11 @@ async function getAllPairs() {
               token1 = tokena;
             }
           } catch (err) {
-            //console.log("no contract", pair_address);
-            // console.log(err);
+            console.log("no contract");
+            //console.log(err);
           }
 
+          // does it already exist?
           let pair_check = pairArray.filter(function (element) {
             return (
               element.dex === dex &&
@@ -117,16 +122,13 @@ async function getAllPairs() {
             );
           });
 
-          //console.log("CHECK");
-          //console.log(pair_check);
-          //console.log(pair_check.length);
           if (pair_check.length === 0) {
             if (pair_address === null_address) {
               console.log(dex, token0, token1, pair_address, "null address");
             } else {
               pairArray.push(newElement(dex, token0, token1, pair_address));
+              console.log(dex, token0, token1, pair_address, "added");
             }
-            console.log(dex, token0, token1, pair_address, "added");
           } else {
             console.log(dex, token0, token1, pair_address, "dupe exists");
           }
