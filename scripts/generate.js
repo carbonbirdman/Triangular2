@@ -99,6 +99,9 @@ async function main() {
   var pair1_address_b;
   var pair1_address_c;
 
+  let nroutes = tokens.length ** 3;
+  let iroute = 1;
+
   var triangleArray = [];
   for (const dexa of dexes) {
     for (const dexb of dexes) {
@@ -120,8 +123,11 @@ async function main() {
                 continue;
                 console.log("same same");
               }
-
               console.log(
+                iroute,
+                "of",
+                nroutes,
+                ":",
                 dexa,
                 ":",
                 token0,
@@ -137,6 +143,7 @@ async function main() {
                 token2,
                 token0
               );
+              iroute = iroute + 1;
 
               dexArray = [dexa_address, dexb_address, dexc_address];
               tokenArray = [token0, token1, token2];

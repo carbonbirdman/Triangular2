@@ -57,6 +57,9 @@ async function getAllPairs() {
   let token0 = "NA";
   let token1 = "NA";
 
+  let npairs = tokens.length * tokens.length;
+  let ipair = 1;
+
   //get pairs that exist
   for (const dex of dexes) {
     const factory_contract = factory_contracts[dex];
@@ -64,7 +67,8 @@ async function getAllPairs() {
     for (const tokena of tokens) {
       for (const tokenb of tokens) {
         //console.log("getting");
-        console.log(tokena, tokenb);
+        console.log(ipair, "of", npairs, ":", tokena, tokenb);
+        ipair = ipair + 1;
         const address_a = await ethers.utils.getAddress(token_address[tokena]);
         const address_b = await ethers.utils.getAddress(token_address[tokenb]);
         if (tokena === tokenb) {
