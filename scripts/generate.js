@@ -93,7 +93,7 @@ async function main() {
   var pair1_address_b;
   var pair1_address_c;
 
-  let nroutes = tokens.length ** 3;
+  let nroutes = dexes.length ** 3 * tokens.length ** 3;
   let iroute = 1;
 
   var triangleArray = [];
