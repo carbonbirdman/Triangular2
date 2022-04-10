@@ -30,6 +30,11 @@ function save_shortlist(
   let currentTime = Date.now();
   let shortlist_filename = "data/shortlist_" + currentTime + ".json";
   fs.writeFileSync(
+    "data/shortlist.json",
+    JSON.stringify(goodTriangles, undefined, 4),
+    "utf8"
+  );
+  fs.writeFileSync(
     shortlist_filename,
     JSON.stringify(goodTriangles, undefined, 4),
     "utf8"
