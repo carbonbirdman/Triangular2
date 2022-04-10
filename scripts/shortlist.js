@@ -27,7 +27,13 @@ function save_shortlist(
   myfilter = (i) => parseFloat(i.output_dollars) > parseFloat(i.input_dollars)
 ) {
   let goodTriangles = shortlist(inputFile, myfilter);
-  let shortlist_filename = "data/shortlist.json";
+  let currentTime = Date.now();
+  let shortlist_filename = "data/shortlist_" + currentTime + ".json";
+  fs.writeFileSync(
+    "data/shortlist.json",
+    JSON.stringify(goodTriangles, undefined, 4),
+    "utf8"
+  );
   fs.writeFileSync(
     shortlist_filename,
     JSON.stringify(goodTriangles, undefined, 4),

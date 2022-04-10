@@ -10,5 +10,6 @@ triangles.forEach((element) => {
     element.dexb,
     element.dexc
   );
+  console.log(triangles.length, "routes");
 });
 console.log(triangles.length, "routes");
