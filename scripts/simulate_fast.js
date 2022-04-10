@@ -5,13 +5,9 @@ const routerABI = require("../src/router.json");
 const solidRouterABI = require("../src/solidRouter.json");
 const conn = new ethers.providers.JsonRpcProvider(rpc_url);
 console.log("Simulation starting up");
-const axios = require("axios");
-//const CoinGecko = require("coingecko-api");
-
 const dx = require("../src/dexes");
 const pairABI = require("../src/pairs.json");
 const fs = require("fs");
-
 const cfg = require("./config");
 let token_address = cfg.token_address;
 let factory_address = cfg.factory_address;
@@ -19,27 +15,22 @@ let router_address = dx.router_address;
 
 //let triangles = JSON.parse(fs.readFileSync("data/trikes.json"));
 let goodTriangles = JSON.parse(fs.readFileSync("data/triangular.json"));
-//let goodTriangles = JSON.parse(fs.readFileSync("data/simulation.json"));
-let reserves = JSON.parse(fs.readFileSync("data/reserves.json"));
-//goodTriangles = goodTriangles.filter((i) => i.output > i.input-i.input/10);
 
-function getUSDPrice(tokenSymbol) {
-  let token_price = JSON.parse(fs.readFileSync("data/token_price.json"));
-  let usd_price = 1;
-  try {
-    var price_line = token_price.filter((i) => i.token === tokenSymbol);
-    if (price_line[0].usdPrice) {
-      usd_price = price_line[0].usdPrice;
-    } else {
-      console.log("no price:", price_line);
-    }
-  } catch (err) {
-    console.log("error getting price");
-  }
-  return usd_price;
+//make this faster:
+//1. set up router contracts on initialisation
+//2. pass only addresses and token amounts, convert only 
+// at the end.
+
+function estimateTriDexTrade(routera, routerb, routerc, token0, token1, 
+  token2, input_wei){
+  uint amtBack1 = getAmountOutMin(_router1, _token1, _token2, _amount);
+  uint amtBack2 = getAmountOutMin(_router2, _token2, _token3, amtBack1);
+  uint amtBack3 = getAmountOutMin(_router3, _token3, _token1, amtBack2);
+  return amtBack3;
 }
 
-async function simulateTrade(tri, input_dollars = "1") {
+
+async function simulateTradeFast(tri, input_dollars = "1") {
   let token_data = JSON.parse(fs.readFileSync("data/tokens.json"));
 
   var input_tokens = 0;
@@ -220,22 +211,7 @@ async function simLoop(inputTriangles, input_dollars = "10") {
   for (const tri of inputTriangles) {
     let trade_output = await simulateTrade(tri, input_dollars);
 
-    let triOut = {
-      dexa: tri.dexa,
-      dexb: tri.dexb,
-      dexc: tri.dexc,
-      token0: tri.token0,
-      token1: tri.token1,
-      token2: tri.token2,
-      token0_address: tri.token0_address,
-      token1_address: tri.token1_address,
-      token2_address: tri.token2_address,
-      paira: tri.paira,
-      pairb: tri.pairb,
-      pairc: tri.pairc,
-      input: trade_output.input_dollars,
-      output: trade_output.output_dollars
-    };
+
 
     if (trade_output.output_dollars == "NA") {
       naTri.push(triOut);
