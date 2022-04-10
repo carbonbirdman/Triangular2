@@ -287,7 +287,7 @@ async function runSim(inputTriangles, input_dollars = "10") {
   let nsim = inputTriangles.length;
   let isim = 1;
   for (const tri of inputTriangles) {
-    console.log(isim, "of", nsim);
+    //console.log(isim, "of", nsim);
     isim = isim + 1;
     let trade_output = await simulateTrade(tri, input_dollars);
 
