@@ -6,8 +6,8 @@ let factory_address = {
   spirit: "0xEF45d134b73241eDa7703fa787148D9C9F4950b0",
   proto: "0x39720E5Fe53BEEeb9De4759cb91d8E7d42c17b76",
   morph: "0x9C454510848906FDDc846607E4baa27Ca999FBB6",
-  solid: "0x3fAaB499b519fdC5819e3D7ed0C26111904cbc28",
-//  soul: "0x1120e150dA9def6Fe930f4fEDeD18ef57c0CA7eF"
+  solid: "0x3fAaB499b519fdC5819e3D7ed0C26111904cbc28"
+  //  soul: "0x1120e150dA9def6Fe930f4fEDeD18ef57c0CA7eF"
 };
 
 let router_address = {
@@ -15,8 +15,8 @@ let router_address = {
   spirit: "0x16327E3FbDaCA3bcF7E38F5Af2599D2DDc33aE52",
   proto: "0xF4C587a0972Ac2039BFF67Bc44574bB403eF5235",
   morph: "0x8aC868293D97761A1fED6d4A01E9FF17C5594Aa3",
-  solid: "0xa38cd27185a464914D3046f0AB9d43356B34829D",
-//  soul: "0x6b3d631B87FE27aF29efeC61d2ab8CE4d621cCBF"
+  solid: "0xa38cd27185a464914D3046f0AB9d43356B34829D"
+  //  soul: "0x6b3d631B87FE27aF29efeC61d2ab8CE4d621cCBF"
 };
 
 let token_address = {
@@ -52,11 +52,16 @@ let token_address = {
 //  LQDR: "0x10b620b2dbac4faa7d7ffd71da486f5d44cd86f9"
 //};
 
+let tokens = ["FTM", "LQDR", "SPIRIT"];
+let dexs = ["spooky", "spirit"];
+
 //const dx = require("../src/dexes");
 //token_address = dx.token_address;
 //factory_address = dx.factory_address;
 
 module.exports = {
+  tokens,
+  dexs,
   rpc_url: rpc_url,
   token_address: token_address,
   factory_address: factory_address

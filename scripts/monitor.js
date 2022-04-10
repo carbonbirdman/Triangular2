@@ -12,11 +12,10 @@ const fs = require("fs");
 
 let token_address = cfg.token_address;
 let factory_address = cfg.factory_address;
-//let token_address = dx.token_address;
-//let factory_address = dx.factory_address;
-
-var tokens = Object.keys(token_address);
-var dexes = Object.keys(factory_address);
+//let tokens = Object.keys(token_address);
+//var dexes = Object.keys(factory_address);
+let tokens = cfg.tokens;
+let dexes = cfg.dexs;
 
 let triangles = JSON.parse(fs.readFileSync("data/triangular.json"));
 console.log(triangles);

@@ -10,7 +10,10 @@ const cfg = require("./config");
 let token_address = cfg.token_address;
 
 //token_address = dx.token_address;
-var all_tokens = Object.keys(token_address);
+//let tokens = Object.keys(token_address);
+//var dexes = Object.keys(factory_address);
+let all_tokens = cfg.tokens;
+let dexes = cfg.dexs;
 console.log("Starting up price script");
 console.log(all_tokens);
 

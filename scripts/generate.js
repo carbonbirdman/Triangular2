@@ -12,8 +12,10 @@ const cfg = require("./config");
 let token_address = cfg.token_address;
 let factory_address = cfg.factory_address;
 
-var tokens = Object.keys(token_address);
-var dexes = Object.keys(factory_address);
+//let tokens = Object.keys(token_address);
+//var dexes = Object.keys(factory_address);
+let tokens = cfg.tokens;
+let dexes = cfg.dexs;
 
 console.log(tokens);
 

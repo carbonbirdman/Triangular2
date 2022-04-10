@@ -12,8 +12,11 @@ let factory_address = cfg.factory_address;
 
 const conn = new ethers.providers.JsonRpcProvider(rpc_url);
 
-var tokens = Object.keys(token_address);
-var dexes = Object.keys(factory_address);
+//let tokens = Object.keys(token_address);
+//var dexes = Object.keys(factory_address);
+let tokens = cfg.tokens;
+let dexes = cfg.dexs;
+
 const fs = require("fs");
 
 console.log(tokens);

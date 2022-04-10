@@ -14,10 +14,11 @@ const cfg = require("./config");
 let token_address = cfg.token_address;
 let factory_address = cfg.factory_address;
 let router_address = dx.router_address;
-//token_address = dx.token_address;
-//factory_address = dx.factory_address;
-var tokens = Object.keys(token_address);
-var dexes = Object.keys(factory_address);
+
+//let tokens = Object.keys(token_address);
+//var dexes = Object.keys(factory_address);
+let tokens = cfg.tokens;
+let dexes = cfg.dexs;
 
 let pairs = JSON.parse(fs.readFileSync("data/all_pairs.json"));
 

@@ -1,8 +1,9 @@
 // Produces "data/tokens.json"
 const ethers = require("ethers");
 const fs = require("fs");
+//const { constants } = require("perf_hooks");
 
-const dx = require("../src/dexes");
+//const dx = require("../src/dexes");
 const tokenABI = require("../src/token.json");
 
 const cfg = require("./config");
@@ -10,12 +11,14 @@ let token_address = cfg.token_address;
 let rpc_url = cfg.rpc_url;
 const conn = new ethers.providers.JsonRpcProvider(rpc_url);
 
-let tokens = Object.keys(token_address);
+//let tokens = Object.keys(token_address);
+const tokens = cfg.tokens;
 var tokenArray = [];
 
+console.log(tokens);
 console.log("Starting up token info script ...");
 
-async function getDecimals() {
+async function getDecimals(tokens) {
   try {
     for (const token of tokens) {
       const token_contract = new ethers.Contract(
@@ -39,9 +42,9 @@ async function getDecimals() {
 } //mget
 
 async function allDecimals() {
-  getDecimals().then((tokens) => {
+  getDecimals(tokens).then((token_out) => {
     //console.log(allpairs);
-    let token_string = JSON.stringify(tokens, undefined, 4);
+    let token_string = JSON.stringify(token_out, undefined, 4);
     fs.writeFileSync("data/tokens.json", token_string, "utf8");
   });
 }
