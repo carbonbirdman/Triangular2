@@ -22,7 +22,7 @@ async function main() {
   console.log(merged);
 
   fs.writeFileSync(
-    "data/merged_sims.json",
+    "data/merged.json",
     JSON.stringify(merged, undefined, 4),
     "utf8"
   );
