@@ -225,7 +225,7 @@ async function main() {
   } //dexa
   console.log(triangleArray.length, "routes");
   let tristring = JSON.stringify(triangleArray);
-  fs.writeFileSync("data/generated.json", tristring, "utf8");
+  fs.writeFileSync("data/routes.json", tristring, "utf8");
   //console.log(triangleArray);
 }
 main();

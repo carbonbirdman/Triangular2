@@ -29,6 +29,7 @@ app.get("/", (req, res) => {
       "price",
       "pairs",
       "validpairs",
+      "routes",
       "simulation",
       "shortlist"
     ])
@@ -103,7 +104,6 @@ app.get("/pairs/json", (req, res) => {
 });
 
 //VALID PAIRS
-//dex: pair.dex,
 var validPairsTemplate = `
 <!DOCTYPE html>
 <a href="/">home</a>
@@ -128,6 +128,33 @@ app.get("/validpairs", function (req, res) {
 
 app.get("/validpairs/json", (req, res) => {
   res.json(JSON.parse(fs.readFileSync("data/validated_pairs.json")));
+});
+
+// ROUTES
+var routesTemplate = `
+<!DOCTYPE html>
+<a href="/">home</a>
+<ul>
+<% it.forEach(function(entry) {%>
+  <li>
+  (<%= entry.token0%>,
+    <%= entry.token1%>,
+    <%= entry.token2%>)
+    (<%= entry.dexa%>,
+    <%= entry.dexb%>,
+    <%= entry.dexc%>)
+</li>
+<%});%>
+</ul>
+`;
+
+app.get("/routes", function (req, res) {
+  let items = JSON.parse(fs.readFileSync("data/routes.json"));
+  res.send(eta.render(routesTemplate, items));
+});
+
+app.get("/routes/json", (req, res) => {
+  res.json(JSON.parse(fs.readFileSync("data/routes.json")));
 });
 
 //SIMULATION
