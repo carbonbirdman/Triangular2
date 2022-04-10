@@ -23,7 +23,7 @@ function shortlist(
 }
 
 function save_shortlist(
-  inputFile = "data/simulation.json",
+  inputFile = "data/merged_sims.json",
   myfilter = (i) => parseFloat(i.output_dollars) > parseFloat(i.input_dollars)
 ) {
   let goodTriangles = shortlist(inputFile, myfilter);
