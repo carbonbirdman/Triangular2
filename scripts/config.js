@@ -6,8 +6,9 @@ let factory_address = {
   spirit: "0xEF45d134b73241eDa7703fa787148D9C9F4950b0",
   proto: "0x39720E5Fe53BEEeb9De4759cb91d8E7d42c17b76",
   morph: "0x9C454510848906FDDc846607E4baa27Ca999FBB6",
-  solid: "0x3fAaB499b519fdC5819e3D7ed0C26111904cbc28"
+  solid: "0x3fAaB499b519fdC5819e3D7ed0C26111904cbc28",
   //  soul: "0x1120e150dA9def6Fe930f4fEDeD18ef57c0CA7eF"
+  tomb: "0xE236f6890F1824fa0a7ffc39b1597A5A6077Cfe9"
 };
 
 let router_address = {
@@ -15,7 +16,8 @@ let router_address = {
   spirit: "0x16327E3FbDaCA3bcF7E38F5Af2599D2DDc33aE52",
   proto: "0xF4C587a0972Ac2039BFF67Bc44574bB403eF5235",
   morph: "0x8aC868293D97761A1fED6d4A01E9FF17C5594Aa3",
-  solid: "0xa38cd27185a464914D3046f0AB9d43356B34829D"
+  solid: "0xa38cd27185a464914D3046f0AB9d43356B34829D",
+  tomb: "0x6D0176C5ea1e44b08D3dd001b0784cE42F47a3A7"
   //  soul: "0x6b3d631B87FE27aF29efeC61d2ab8CE4d621cCBF"
 };
 
@@ -43,7 +45,10 @@ let token_address = {
   RING: "0x582423c10c9e83387a96d00a69ba3d11ee47b7b5",
   DEUS: "0xde5ed76e7c05ec5e4572cfc88d1acea165109e44",
   UNIDX: "0x2130d2a1e51112d349ccf78d2a1ee65843ba36e0",
-  TREEB: "0xc60d7067dfbc6f2caf30523a064f416a5af52963"
+  TREEB: "0xc60d7067dfbc6f2caf30523a064f416a5af52963",
+  SCREAM: "0xe0654c8e6fd4d733349ac7e09f6f23da256bf475",
+  BASED: "0x8D7d3409881b51466B483B11Ea1B8A03cdEd89ae",
+  MIMATIC: "0xfb98b335551a418cd0737375a2ea0ded62ea213b"
 };
 
 //token_address = {
@@ -52,8 +57,8 @@ let token_address = {
 //  LQDR: "0x10b620b2dbac4faa7d7ffd71da486f5d44cd86f9"
 //};
 
-let tokens = ["FTM", "LQDR", "SPIRIT"];
-let dexs = ["spooky", "spirit"];
+let tokens = ["FTM", "LQDR", "SPIRIT", "MIMATIC", "BASED"];
+let dexs = ["spooky", "tomb"];
 
 //const dx = require("../src/dexes");
 //token_address = dx.token_address;
