@@ -17,7 +17,7 @@ let factory_address = cfg.factory_address;
 let router_address = cfg.router_address;
 
 const conn = new ethers.providers.JsonRpcProvider(rpc_url);
-var infile = "data/generated.json";
+var infile = "data/routes.json";
 
 const argv = yargs
   .option("file", {

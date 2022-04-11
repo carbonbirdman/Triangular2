@@ -81,5 +81,6 @@ module.exports = {
   dexs,
   rpc_url: rpc_url,
   token_address: token_address,
+  router_address: router_address,
   factory_address: factory_address
 };
