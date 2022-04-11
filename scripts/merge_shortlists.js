@@ -1,3 +1,5 @@
+// merge into aggregated shortlist
+
 const fs = require("fs");
 //requiring path and fs modules
 const path = require("path");

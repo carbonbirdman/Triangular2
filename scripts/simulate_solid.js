@@ -14,7 +14,7 @@ const cfg = require("./config");
 let rpc_url = cfg.rpc_url;
 let token_address = cfg.token_address;
 let factory_address = cfg.factory_address;
-let router_address = dx.router_address;
+let router_address = cfg.router_address;
 
 const conn = new ethers.providers.JsonRpcProvider(rpc_url);
 var infile = "data/generated.json";

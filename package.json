@@ -10,10 +10,10 @@
     "pairs": "node scripts/pairs.js && node scripts/reserves.js && node scripts/liquidity.js && node scripts/validate_pairs.js",
     "routes": "node scripts/generate.js",
     "simulate": "node scripts/simulate_solid.js",
+    "simshort": "node scripts/simulate_solid.js && node scripts/shortlist.js && node scripts/merge_shortlist.js",
     "simloop": "node scripts/timeloop.js",
     "shortlist": "node scripts/shortlist.js",
     "mergesims": "node scripts/merge_sims.js",
-    "mergeshorts": "node scripts/shortlist.js",
     "sim-shortlist": "node scripts/simulate_solid.js --file data/shortlist.json",
     "runall": "node scripts/decimals.js && node scripts/prices.js && node scripts/factories.js && node scripts/pairs.js && node scripts/reserves.js && node scripts/validate_pairs.js && node scripts/generate.js && node scripts/simulate_solid.js"
   },
