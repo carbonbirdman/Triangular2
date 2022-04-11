@@ -73,6 +73,32 @@ async function getAllPairs() {
           continue;
         }
 
+        if (fs.existsSync("data/valid_pair_library.json")) {
+          let valid_pairs = JSON.parse(
+            fs.readFileSync("data/valid_pair_library.json")
+          );
+          let exists = valid_pairs.filter(function (element) {
+            return (
+              element.dex === dex &&
+              ((element.token0 === tokena && element.token1 === tokenb) ||
+                (element.token0 === tokenb && element.token1 === tokena))
+            ); //return
+          });
+          if (exists.length >= 1) {
+            console.log(exists);
+            console.log("pair exists");
+            pairArray.push(
+              newElement(
+                exists[0].dex,
+                exists[0].token0,
+                exists[0].token1,
+                exists[0].pair_address
+              )
+            );
+            continue;
+          }
+        }
+
         const address_a = await ethers.utils.getAddress(token_address[tokena]);
         const address_b = await ethers.utils.getAddress(token_address[tokenb]);
 

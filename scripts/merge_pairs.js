@@ -10,7 +10,7 @@ var merged = "";
 
 if (fs.existsSync("data/valid_pair_library.json")) {
   let valid_pairs = JSON.parse(fs.readFileSync("data/valid_pair_library.json"));
-
+  merged = valid_pairs;
   for (const pair of pairs) {
     let exists = valid_pairs.filter(function (element) {
       return (
@@ -21,10 +21,11 @@ if (fs.existsSync("data/valid_pair_library.json")) {
     });
     if (exists) {
       console.log("pair exists");
+    } else {
+      merged = merged.concat(pair);
+      console.log(merged.length);
     }
   }
-  merged = valid_pairs.concat(pairs);
-  console.log(merged.length);
 } else {
   merged = pairs;
   console.log(merged.length);

@@ -1,11 +1,9 @@
 const ethers = require("ethers");
-var rpc_url = "https://rpc.ftm.tools/";
 const factoryABI = require("../src/factory.json");
 const routerABI = require("../src/router.json");
 const tokenABI = require("../src/token.json");
 const solidRouterABI = require("../src/solidRouter.json");
-const conn = new ethers.providers.JsonRpcProvider(rpc_url);
-const signer = conn.getSigner();
+
 console.log("Onesim starting up");
 const axios = require("axios");
 //const CoinGecko = require("coingecko-api");
@@ -15,9 +13,13 @@ const solidFactoryABI = require("../src/solidFactory.json");
 const fs = require("fs");
 
 const cfg = require("./config");
+let rpc_url = cfg.rpc_url;
+const conn = new ethers.providers.JsonRpcProvider(rpc_url);
+let signer = conn.getSigner();
+signer = conn;
 let token_address = cfg.token_address;
 let factory_address = cfg.factory_address;
-let router_address = dx.router_address;
+let router_address = cfg.router_address;
 
 let token_data = JSON.parse(fs.readFileSync("data/tokens.json"));
 
@@ -47,8 +49,8 @@ async function getPair(token0, token1, dex, conn) {
       conn
     );
     pair_address = await factory_contract.getPair(
-      dx.token_address[token0],
-      dx.token_address[token1],
+      token_address[token0],
+      token_address[token1],
       false //this argument is whether the stable pool or volatile
     );
   } else {
@@ -58,8 +60,8 @@ async function getPair(token0, token1, dex, conn) {
       conn
     );
     pair_address = await factory_contract.getPair(
-      dx.token_address[token0],
-      dx.token_address[token1]
+      token_address[token0],
+      token_address[token1]
     );
   }
   return pair_address;
@@ -209,18 +211,18 @@ async function simulateTrade(tri, input_dollars = "1") {
         n2_wei,
         routec
       );
-      var [amount_in_token2, amount_out_token0] = amount_out_c;
+      let [amount_in_token2, amount_out_token0] = amount_out_c;
       output_wei = amount_out_token0;
       console.log("WEi out:", output_wei);
       output_tokens = output_wei * Math.pow(10, -token0_decimal);
       console.log("Final sale", output_tokens, token0, dexc);
     } catch (err) {
-      //console.log(err);
-      console.log("Final sale", token2, token0, dexc);
+      console.log(err);
+      console.log("Final sale err", token2, token0, dexc);
     }
     output_dollars = output_tokens * usd_price;
 
-    try {
+    if (false) {
       //console.log("gas_price");
       console.log(conn);
       const gasPrice = await conn.getGasPrice();
@@ -240,10 +242,10 @@ async function simulateTrade(tri, input_dollars = "1") {
         }
       );
       console.log(gas_estimate);
-    } catch (err) {
-      console.log(err);
-      console.log("Gas error");
-    }
+    } //catch (err) {
+    //console.log(err);
+    // console.log("Gas error");
+    //}
 
     console.log(
       input_dollars +
@@ -283,11 +285,11 @@ async function main() {
   try {
     const test_data = await getTri(
       "FTM",
-      "LQDR",
-      "SPIRIT",
-      "solid",
-      "spirit",
-      "solid",
+      "BAEP",
+      "TOMB",
+      "tomb",
+      "spooky",
+      "tomb",
       conn
     );
     console.log("Test", test_data);

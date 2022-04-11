@@ -47,7 +47,7 @@ function getUSDPrice(tokenSymbol) {
   }
   //if (usd_price == "NA") {
   //  usd_price = 1.0;
-  // }
+  //}
   return usd_price;
 }
 
@@ -129,10 +129,6 @@ async function simulateTrade(pair, input_dollars = "1") {
       pair.dex
     );
     output_dollars = (output_tokens * token1_usd_price).toString();
-
-    if (token1_usd_price === "NA" || token0_usd_price === "NA") {
-      output_dollars = input_dollars + 0.1;
-    }
 
     console.log(
       input_dollars +

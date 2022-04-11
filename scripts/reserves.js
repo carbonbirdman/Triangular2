@@ -31,6 +31,10 @@ function newElement(dex, token0, token1, pair_address, reserves0, reserves1) {
   };
 }
 
+function reservePrices() {
+  // get price based on reserves.
+}
+
 async function getReserves() {
   var pairArray = [];
   for (const pair of pairs) {

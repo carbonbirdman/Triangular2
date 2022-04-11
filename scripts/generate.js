@@ -155,7 +155,7 @@ async function main() {
                 //console.log(pair_a);
                 console.log("A", pairstring(pair_a[0]));
               } else {
-                console.log("nopair:", dexa, token0, token1);
+                //console.log("nopair:", dexa, token0, token1);
                 continue;
               }
 
@@ -170,7 +170,7 @@ async function main() {
               if (pair_b.length > 0) {
                 console.log("B", pairstring(pair_b[0]));
               } else {
-                console.log("nopair", dexb, token1, token2);
+                //console.log("nopair", dexb, token1, token2);
                 continue;
               }
 
@@ -185,7 +185,7 @@ async function main() {
               if (pair_c.length > 0) {
                 console.log("C", pairstring(pair_c[0]));
               } else {
-                console.log("nopair", dexc, token2, token0);
+                //console.log("nopair", dexc, token2, token0);
                 continue;
               }
 

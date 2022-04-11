@@ -45,9 +45,6 @@ function getUSDPrice(tokenSymbol) {
   } catch (err) {
     console.log("error getting price");
   }
-  //if (usd_price == "NA") {
-  //  usd_price = 1.0;
-  // }
   return usd_price;
 }
 
@@ -130,10 +127,6 @@ async function simulateTrade(pair, input_dollars = "1") {
     );
     output_dollars = (output_tokens * token1_usd_price).toString();
 
-    if (token1_usd_price === "NA" || token0_usd_price === "NA") {
-      output_dollars = input_dollars + 0.1;
-    }
-
     console.log(
       input_dollars +
       "->" +
@@ -158,36 +151,73 @@ async function simulateTrade(pair, input_dollars = "1") {
   return { input_tokens, output_tokens, input_dollars, output_dollars };
 } //simulate
 
+if (fs.existsSync("data/valid_pair_library.json")) {
+  let valid_pair_library = JSON.parse(
+    fs.readFileSync("data/valid_pair_library.json")
+  );
+} else {
+  valid_pair_library = false;
+}
+
+async function checkNewAdd(pair, pairArray) {
+  let exists = valid_pair_library.filter(function (element) {
+    return (
+      element.dex === dex &&
+      ((element.token0 === tokena && element.token1 === tokenb) ||
+        (element.token0 === tokenb && element.token1 === tokena))
+    ); //return
+  });
+  if (exists) {
+    console.log(exists);
+    console.log("pair exists");
+    pairArray.push(
+      newElement(
+        exists[0].dex,
+        exists[0].token0,
+        exists[0].token1,
+        exists[0].pair_address
+      )
+    );
+    return true;
+  } else {
+    return false;
+  }
+}
+
 async function getTrades(pairs) {
   var pairArray = [];
   var i = 0;
   for (const pair of pairs) {
     i = i + 1;
     // if check_exists then continue
-    try {
-      let trade_data = await simulateTrade(pair, "100");
-      console.log("trade", trade_data);
-      console.log("pair", pair);
-      // Save data
-      pairArray.push(
-        //newElement({
-        {
-          dex: pair.dex,
-          token0: pair.token0,
-          token1: pair.token1,
-          pair_address: pair.pair_address,
-          input_tokens: trade_data.input_tokens,
-          output_tokens: trade_data.output_tokens,
-          input_dollars: trade_data.input_dollars,
-          output_dollars: trade_data.output_dollars
-        }
-      );
-    } catch (err) {
-      console.log(i);
-      console.log("Problem getting trade");
-      console.log("pair", pair);
-      console.log(err);
-    }
+    if (checkNewAdd(pair, pairArray)) {
+      continue;
+    } else {
+      try {
+        let trade_data = await simulateTrade(pair, "100");
+        console.log("trade", trade_data);
+        console.log("pair", pair);
+        // Save data
+        pairArray.push(
+          //newElement({
+          {
+            dex: pair.dex,
+            token0: pair.token0,
+            token1: pair.token1,
+            pair_address: pair.pair_address,
+            input_tokens: trade_data.input_tokens,
+            output_tokens: trade_data.output_tokens,
+            input_dollars: trade_data.input_dollars,
+            output_dollars: trade_data.output_dollars
+          }
+        );
+      } catch (err) {
+        console.log(i);
+        console.log("Problem getting trade");
+        console.log("pair", pair);
+        console.log(err);
+      }
+    } // if exists
   } //for
   return pairArray;
 } //function

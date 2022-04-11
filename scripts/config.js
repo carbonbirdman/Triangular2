@@ -50,7 +50,9 @@ let token_address = {
   BASED: "0x8D7d3409881b51466B483B11Ea1B8A03cdEd89ae",
   MIMATIC: "0xfb98b335551a418cd0737375a2ea0ded62ea213b",
   TSHARE: "0x4cdF39285D7Ca8eB3f090fDA0C069ba5F4145B37",
-  TOMB: "0x6c021Ae822BEa943b2E66552bDe1D2696a53fbB7"
+  TOMB: "0x6c021Ae822BEa943b2E66552bDe1D2696a53fbB7",
+  BAEP: "0x8E11FF9a74Ae97b295e14f8D9d48E3A3d72CE890",
+  BAE: "0xEc2Bf1C23188e78B8E187146d14c823679Df01fd"
 };
 
 //token_address = {
@@ -59,7 +61,8 @@ let token_address = {
 //  LQDR: "0x10b620b2dbac4faa7d7ffd71da486f5d44cd86f9"
 //};
 
-let tokens = ["FTM", "LQDR", "SPIRIT", "MIMATIC", "BASED", "TOMB", "TSHARE"];
+//let tokens = ["FTM", "LQDR", "SPIRIT", "MIMATIC", "BASED", "TOMB", "TSHARE"];
+let tokens = ["FTM", "BAEP", "TOMB"];
 let dexs = ["spooky", "tomb", "spirit"];
 
 //const dx = require("../src/dexes");
