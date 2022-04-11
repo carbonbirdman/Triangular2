@@ -1,3 +1,4 @@
+// deprecated
 //Check pairs for liquidity
 const ethers = require("ethers");
 var rpc_url = "https://rpc.ftm.tools/";

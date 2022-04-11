@@ -10,6 +10,7 @@ const routerABI = require("../src/router.json");
 const fs = require("fs");
 const axios = require("axios");
 const solidRouterABI = require("../src/solidRouter.json");
+const prices = require("../scripts/prices");
 const cfg = require("./config");
 let token_address = cfg.token_address;
 let factory_address = cfg.factory_address;
@@ -20,6 +21,7 @@ let tokens = cfg.tokens;
 let dexes = cfg.dexs;
 
 let pairs = JSON.parse(fs.readFileSync("data/all_pairs.json"));
+let reserves = JSON.parse(fs.readFileSync("data/reserves.json"));
 
 function newElement(dex, token0, token1, pair_address, reserves0, reserves1) {
   return {
@@ -49,6 +51,17 @@ function getUSDPrice(tokenSymbol) {
   //  usd_price = 1.0;
   // }
   return usd_price;
+}
+
+function getReserveData(pair) {
+  let match_pair = reserves.filter(function (element) {
+    return (
+      element.dex === pair.dex &&
+      ((element.token0 === pair.token0 && element.token1 === pair.token1) ||
+        (element.token0 === pair.token1 && element.token1 === pair.token0))
+    ); //return
+  });
+  return match_pair[0];
 }
 
 function getRouter(dex) {
@@ -83,8 +96,18 @@ async function simulateTrade(pair, input_dollars = "1") {
   var output_dollars = "NA";
   var token0_usd_price = 1;
   var token1_usd_price = 1;
-  token0_usd_price = getUSDPrice(pair.token0);
-  token1_usd_price = getUSDPrice(pair.token1);
+  token0_usd_price = prices.getUSDPrice(pair.token0);
+  token1_usd_price = prices.getUSDPrice(pair.token1);
+
+  if (token0_usd_price === "NA" || token1_usd_price === "NA") {
+    let reserve_pair = getReserveData(pair);
+    console.log(reserve_pair);
+    token0_usd_price = reserve_pair.price0;
+    token1_usd_price = reserve_pair.price1;
+  }
+
+  console.log(token0_usd_price);
+  console.log(token1_usd_price);
 
   const [token0, token1] = [pair.token0, pair.token1];
   const token0_data = token_data.filter((i) => i.symbol === pair.token0);

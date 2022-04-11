@@ -37,6 +37,19 @@ validate_pairs.js", "data/validated_pairs.json
 "data/validated_pairs.json > node scripts/generate.js -> "data/generated.json
 simulate_solid.js
 
+## ROADMAP
+
+Use obj["key3"] = "value3"; to add properties to the token and
+pair data objects, reduce proliferation.
+Or spread:
+
+let remoteJob = {
+...job,
+...location
+};
+
+## REFERENCES
+
 https://github.com/solidlyexchange/solidly
 
 The solidly code is very useful:

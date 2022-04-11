@@ -36,6 +36,7 @@ function getUSDPrice(tokenSymbol) {
     }
   } catch (err) {
     console.log("error getting price");
+    usd_price = "NA";
   }
   return usd_price;
 }
