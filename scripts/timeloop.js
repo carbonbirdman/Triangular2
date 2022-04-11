@@ -7,6 +7,8 @@ const solidRouterABI = require("../src/solidRouter.json");
 console.log("Simulation starting up");
 const dx = require("../src/dexes");
 const simulate = require("../scripts/simulate_solid");
+const shortlist = require("../scripts/shortlist");
+const merge_shortlist = require("../scripts/merge_shortlist");
 const pairABI = require("../src/pairs.json");
 const fs = require("fs");
 
@@ -62,7 +64,7 @@ function delay(ms) {
 async function timeLoop() {
   let i = 0;
   let startTime = Date.now();
-  let finalTime = startTime + 20000;
+  let finalTime = startTime + 1000000;
   let currentTime = Date.now();
   //while (currentTime < finalTime) {
   while (i < 10) {
@@ -73,7 +75,7 @@ async function timeLoop() {
       "utf8"
     );
     console.log("WROTE", i);
-    await delay(2000000);
+    await delay(10000);
     currentTime = Date.now();
     i = i + 1;
   }
@@ -83,10 +85,12 @@ async function timeLoop() {
     "utf8"
   );
   console.log("Simulation done");
+  shortlist.save_shortlist();
 }
 
 async function main() {
   await timeLoop();
+  merge_shortlist.merge_shortlist();
 }
 
 if (require.main === module) {

@@ -72,6 +72,24 @@ async function getAllPairs() {
           console.log(dex, tokena, tokenb, "identical");
           continue;
         }
+
+        if (fs.existsSync("data/valid_pair_library.json")) {
+          let valid_pairs = JSON.parse(
+            fs.readFileSync("data/valid_pair_library.json")
+          );
+          let exists = valid_pairs.filter(function (element) {
+            return (
+              element.dex === dex &&
+              ((element.token0 === tokena && element.token1 === tokenb) ||
+                (element.token0 === tokenb && element.token1 === tokena))
+            ); //return
+          });
+          if (exists) {
+            console.log("pair exists");
+            continue;
+          }
+        }
+
         const address_a = await ethers.utils.getAddress(token_address[tokena]);
         const address_b = await ethers.utils.getAddress(token_address[tokenb]);
 

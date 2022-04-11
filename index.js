@@ -31,7 +31,8 @@ app.get("/", (req, res) => {
       "validpairs",
       "routes",
       "simulation",
-      "shortlist"
+      "shortlist",
+      "merged_shortlist"
     ])
   );
 });
@@ -186,6 +187,12 @@ app.get("/shortlist", function (req, res) {
     "data/simulation.json",
     (i) => i.output > i.input - i.input / 10
   );
+  console.log(items);
+  res.send(eta.render(simTemplate, items));
+});
+
+app.get("/mergedlist", function (req, res) {
+  let items = JSON.parse(fs.readFileSync("data/merged_shortlist.json"));
   console.log(items);
   res.send(eta.render(simTemplate, items));
 });
