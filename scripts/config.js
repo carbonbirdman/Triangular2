@@ -8,7 +8,8 @@ let factory_address = {
   morph: "0x9C454510848906FDDc846607E4baa27Ca999FBB6",
   solid: "0x3fAaB499b519fdC5819e3D7ed0C26111904cbc28",
   //  soul: "0x1120e150dA9def6Fe930f4fEDeD18ef57c0CA7eF"
-  tomb: "0xE236f6890F1824fa0a7ffc39b1597A5A6077Cfe9"
+  tomb: "0xE236f6890F1824fa0a7ffc39b1597A5A6077Cfe9",
+  sushi: "0xc35DADB65012eC5796536bD9864eD8773aBc74C4"
 };
 
 let router_address = {
@@ -17,7 +18,8 @@ let router_address = {
   proto: "0xF4C587a0972Ac2039BFF67Bc44574bB403eF5235",
   morph: "0x8aC868293D97761A1fED6d4A01E9FF17C5594Aa3",
   solid: "0xa38cd27185a464914D3046f0AB9d43356B34829D",
-  tomb: "0x6D0176C5ea1e44b08D3dd001b0784cE42F47a3A7"
+  tomb: "0x6D0176C5ea1e44b08D3dd001b0784cE42F47a3A7",
+  sushi: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506"
   //  soul: "0x6b3d631B87FE27aF29efeC61d2ab8CE4d621cCBF"
 };
 
@@ -52,7 +54,14 @@ let token_address = {
   TSHARE: "0x4cdF39285D7Ca8eB3f090fDA0C069ba5F4145B37",
   TOMB: "0x6c021Ae822BEa943b2E66552bDe1D2696a53fbB7",
   BAEP: "0x8E11FF9a74Ae97b295e14f8D9d48E3A3d72CE890",
-  BAE: "0xEc2Bf1C23188e78B8E187146d14c823679Df01fd"
+  BAE: "0xEc2Bf1C23188e78B8E187146d14c823679Df01fd",
+  HAM: "0x20AC818b34A60117E12ffF5bE6AbbEF68BF32F6d",
+  SOLID: "0x888EF71766ca594DED1F0FA3AE64eD2941740A20",
+  GEM: "0x42e270Af1FeA762fCFCB65CDB9e3eFFEb2301533",
+  BEETS: "0xF24Bcf4d1e507740041C9cFd2DddB29585aDCe1e",
+  FHM: "0xfa1FBb8Ef55A4855E5688C0eE13aC3f202486286",
+  BOO: "0x841FAD6EAe12c286d1Fd18d1d525DFfA75C7EFFE",
+  FANG: "0x49894fCC07233957c35462cfC3418Ef0CC26129f"
 };
 
 //token_address = {
@@ -62,8 +71,8 @@ let token_address = {
 //};
 
 //let tokens = ["FTM", "LQDR", "SPIRIT", "MIMATIC", "BASED", "TOMB", "TSHARE"];
-let tokens = ["FTM", "BAEP", "TOMB"];
-let dexs = ["spooky", "tomb", "spirit"];
+let tokens = ["FTM", "FHM", "DAI", "MIM", "FANG"];
+let dexs = ["spooky", "spirit", "sushi"];
 
 //const dx = require("../src/dexes");
 //token_address = dx.token_address;
