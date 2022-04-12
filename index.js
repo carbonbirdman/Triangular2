@@ -4,6 +4,7 @@ const sl = require("./scripts/shortlist");
 const sim = require("./scripts/simulate_solid");
 var path = require("path");
 const fs = require("fs");
+const cfg = require("./scripts/config");
 
 const app = express();
 var eta = require("eta");
@@ -109,7 +110,6 @@ var validPairsTemplate = `
 <!DOCTYPE html>
 <a href="/">home</a>
 <ul>
-
 <% it.forEach(function(entry) {%>
   <li>
 <%= entry.token0%>/
@@ -129,6 +129,32 @@ app.get("/validpairs", function (req, res) {
 
 app.get("/validpairs/json", (req, res) => {
   res.json(JSON.parse(fs.readFileSync("data/validated_pairs.json")));
+});
+
+//RESERVES
+var reservesTemplate = `
+<!DOCTYPE html>
+<a href="/">home</a>
+<ul>
+<% it.forEach(function(entry) {%>
+  <li>
+<%= entry.token0%>/
+<%= entry.token1%>, 
+<%= entry.dex%>
+$<%= parseFloat(entry.reserves0).toPrecision(3)%> ->
+$<%= parseFloat(entry.reserves1).toPrecision(3)%> 
+</li>
+<%});%>
+</ul>
+`;
+
+app.get("/reserves", function (req, res) {
+  let items = JSON.parse(fs.readFileSync("data/reserves.json"));
+  res.send(eta.render(reservesTemplate, items));
+});
+
+app.get("/reserves/json", (req, res) => {
+  res.json(JSON.parse(fs.readFileSync("data/reserves.json")));
 });
 
 // ROUTES
@@ -198,8 +224,8 @@ app.get("/mergedlist", function (req, res) {
 });
 
 async function runsim(req, res) {
-  let goodTriangles = JSON.parse(fs.readFileSync("data/generated.json"));
-  await sim.simLoop(goodTriangles);
+  let goodTriangles = JSON.parse(fs.readFileSync("data/routes.json"));
+  await sim.runSim(goodTriangles);
   let items = JSON.parse(fs.readFileSync("data/simulation.json"));
   res.send(eta.render(simTemplate, items));
   return items;
@@ -220,5 +246,6 @@ app.get("/simulate", function (req, res) {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
   //var conn = dexes.get_connection();
-  console.log(dx.token_address);
+  console.log(cfg.tokens);
+  console.log(cfg.dexes);
 });
