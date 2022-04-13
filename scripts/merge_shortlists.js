@@ -12,7 +12,8 @@ async function main() {
   let files = fs.readdirSync(directoryPath);
   let filteredFiles = files
     .filter(
-      (fileName) => fileName.startsWith("sim") & fileName.endsWith(".json")
+      (fileName) =>
+        fileName.startsWith("shortlist") & fileName.endsWith(".json")
     )
     .map((fileName) => {
       merged = merged.concat(
