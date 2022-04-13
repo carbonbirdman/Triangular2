@@ -21,10 +21,13 @@ _yarn pairs_
 
 _yarn routes_
 
-- generate.js
+- generate.js -> routes.json
 
 _yarn simulate_
-simulate_solid.js",
+simulate_solid.js" -> simulation.json
+
+merge_shortlists -> merged.json
+(mergedshortlists cats all shortlists in the directory)
 
 yarn runall
 
