@@ -64,7 +64,7 @@ function delay(ms) {
 async function timeLoop() {
   let i = 0;
   let startTime = Date.now();
-  let finalTime = startTime + 1000000;
+  let finalTime = startTime + 1500000;
   let currentTime = Date.now();
   //while (currentTime < finalTime) {
   while (i < 10) {
@@ -75,7 +75,7 @@ async function timeLoop() {
       "utf8"
     );
     console.log("WROTE", i);
-    await delay(10000);
+    await delay(1500000);
     currentTime = Date.now();
     i = i + 1;
   }
