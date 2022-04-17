@@ -1,7 +1,9 @@
 const fs = require("fs");
 
+const simulate_filename = "data/simulation.json";
+
 function shortlist(
-  inputFile = "data/trade_pairs.json",
+  inputFile = simulate_filename,
   myfilter = (i) =>
     i.output_dollars >
     parseFloat(i.input_dollars) - parseFloat(i.input_dollars) / 2
@@ -23,28 +25,26 @@ function shortlist(
 }
 
 function save_shortlist(
-  //inputFile = "data/merged_sims.json",
-  inputFile = "data/simulation.json",
+  inputFile = simulate_filename,
+  shortlist_filename = "data/shortlist.json",
   myfilter = (i) => parseFloat(i.output_dollars) > parseFloat(i.input_dollars)
 ) {
-  let goodTriangles = shortlist(inputFile, myfilter);
-  let currentTime = Date.now();
-  let shortlist_filename = "data/shortlist_" + currentTime + ".json";
-  fs.writeFileSync(
-    "data/shortlist.json",
-    JSON.stringify(goodTriangles, undefined, 4),
-    "utf8"
-  );
+  //get the shortlist
+  let shortlistedSims = shortlist(inputFile, myfilter);
+
+  // write it to file
   fs.writeFileSync(
     shortlist_filename,
-    JSON.stringify(goodTriangles, undefined, 4),
+    JSON.stringify(shortlistedSims, undefined, 4),
     "utf8"
   );
   return shortlist_filename;
 }
 
 if (require.main === module) {
-  const slist = save_shortlist();
+  let currentTime = Date.now();
+  let shortlist_filename_date = "data/shortlist_" + currentTime + ".json";
+  const slist = save_shortlist((shortlist_filename = shortlist_filename_date));
   console.log(slist);
 }
 
