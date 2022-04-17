@@ -1,11 +1,15 @@
+// append a shortlist to another shortlist file
 const fs = require("fs");
 
-function merge_shortlist() {
-  let json1 = JSON.parse(fs.readFileSync("data/shortlist.json"));
+function merge_shortlist(
+  shortlist_filename = "data/shortlist.json",
+  merged_filename = "data/merged_shortlist.json"
+) {
+  let json1 = JSON.parse(fs.readFileSync(shortlist_filename));
   var merged = "";
   console.log(json1.length);
-  if (fs.existsSync("data/merged_shortlist.json")) {
-    let json2 = JSON.parse(fs.readFileSync("data/merged_shortlist.json"));
+  if (fs.existsSync(merged_filename)) {
+    let json2 = JSON.parse(fs.readFileSync(merged_filename));
     merged = json1.concat(json2);
     console.log(json2.length);
     console.log(merged.length);
@@ -14,14 +18,16 @@ function merge_shortlist() {
   }
 
   fs.writeFileSync(
-    "data/merged_shortlist.json",
+    merged_filename,
     JSON.stringify(merged, undefined, 4),
     "utf8"
   );
 }
 
 if (require.main === module) {
-  merge_shortlist();
+  let currentTime = Date.now();
+  let merged_filename_date = "data/merged_shortlist_" + currentTime + ".json";
+  merge_shortlist((merged_filename = merged_filename_date));
 }
 
 module.exports = {
