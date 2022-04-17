@@ -26,7 +26,7 @@ function shortlist(
 
 function save_shortlist(
   inputFile = simulate_filename,
-  shortlist_filename = "data/shortlist.json",
+  shortlistFile = "data/shortlist.json",
   myfilter = (i) => parseFloat(i.output_dollars) > parseFloat(i.input_dollars)
 ) {
   //get the shortlist
@@ -34,17 +34,20 @@ function save_shortlist(
 
   // write it to file
   fs.writeFileSync(
-    shortlist_filename,
+    shortlistFile,
     JSON.stringify(shortlistedSims, undefined, 4),
     "utf8"
   );
-  return shortlist_filename;
+  return shortlistFile;
 }
 
 if (require.main === module) {
   let currentTime = Date.now();
   let shortlist_filename_date = "data/shortlist_" + currentTime + ".json";
-  const slist = save_shortlist((shortlist_filename = shortlist_filename_date));
+  const slist = save_shortlist(
+    (inputFile = simulate_filename),
+    (shortlistFile = shortlist_filename_date)
+  );
   console.log(slist);
 }
 
