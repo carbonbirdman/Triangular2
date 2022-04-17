@@ -13,7 +13,6 @@
     "simshort": "node scripts/simulate.js && node scripts/shortlist.js && node scripts/merge_shortlist.js",
     "simloop": "node scripts/timeloop.js",
     "shortlist": "node scripts/shortlist.js",
-    "mergesims": "node scripts/merge_sims.js",
     "sim-shortlist": "node scripts/simulate.js --file data/shortlist.json",
     "runall": "node scripts/decimals.js && node scripts/prices.js && node scripts/factories.js && node scripts/pairs.js && node scripts/reserves.js && node scripts/validate_pairs.js && node scripts/generate.js && node scripts/simulate_solid.js && node scripts/shortlist.js && node scripts/merge_shortlist.js"
   },
