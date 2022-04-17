@@ -7,6 +7,9 @@ rpc url.
 
 Use yarn to run the scripts.
 
+Config file is set using environment variables.
+require("dotenv").config();
+
 _yarn tokens_
 
 - decimals.js -> data/tokens.json

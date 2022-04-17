@@ -1,22 +1,35 @@
 const ethers = require("ethers");
 const yargs = require("yargs");
-var rpc_url = "https://rpc.ftm.tools/";
-const factoryABI = require("../src/factory.json");
-const conn = new ethers.providers.JsonRpcProvider(rpc_url);
-console.log("Starting up");
-const dx = require("../src/dexes");
-const pairABI = require("../src/pairs.json");
 const fs = require("fs");
+const axios = require("axios");
 
-const cfg = require("./config");
+require("dotenv").config();
+console.log(process.env.CONFIG);
+const cfg = require(process.env.CONFIG);
+
+console.log("Starting up generate");
+let rpc_url = cfg.rpc_url;
+const conn = new ethers.providers.JsonRpcProvider(rpc_url);
+const tokenABI = require(cfg.token_abi);
+const factoryABI = require(cfg.factory_abi);
+const solidFactoryABI = require(cfg.solid_factory_abi);
+const solidRouterABI = require(cfg.solid_router_abi);
+const pairsABI = require(cfg.pairs_abi);
+const routerABI = require(cfg.router_abi);
 let token_address = cfg.token_address;
 let factory_address = cfg.factory_address;
-
-//let tokens = Object.keys(token_address);
-//var dexes = Object.keys(factory_address);
-let tokens = cfg.tokens;
+let router_address = cfg.router_address;
 let dexes = cfg.dexs;
+let tokens = cfg.tokens;
 
+const pairs_filename = "data/all_pairs" + cfg.xpid + ".json";
+const reserves_filename = "data/reserves" + cfg.xpid + ".json";
+const tokens_filename = "data/tokens" + cfg.xpid + ".json";
+const tradeable_pairs_filename = "data/tradeable_pairs.json";
+const validated_pairs_filename = "data/validated_pairs.json";
+const shortlist_filename = "data/shortlist.json";
+const routes_filename = "data/routes.json";
+///////////////
 console.log(tokens);
 
 function getAllFactories() {
@@ -24,7 +37,7 @@ function getAllFactories() {
   return JSON.parse(factory_contracts_string);
 }
 
-var infile = "data/validated_pairs.json";
+var infile = validated_pairs_filename;
 
 const argv = yargs
   .option("file", {
@@ -225,7 +238,7 @@ async function main() {
   } //dexa
   console.log(triangleArray.length, "routes");
   let tristring = JSON.stringify(triangleArray);
-  fs.writeFileSync("data/routes.json", tristring, "utf8");
+  fs.writeFileSync(routes_filename, tristring, "utf8");
   //console.log(triangleArray);
 }
 main();

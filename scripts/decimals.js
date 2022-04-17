@@ -1,18 +1,17 @@
 // Produces "data/tokens.json"
 const ethers = require("ethers");
 const fs = require("fs");
-//const { constants } = require("perf_hooks");
 
-//const dx = require("../src/dexes");
-const tokenABI = require("../src/token.json");
-
-const cfg = require("./config");
+require("dotenv").config();
+console.log(process.env.CONFIG);
+const cfg = require(process.env.CONFIG);
 let token_address = cfg.token_address;
 let rpc_url = cfg.rpc_url;
 const conn = new ethers.providers.JsonRpcProvider(rpc_url);
-
-//let tokens = Object.keys(token_address);
+const tokenABI = require(cfg.token_abi);
 const tokens = cfg.tokens;
+
+const tokens_filename = "data/tokens" + cfg.xpid + ".json";
 var tokenArray = [];
 
 console.log(tokens);
@@ -45,7 +44,7 @@ async function allDecimals() {
   getDecimals(tokens).then((token_out) => {
     //console.log(allpairs);
     let token_string = JSON.stringify(token_out, undefined, 4);
-    fs.writeFileSync("data/tokens.json", token_string, "utf8");
+    fs.writeFileSync(tokens_filename, token_string, "utf8");
   });
 }
 if (require.main === module) {

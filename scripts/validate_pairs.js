@@ -1,27 +1,39 @@
 //Check pairs for liquidity
 const ethers = require("ethers");
-var rpc_url = "https://rpc.ftm.tools/";
-const factoryABI = require("../src/factory.json");
-const conn = new ethers.providers.JsonRpcProvider(rpc_url);
-console.log("Starting up");
-const dx = require("../src/dexes");
-const pairABI = require("../src/pairs.json");
-const routerABI = require("../src/router.json");
 const fs = require("fs");
 const axios = require("axios");
-const solidRouterABI = require("../src/solidRouter.json");
-const prices = require("../scripts/prices");
-const cfg = require("./config");
+
+require("dotenv").config();
+console.log(process.env.CONFIG);
+const cfg = require(process.env.CONFIG);
+
+console.log("Starting up validate pairs");
+let rpc_url = cfg.rpc_url;
+const conn = new ethers.providers.JsonRpcProvider(rpc_url);
+const tokenABI = require(cfg.token_abi);
+const factoryABI = require(cfg.factory_abi);
+const solidFactoryABI = require(cfg.solid_factory_abi);
+const solidRouterABI = require(cfg.solid_router_abi);
+const pairsABI = require(cfg.pairs_abi);
+const routerABI = require(cfg.router_abi);
 let token_address = cfg.token_address;
 let factory_address = cfg.factory_address;
-let router_address = dx.router_address;
-//let tokens = Object.keys(token_address);
-//var dexes = Object.keys(factory_address);
-let tokens = cfg.tokens;
+let router_address = cfg.router_address;
 let dexes = cfg.dexs;
+let tokens = cfg.tokens;
 
-let pairs = JSON.parse(fs.readFileSync("data/all_pairs.json"));
-let reserves = JSON.parse(fs.readFileSync("data/reserves.json"));
+const pairs_filename = "data/all_pairs" + cfg.xpid + ".json";
+const reserves_filename = "data/reserves" + cfg.xpid + ".json";
+const tokens_filename = "data/tokens" + cfg.xpid + ".json";
+const tradeable_pairs_filename = "data/tradeable_pairs.json";
+const validated_pairs_filename = "data/validated_pairs.json";
+const shortlist_filename = "data/shortlist.json";
+//////////////////////////////
+
+const prices = require("../scripts/prices");
+
+let pairs = JSON.parse(fs.readFileSync(pairs_filename));
+let reserves = JSON.parse(fs.readFileSync(reserves_filename));
 
 function newElement(dex, token0, token1, pair_address, reserves0, reserves1) {
   return {
@@ -35,7 +47,7 @@ function newElement(dex, token0, token1, pair_address, reserves0, reserves1) {
 }
 
 function getUSDPrice(tokenSymbol) {
-  let token_price = JSON.parse(fs.readFileSync("data/token_price.json"));
+  let token_price = JSON.parse(fs.readFileSync(prices.prices_filename));
   let usd_price = 1;
   try {
     var price_line = token_price.filter((i) => i.token === tokenSymbol);
@@ -88,7 +100,7 @@ function getRoute(dex, add0, add1) {
 
 async function simulateTrade(pair, input_dollars = "1") {
   console.log("Simulate trade for pair ...");
-  let token_data = JSON.parse(fs.readFileSync("data/tokens.json"));
+  let token_data = JSON.parse(fs.readFileSync(tokens_filename));
   var input_tokens = 0;
   var input_wei = 0;
   var output_wei = 0;
@@ -219,7 +231,7 @@ async function main() {
   getTrades(pairs).then((allpairs) => {
     console.log("Valid pairs:", allpairs.length);
     let pair_string = JSON.stringify(allpairs, undefined, 4);
-    fs.writeFileSync("data/tradeable_pairs.json", pair_string, "utf8");
+    fs.writeFileSync(tradeable_pairs_filename, pair_string, "utf8");
 
     // Valid pairs are any pairs where you get back more than half
     // the dollar value from a trade
@@ -227,7 +239,7 @@ async function main() {
       i.output_dollars > i.input_dollars - i.input_dollars / 2;
     let valid_pairs = allpairs.filter(myfilter);
     fs.writeFileSync(
-      "data/validated_pairs.json",
+      validated_pairs_filename,
       JSON.stringify(valid_pairs, undefined, 4),
       "utf8"
     );
@@ -238,16 +250,12 @@ if (require.main === module) {
   main();
 }
 
-//"data/trikes.json"
-//"data/triangular.json"
-//"data/trade_pairs.json"
-//data/simulation.json
 function getAllPairs() {
-  return JSON.parse(fs.readFileSync("data/all_pairs.json"));
+  return JSON.parse(fs.readFileSync(pairs_filename));
 }
 
 function getFilteredPairs() {
-  let pairs = JSON.parse(fs.readFileSync("data/validated_pairs.json"));
+  let pairs = JSON.parse(fs.readFileSync(validated_pairs_filename));
   //let pair_array = pairs.fromEntries();
   console.log(pairs.map((i) => i.output_dollars));
   const myfilter = (i) =>
@@ -257,5 +265,5 @@ function getFilteredPairs() {
 }
 
 function getShortlistPairs() {
-  return JSON.parse(fs.readFileSync("data/shortlist.json"));
+  return JSON.parse(fs.readFileSync(shortlist_filename));
 }

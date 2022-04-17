@@ -1,55 +1,63 @@
 const ethers = require("ethers");
 const yargs = require("yargs");
-
-const factoryABI = require("../src/factory.json");
-const routerABI = require("../src/router.json");
-const solidRouterABI = require("../src/solidRouter.json");
-console.log("Simulation starting up");
-
-const dx = require("../src/dexes");
-const pairABI = require("../src/pairs.json");
 const fs = require("fs");
+const axios = require("axios");
 
-const cfg = require("./config");
+require("dotenv").config();
+console.log(process.env.CONFIG);
+const cfg = require(process.env.CONFIG);
+
+console.log("Starting up generate");
 let rpc_url = cfg.rpc_url;
+const conn = new ethers.providers.JsonRpcProvider(rpc_url);
+const tokenABI = require(cfg.token_abi);
+const factoryABI = require(cfg.factory_abi);
+const solidFactoryABI = require(cfg.solid_factory_abi);
+const solidRouterABI = require(cfg.solid_router_abi);
+const pairsABI = require(cfg.pairs_abi);
+const routerABI = require(cfg.router_abi);
 let token_address = cfg.token_address;
 let factory_address = cfg.factory_address;
 let router_address = cfg.router_address;
+let dexes = cfg.dexs;
+let tokens = cfg.tokens;
 
-const conn = new ethers.providers.JsonRpcProvider(rpc_url);
-var infile = "data/routes.json";
+const pairs_filename = "data/all_pairs" + cfg.xpid + ".json";
+const reserves_filename = "data/reserves" + cfg.xpid + ".json";
+const tokens_filename = "data/tokens" + cfg.xpid + ".json";
+const tradeable_pairs_filename = "data/tradeable_pairs.json";
+const validated_pairs_filename = "data/validated_pairs.json";
+const shortlist_filename = "data/shortlist.json";
+const prices_filename = "data/token_price.json";
+const routes_filename = "data/routes.json";
+let stream_file_name = "data/simulation.txt";
+let profit_file_name = "data/profitable.txt";
+const last_run_filename = "data/last_run.txt";
+const simulate_filename = "data/simulation.json";
+
+var infile = routes_filename;
 
 const argv = yargs
-  .option("file", {
-    description: "file",
-    alias: "f",
+  .option("input", {
+    description: "input file",
+    alias: "i",
     type: "string"
   })
-  .option("nrun", {
-    alias: "n",
-    description: "how many iterations",
-    type: "integer"
-  })
-  .option("loop", {
-    alias: "loop",
-    description: "loop?",
-    type: "boolean"
+  .option("output", {
+    description: "output file",
+    alias: "o",
+    type: "string"
   })
   .help()
   .alias("help", "h").argv;
 
-if (argv.file) {
-  var infile = argv.file;
+if (argv.input) {
+  var infile = argv.input;
   console.log("Input file: ", infile);
 }
-
-if (argv.nrun) {
-  var nrun = argv.nrun;
-  console.log("Runs: ", nrun);
-}
-
-if (argv._.includes("special")) {
-  console.log(`Special option selected`);
+if (argv.output) {
+  var outfile = argv.output;
+  console.log("Output file: ", outfile);
 }
 
 //"data/trikes.json"
@@ -59,7 +67,7 @@ if (argv._.includes("special")) {
 let goodTriangles = JSON.parse(fs.readFileSync(infile));
 
 function getUSDPrice(tokenSymbol) {
-  let token_price = JSON.parse(fs.readFileSync("data/token_price.json"));
+  let token_price = JSON.parse(fs.readFileSync(prices_filename));
   let usd_price = 1;
   try {
     var price_line = token_price.filter((i) => i.token === tokenSymbol);
@@ -79,7 +87,7 @@ async function simulateTrade(tri, input_dollars = "1") {
   if (verbose) {
     console.log("simming");
   }
-  let token_data = JSON.parse(fs.readFileSync("data/tokens.json"));
+  let token_data = JSON.parse(fs.readFileSync(tokens_filename));
 
   var input_tokens = 0;
   var input_wei = 0;
@@ -261,8 +269,6 @@ async function runSim(inputTriangles, input_dollars = "10") {
   let naArray = [];
   let loliqArray = [];
   let profitableArray = [];
-  let stream_file_name = "data/simulation.txt";
-  let profit_file_name = "data/profitable.txt";
 
   const create_stream = function () {
     try {
@@ -350,11 +356,11 @@ async function runSim(inputTriangles, input_dollars = "10") {
 
 async function main() {
   let currentTime = Date.now();
-  fs.writeFileSync("data/last_run.txt", currentTime.toString(), "utf8");
-  console.log(Date(fs.readFileSync("data/last_run.txt")));
+  fs.writeFileSync(last_run_filename, currentTime.toString(), "utf8");
+  console.log(Date(fs.readFileSync(last_run_filename)));
   let resultsArray = await runSim(goodTriangles, "5");
   fs.writeFileSync(
-    "data/simulation.json",
+    simulate_filename,
     JSON.stringify(resultsArray, undefined, 4),
     "utf8"
   );

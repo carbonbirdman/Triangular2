@@ -1,28 +1,32 @@
 const ethers = require("ethers");
-
-const factoryABI = require("../src/factory.json");
-
-console.log("Starting up");
-const dx = require("../src/dexes");
-const pairABI = require("../src/pairs.json");
-const routerABI = require("../src/router.json");
 const fs = require("fs");
 const axios = require("axios");
 
-const cfg = require("./config");
-let rpc_url = cfg.rpc_url;
-const conn = new ethers.providers.JsonRpcProvider(rpc_url);
-let token_address = cfg.token_address;
-let factory_address = cfg.factory_address;
+require("dotenv").config();
+console.log(process.env.CONFIG);
+const cfg = require(process.env.CONFIG);
 
 const prices = require("../scripts/prices");
 
-//let tokens = Object.keys(token_address);
-//var dexes = Object.keys(factory_address);
-let tokens = cfg.tokens;
+console.log("Starting up reserves");
+let rpc_url = cfg.rpc_url;
+const conn = new ethers.providers.JsonRpcProvider(rpc_url);
+const tokenABI = require(cfg.token_abi);
+const factoryABI = require(cfg.factory_abi);
+const solidFactoryABI = require(cfg.solid_factory_abi);
+const pairsABI = require(cfg.pairs_abi);
+const routerABI = require(cfg.router_abi);
+let token_address = cfg.token_address;
+let factory_address = cfg.factory_address;
 let dexes = cfg.dexs;
+let tokens = cfg.tokens;
 
-let pairs = JSON.parse(fs.readFileSync("data/all_pairs.json"));
+const pairs_filename = "data/all_pairs" + cfg.xpid + ".json";
+const reserves_filename = "data/reserves" + cfg.xpid + ".json";
+const tokens_filename = "data/tokens" + cfg.xpid + ".json";
+//-----
+
+let pairs = JSON.parse(fs.readFileSync(pairs_filename));
 
 function newElement(
   dex,
@@ -52,7 +56,7 @@ function reservePrices(pair) {
   // get price based on reserves.
   let price0 = prices.getUSDPrice(pair.token0);
   let price1 = prices.getUSDPrice(pair.token1);
-  let token_data = JSON.parse(fs.readFileSync("data/tokens.json"));
+  let token_data = JSON.parse(fs.readFileSync(tokens_filename));
   const token0_data = token_data.filter((i) => i.symbol === pair.token0);
   const token1_data = token_data.filter((i) => i.symbol === pair.token1);
   const token0_decimal = token0_data[0].decimal;
@@ -93,7 +97,7 @@ async function getReserves() {
     let reserves1 = 0;
 
     try {
-      let pairContract = new ethers.Contract(pair.pair_address, pairABI, conn);
+      let pairContract = new ethers.Contract(pair.pair_address, pairsABI, conn);
       let reserves = await pairContract.getReserves();
       [reserves0, reserves1] = [reserves[0].toString(), reserves[1].toString()];
       console.log(pair.token0, pair.token1, reserves0, reserves1);
@@ -132,7 +136,7 @@ async function main() {
   getReserves().then((allpairs) => {
     //console.log(allpairs);
     let pair_string = JSON.stringify(allpairs, undefined, 4);
-    fs.writeFileSync("data/reserves.json", pair_string, "utf8");
+    fs.writeFileSync(reserves_filename, pair_string, "utf8");
   });
 }
 

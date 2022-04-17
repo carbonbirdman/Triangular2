@@ -1,20 +1,25 @@
 // External API price
 const ethers = require("ethers");
-var rpc_url = "https://rpc.ftm.tools/";
-
-const dx = require("../src/dexes");
 const fs = require("fs");
 const axios = require("axios");
 
-const cfg = require("./config");
-let token_address = cfg.token_address;
-
-//token_address = dx.token_address;
-//let tokens = Object.keys(token_address);
-//var dexes = Object.keys(factory_address);
-let all_tokens = cfg.tokens;
-let dexes = cfg.dexs;
 console.log("Starting up price script");
+require("dotenv").config();
+console.log(process.env.CONFIG);
+const cfg = require(process.env.CONFIG);
+
+let rpc_url = cfg.rpc_url;
+const conn = new ethers.providers.JsonRpcProvider(rpc_url);
+const tokenABI = require(cfg.token_abi);
+const factoryABI = require(cfg.factory_abi);
+const pairsABI = require(cfg.pairs_abi);
+let token_address = cfg.token_address;
+let factory_address = cfg.factory_address;
+let dexes = cfg.dexs;
+let all_tokens = cfg.tokens;
+
+const prices_filename = "data/token_price.json";
+
 console.log(all_tokens);
 
 function newElement(token, usdPrice) {
@@ -25,7 +30,7 @@ function newElement(token, usdPrice) {
 }
 
 function getUSDPrice(tokenSymbol) {
-  let token_price = JSON.parse(fs.readFileSync("data/token_price.json"));
+  let token_price = JSON.parse(fs.readFileSync(prices_filename));
   let usd_price = 1;
   try {
     var price_line = token_price.filter((i) => i.token === tokenSymbol);
@@ -68,7 +73,7 @@ async function getPrice(tokenlist) {
 async function mainPrice() {
   getPrice(all_tokens).then((pricelist) => {
     fs.writeFileSync(
-      "data/token_price.json",
+      prices_filename,
       JSON.stringify(pricelist, undefined, 4),
       "utf8"
     );
@@ -81,6 +86,7 @@ if (require.main === module) {
 
 //exports.token_address = token_address;
 module.exports = {
+  prices_filename,
   getPrice: getPrice,
   getUSDPrice: getUSDPrice
 };

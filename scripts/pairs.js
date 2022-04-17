@@ -1,23 +1,26 @@
 const ethers = require("ethers");
-var rpc_url = "https://rpc.ftm.tools/";
-const factoryABI = require("../src/factory.json");
-const solidFactoryABI = require("../src/solidFactory.json");
-const conn = new ethers.providers.JsonRpcProvider(rpc_url);
-console.log("Starting up");
-const dx = require("../src/dexes");
-const pairABI = require("../src/pairs.json");
-const routerABI = require("../src/router.json");
 const fs = require("fs");
-const null_address = "0x0000000000000000000000000000000000000000";
 
-const cfg = require("./config");
+require("dotenv").config();
+console.log(process.env.CONFIG);
+const cfg = require(process.env.CONFIG);
+
+console.log("Starting up pairs");
+let rpc_url = cfg.rpc_url;
+const conn = new ethers.providers.JsonRpcProvider(rpc_url);
+const tokenABI = require(cfg.token_abi);
+const factoryABI = require(cfg.factory_abi);
+const solidFactoryABI = require(cfg.solid_factory_abi);
+const pairsABI = require(cfg.pairs_abi);
+const routerABI = require(cfg.router_abi);
 let token_address = cfg.token_address;
 let factory_address = cfg.factory_address;
-
-//let tokens = Object.keys(token_address);
-//var dexes = Object.keys(factory_address);
-let tokens = cfg.tokens;
 let dexes = cfg.dexs;
+let tokens = cfg.tokens;
+
+const pairs_filename = "data/all_pairs" + cfg.xpid + ".json";
+
+const null_address = "0x0000000000000000000000000000000000000000";
 
 console.log(tokens);
 function getAllFactories() {
@@ -96,15 +99,19 @@ async function getAllPairs() {
           token1 = tokenb;
           // Get pair contract to check order
           try {
-            let pairContract = new ethers.Contract(pair_address, pairABI, conn);
+            let pairContract = new ethers.Contract(
+              pair_address,
+              pairsABI,
+              conn
+            );
             //console.log(pairContract);
             let ptoken0 = await pairContract.token0();
             let ptoken1 = await pairContract.token1();
             //console.log(ptoken0, ptoken1);
-            if (address_a == ptoken0 && address_b == ptoken1) {
+            if (address_a === ptoken0 && address_b === ptoken1) {
               token0 = tokena;
               token1 = tokenb;
-            } else if (address_a == ptoken1 && address_b == ptoken0) {
+            } else if (address_a === ptoken1 && address_b === ptoken0) {
               token0 = tokenb;
               token1 = tokena;
             }
@@ -154,7 +161,8 @@ async function pairsMain() {
   getAllPairs().then((allpairs) => {
     //console.log(allpairs);
     let pair_string = JSON.stringify(allpairs, undefined, 4);
-    fs.writeFileSync("data/all_pairs.json", pair_string, "utf8");
+
+    fs.writeFileSync(pairs_filename, pair_string, "utf8");
   });
 }
 
