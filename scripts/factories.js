@@ -15,7 +15,7 @@ const factoryABI = require(cfg.factory_abi);
 let factory_address = cfg.factory_address;
 let dexes = cfg.dexs;
 
-const factory_filename = "data/factory_contracts.json" + cfg.xpid + ".json";
+const factory_filename = "data/factory_contracts" + cfg.xpid + ".json";
 
 function getAllFactories() {
   const getFactory = (dex) =>
