@@ -29,11 +29,13 @@ const tradeable_pairs_filename = "data/tradeable_pairs.json";
 const validated_pairs_filename = "data/validated_pairs.json";
 const shortlist_filename = "data/shortlist.json";
 const routes_filename = "data/routes.json";
+const factory_filename = "data/factory_contracts" + cfg.xpid + ".json";
+
 ///////////////
 console.log(tokens);
 
 function getAllFactories() {
-  let factory_contracts_string = fs.readFileSync("data/factory_contracts.json");
+  let factory_contracts_string = fs.readFileSync(factory_filename);
   return JSON.parse(factory_contracts_string);
 }
 
