@@ -44,6 +44,7 @@ function save_shortlist(
 if (require.main === module) {
   let currentTime = Date.now();
   let shortlist_filename_date = "data/shortlist_" + currentTime + ".json";
+  //const slist = save_shortlist(simulate_filename, shortlist_filename_date);
   const slist = save_shortlist(
     (inputFile = simulate_filename),
     (shortlistFile = shortlist_filename_date)

@@ -7,7 +7,7 @@ require("dotenv").config();
 console.log(process.env.CONFIG);
 const cfg = require(process.env.CONFIG);
 
-console.log("Starting up generate");
+console.log("Starting up simulate");
 let rpc_url = cfg.rpc_url;
 const conn = new ethers.providers.JsonRpcProvider(rpc_url);
 const tokenABI = require(cfg.token_abi);
@@ -269,9 +269,6 @@ async function runSim(
 ) {
   let resultsArray = [];
   let naArray = [];
-  let loliqArray = [];
-  let profitableArray = [];
-
   let currentTime = Date.now();
 
   const create_stream = function (stream_file_name) {
@@ -363,11 +360,7 @@ async function main() {
   fs.writeFileSync(last_run_filename, currentTime.toString(), "utf8");
   console.log(Date(fs.readFileSync(last_run_filename)));
   let csv_file_name = "data/simulation" + currentTime + ".csv";
-  let resultsArray = await runSim(
-    goodTriangles,
-    (outputCSV = csv_file_name),
-    (input_dollars = "5")
-  );
+  let resultsArray = await runSim(goodTriangles, csv_file_name, "5");
   fs.writeFileSync(
     simulate_filename,
     JSON.stringify(resultsArray, undefined, 4),
