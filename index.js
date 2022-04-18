@@ -1,7 +1,7 @@
 const express = require("express");
 const dx = require("./src/dexes");
 const sl = require("./scripts/shortlist");
-const sim = require("./scripts/simulate_solid");
+const sim = require("./scripts/simulate");
 var path = require("path");
 const fs = require("fs");
 const cfg = require("./scripts/config");
@@ -50,13 +50,15 @@ var tokensTemplate = `
 </ul>
 `;
 
+const tokens_filename = "data/tokens" + cfg.xpid + ".json";
+
 app.get("/tokens", function (req, res) {
-  let items = JSON.parse(fs.readFileSync("data/tokens.json"));
+  let items = JSON.parse(fs.readFileSync(tokens_filename));
   res.send(eta.render(tokensTemplate, items));
 });
 
 app.get("/tokens/json", (req, res) => {
-  res.json(JSON.parse(fs.readFileSync("data/tokens.json")));
+  res.json(JSON.parse(fs.readFileSync(tokens_filename)));
 });
 
 //PRICE
@@ -70,14 +72,14 @@ var tokenPriceTemplate = `
 <%});%>
 </ul>
 `;
-
+const prices_filename = "data/token_price.json";
 app.get("/price", function (req, res) {
-  let items = JSON.parse(fs.readFileSync("data/token_price.json"));
+  let items = JSON.parse(fs.readFileSync(prices_filename));
   res.send(eta.render(tokenPriceTemplate, items));
 });
 
 app.get("/price/json", (req, res) => {
-  res.json(JSON.parse(fs.readFileSync("data/token_price.json")));
+  res.json(JSON.parse(fs.readFileSync(prices_filename)));
 });
 
 //ALLPAIRS
@@ -94,15 +96,15 @@ var pairsTemplate = `
 <%});%>
 </ul>
 `;
-
+const pairs_filename = "data/all_pairs" + cfg.xpid + ".json";
 app.get("/pairs", function (req, res) {
-  let items = JSON.parse(fs.readFileSync("data/all_pairs.json"));
+  let items = JSON.parse(fs.readFileSync(pairs_filename));
   console.log(items);
   res.send(eta.render(pairsTemplate, items));
 });
 
 app.get("/pairs/json", (req, res) => {
-  res.json(JSON.parse(fs.readFileSync("data/all_pairs.json")));
+  res.json(JSON.parse(fs.readFileSync(pairs_filename)));
 });
 
 //VALID PAIRS
@@ -121,14 +123,14 @@ $<%= parseFloat(entry.output_dollars).toPrecision(3)%>
 <%});%>
 </ul>
 `;
-
+const validated_pairs_filename = "data/validated_pairs.json";
 app.get("/validpairs", function (req, res) {
-  let items = JSON.parse(fs.readFileSync("data/validated_pairs.json"));
+  let items = JSON.parse(fs.readFileSync(validated_pairs_filename));
   res.send(eta.render(validPairsTemplate, items));
 });
 
 app.get("/validpairs/json", (req, res) => {
-  res.json(JSON.parse(fs.readFileSync("data/validated_pairs.json")));
+  res.json(JSON.parse(fs.readFileSync(validated_pairs_filename)));
 });
 
 //RESERVES
@@ -148,13 +150,14 @@ $<%= parseFloat(entry.reserves1).toPrecision(3)%>
 </ul>
 `;
 
+const reserves_filename = "data/reserves" + cfg.xpid + ".json";
 app.get("/reserves", function (req, res) {
-  let items = JSON.parse(fs.readFileSync("data/reserves.json"));
+  let items = JSON.parse(fs.readFileSync(reserves_filename));
   res.send(eta.render(reservesTemplate, items));
 });
 
 app.get("/reserves/json", (req, res) => {
-  res.json(JSON.parse(fs.readFileSync("data/reserves.json")));
+  res.json(JSON.parse(fs.readFileSync(reserves_filename)));
 });
 
 // ROUTES
@@ -174,14 +177,14 @@ var routesTemplate = `
 <%});%>
 </ul>
 `;
-
+const routes_filename = "data/routes.json";
 app.get("/routes", function (req, res) {
-  let items = JSON.parse(fs.readFileSync("data/routes.json"));
+  let items = JSON.parse(fs.readFileSync(routes_filename));
   res.send(eta.render(routesTemplate, items));
 });
 
 app.get("/routes/json", (req, res) => {
-  res.json(JSON.parse(fs.readFileSync("data/routes.json")));
+  res.json(JSON.parse(fs.readFileSync(routes_filename)));
 });
 
 //SIMULATION
@@ -201,16 +204,16 @@ var simTemplate = `
 <%});%>
 </ul>
 `;
-
+const simulate_filename = "data/simulation.json";
 app.get("/simulation", function (req, res) {
-  let items = JSON.parse(fs.readFileSync("data/simulation.json"));
+  let items = JSON.parse(fs.readFileSync(simulate_filename));
   console.log(items);
   res.send(eta.render(simTemplate, items));
 });
 
 app.get("/shortlist", function (req, res) {
   let items = sl.shortlist(
-    "data/simulation.json",
+    simulate_filename,
     (i) => i.output > i.input - i.input / 10
   );
   console.log(items);
@@ -224,9 +227,9 @@ app.get("/mergedlist", function (req, res) {
 });
 
 async function runsim(req, res) {
-  let goodTriangles = JSON.parse(fs.readFileSync("data/routes.json"));
+  let goodTriangles = JSON.parse(fs.readFileSync(routes_filename));
   await sim.runSim(goodTriangles);
-  let items = JSON.parse(fs.readFileSync("data/simulation.json"));
+  let items = JSON.parse(fs.readFileSync(simulate_filename));
   res.send(eta.render(simTemplate, items));
   return items;
 }
