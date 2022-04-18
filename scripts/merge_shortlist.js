@@ -28,10 +28,7 @@ if (require.main === module) {
   let currentTime = Date.now();
   let shortlist_filename_current = "data/shortlist.json";
   let merged_filename_date = "data/merged_shortlist_" + currentTime + ".json";
-  merge_shortlist({
-    shortlist_filename: shortlist_filename_current,
-    merged_filename: merged_filename_date
-  });
+  merge_shortlist(shortlist_filename_current, merged_filename_date);
 }
 
 module.exports = {
