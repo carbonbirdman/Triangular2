@@ -1,5 +1,12 @@
 const rpc_url = "https://rpc.ftm.tools/";
-//const rpc_url = "http://35.225.3.28:8545";
+const xpid = "12x5"; // experiment id
+const token_abi = "../src/token.json";
+const pairs_abi = "../src/pairs.json";
+const factory_abi = "../src/factory.json";
+const solid_factory_abi = "../src/solidFactory.json";
+const solid_router_abi = "../src/solidRouter.json";
+const router_abi = "../src/router.json";
+
 
 let factory_address = {
   spooky: "0x152eE697f2E276fA89E96742e9bB9aB1F2E61bE3",
@@ -92,6 +99,13 @@ let dexs = ["spooky", "spirit", "sushi", "solid", "tomb"];
 //factory_address = dx.factory_address;
 
 module.exports = {
+  xpid,
+  token_abi,
+  pairs_abi,
+  factory_abi,
+  solid_factory_abi,
+  solid_router_abi,
+  router_abi,
   tokens,
   dexs,
   rpc_url: rpc_url,
