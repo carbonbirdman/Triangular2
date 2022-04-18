@@ -1,14 +1,12 @@
 # Triangular searcher
 
-Scripts create json files which are then served.
-
-scripts/config.json contains token and factory addresses and
-rpc url.
-
-Use yarn to run the scripts.
-
-Config file is set using environment variables.
-require("dotenv").config();
+- Scripts create json files which are then served by index.js
+- Use .env to set the path to the configuration file
+- Config files contains tokens, routers and other detail
+- outputs in /data
+- profitable arbs in merged_shortlist_XPID.json
+- Use yarn to run the scripts.
+- First gather token info, then pairs, then routes.
 
 _yarn tokens_
 
