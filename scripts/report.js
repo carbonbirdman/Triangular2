@@ -7,8 +7,8 @@ let tokens = JSON.parse(fs.readFileSync("data/tokens.json"));
 console.log(tokens.length, "tokens");
 
 // Pairs
-let routes = JSON.parse(fs.readFileSync("data/pairs.json"));
-console.log(routes.length, "routes");
+let pairs = JSON.parse(fs.readFileSync("data/pairs.json"));
+console.log(routes.length, "pairs");
 
 // Liquid pairs
 let liquid_pairs = JSON.parse(fs.readFileSync("data/validated_pairs.json"));

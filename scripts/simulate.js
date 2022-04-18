@@ -30,8 +30,6 @@ const validated_pairs_filename = "data/validated_pairs.json";
 const shortlist_filename = "data/shortlist.json";
 const prices_filename = "data/token_price.json";
 const routes_filename = "data/routes.json";
-let stream_file_name = "data/simulation.txt";
-let profit_file_name = "data/profitable.txt";
 const last_run_filename = "data/last_run.txt";
 const simulate_filename = "data/simulation.json";
 
@@ -264,13 +262,19 @@ async function simulateTrade(tri, input_dollars = "1") {
   return input_output;
 } //simulate
 
-async function runSim(inputTriangles, input_dollars = "10") {
+async function runSim(
+  inputTriangles,
+  outputCSV = "data/simulation.csv",
+  input_dollars = "10"
+) {
   let resultsArray = [];
   let naArray = [];
   let loliqArray = [];
   let profitableArray = [];
 
-  const create_stream = function () {
+  let currentTime = Date.now();
+
+  const create_stream = function (stream_file_name) {
     try {
       if (fs.existsSync(stream_file_name)) {
         var stream = fs.createWriteStream(stream_file_name, { flags: "a" });
@@ -287,8 +291,8 @@ async function runSim(inputTriangles, input_dollars = "10") {
     return stream;
   };
 
-  let all_stream = create_stream(stream_file_name);
-  let profit_stream = create_stream(profit_file_name);
+  let all_stream = create_stream(outputCSV);
+  //let profit_stream = create_stream(profit_file_name);
 
   let nsim = inputTriangles.length;
   let isim = 1;
@@ -358,7 +362,12 @@ async function main() {
   let currentTime = Date.now();
   fs.writeFileSync(last_run_filename, currentTime.toString(), "utf8");
   console.log(Date(fs.readFileSync(last_run_filename)));
-  let resultsArray = await runSim(goodTriangles, "5");
+  let csv_file_name = "data/simulation" + currentTime + ".csv";
+  let resultsArray = await runSim(
+    goodTriangles,
+    (outputCSV = csv_file_name),
+    (input_dollars = "5")
+  );
   fs.writeFileSync(
     simulate_filename,
     JSON.stringify(resultsArray, undefined, 4),
