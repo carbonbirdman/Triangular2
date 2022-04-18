@@ -4,7 +4,11 @@ const sl = require("./scripts/shortlist");
 const sim = require("./scripts/simulate");
 var path = require("path");
 const fs = require("fs");
-const cfg = require("./scripts/config");
+
+require("dotenv").config();
+console.log(process.env.CONFIG_WEB);
+const cfg = require(process.env.CONFIG_WEB);
+console.log("xp", cfg.xpid);
 
 const app = express();
 var eta = require("eta");
@@ -12,12 +16,22 @@ app.set("view engine", "eta");
 
 const port = 3000;
 
+const tokens_filename = "data/tokens" + cfg.xpid + ".json";
+const prices_filename = "data/token_price.json";
+const pairs_filename = "data/all_pairs" + cfg.xpid + ".json";
+const validated_pairs_filename = "data/validated_pairs.json";
+const reserves_filename = "data/reserves" + cfg.xpid + ".json";
+const routes_filename = "data/routes.json";
+const simulate_filename = "data/simulation.json";
+var merged_filename = "data/merged_shortlist_" + cfg.xpid + ".json";
+
 // INDEX PAGE
 var indexTemplate = `
 <!DOCTYPE html>
 <p>Triangular arbitrage search.</p>
+<p>Experiment ID: <%= it.xp %></p>
 <p><a href="/simulate">RUN SEARCH</a></p>
-<% it.forEach(function(item){ %>
+<% it.links.forEach(function(item){ %>
   <a href=" <%= item %> "><%= item %> </a>
   <a href="<%= item %>/json">[json]</a></br>
 <% }) %>
@@ -25,16 +39,19 @@ var indexTemplate = `
 
 app.get("/", (req, res) => {
   res.send(
-    eta.render(indexTemplate, [
-      "tokens",
-      "price",
-      "pairs",
-      "validpairs",
-      "routes",
-      "simulation",
-      "shortlist",
-      "merged_shortlist"
-    ])
+    eta.render(indexTemplate, {
+      xp: cfg.xpid,
+      links: [
+        "tokens",
+        "price",
+        "pairs",
+        "validpairs",
+        "routes",
+        "simulation",
+        "shortlist",
+        "merged_shortlist"
+      ]
+    })
   );
 });
 
@@ -49,8 +66,6 @@ var tokensTemplate = `
 <%});%>
 </ul>
 `;
-
-const tokens_filename = "data/tokens" + cfg.xpid + ".json";
 
 app.get("/tokens", function (req, res) {
   let items = JSON.parse(fs.readFileSync(tokens_filename));
@@ -72,7 +87,7 @@ var tokenPriceTemplate = `
 <%});%>
 </ul>
 `;
-const prices_filename = "data/token_price.json";
+
 app.get("/price", function (req, res) {
   let items = JSON.parse(fs.readFileSync(prices_filename));
   res.send(eta.render(tokenPriceTemplate, items));
@@ -96,7 +111,7 @@ var pairsTemplate = `
 <%});%>
 </ul>
 `;
-const pairs_filename = "data/all_pairs" + cfg.xpid + ".json";
+
 app.get("/pairs", function (req, res) {
   let items = JSON.parse(fs.readFileSync(pairs_filename));
   console.log(items);
@@ -123,7 +138,7 @@ $<%= parseFloat(entry.output_dollars).toPrecision(3)%>
 <%});%>
 </ul>
 `;
-const validated_pairs_filename = "data/validated_pairs.json";
+
 app.get("/validpairs", function (req, res) {
   let items = JSON.parse(fs.readFileSync(validated_pairs_filename));
   res.send(eta.render(validPairsTemplate, items));
@@ -150,7 +165,6 @@ $<%= parseFloat(entry.reserves1).toPrecision(3)%>
 </ul>
 `;
 
-const reserves_filename = "data/reserves" + cfg.xpid + ".json";
 app.get("/reserves", function (req, res) {
   let items = JSON.parse(fs.readFileSync(reserves_filename));
   res.send(eta.render(reservesTemplate, items));
@@ -177,7 +191,7 @@ var routesTemplate = `
 <%});%>
 </ul>
 `;
-const routes_filename = "data/routes.json";
+
 app.get("/routes", function (req, res) {
   let items = JSON.parse(fs.readFileSync(routes_filename));
   res.send(eta.render(routesTemplate, items));
@@ -204,7 +218,7 @@ var simTemplate = `
 <%});%>
 </ul>
 `;
-const simulate_filename = "data/simulation.json";
+
 app.get("/simulation", function (req, res) {
   let items = JSON.parse(fs.readFileSync(simulate_filename));
   console.log(items);
@@ -220,10 +234,14 @@ app.get("/shortlist", function (req, res) {
   res.send(eta.render(simTemplate, items));
 });
 
-app.get("/mergedlist", function (req, res) {
-  let items = JSON.parse(fs.readFileSync("data/merged_shortlist.json"));
+app.get("/merged_shortlist", function (req, res) {
+  let items = JSON.parse(fs.readFileSync(merged_filename));
   console.log(items);
   res.send(eta.render(simTemplate, items));
+});
+
+app.get("/merged_shortlist/json", (req, res) => {
+  res.json(JSON.parse(fs.readFileSync(merged_filename)));
 });
 
 async function runsim(req, res) {
