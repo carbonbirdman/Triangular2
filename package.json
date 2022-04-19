@@ -30,6 +30,7 @@
     "plotly.js": "2.11.0",
     "react": "17.0.2",
     "request": "2.88.2",
+    "tidyjs": "1.0.22",
     "web3": "1.7.0"
   },
   "devDependencies": {
