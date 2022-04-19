@@ -30,7 +30,7 @@ var merged_filename_i = "data/merged_shortlist_" + cfg.xpid + ".json";
 
 var infile = "data/routes.json";
 var simulate_filename = "data/simulation.json";
-var nrun = 2;
+var nrun = 20;
 
 const argv = yargs
   .option("file", {
@@ -92,7 +92,7 @@ async function timeLoop() {
       "utf8"
     );
     console.log("WROTE", i);
-    await delay(2000);
+    await delay(1200000);
     currentTime = Date.now();
     i = i + 1;
   }
