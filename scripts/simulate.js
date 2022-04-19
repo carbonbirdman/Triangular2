@@ -25,13 +25,13 @@ let tokens = cfg.tokens;
 const pairs_filename = "data/all_pairs" + cfg.xpid + ".json";
 const reserves_filename = "data/reserves" + cfg.xpid + ".json";
 const tokens_filename = "data/tokens" + cfg.xpid + ".json";
-const tradeable_pairs_filename = "data/tradeable_pairs.json";
-const validated_pairs_filename = "data/validated_pairs.json";
-const shortlist_filename = "data/shortlist.json";
-const prices_filename = "data/token_price.json";
-const routes_filename = "data/routes.json";
-const last_run_filename = "data/last_run.txt";
-const simulate_filename = "data/simulation.json";
+const tradeable_pairs_filename = "data/tradeable_pairs" + cfg.xpid + ".json";
+const validated_pairs_filename = "data/validated_pairs" + cfg.xpid + ".json";
+const shortlist_filename = "data/shortlist" + cfg.xpid + ".json";
+const prices_filename = "data/token_price" + cfg.xpid + ".json";
+const routes_filename = "data/routes" + cfg.xpid + ".json";
+const last_run_filename = "data/last_run" + cfg.xpid + ".txt";
+const simulate_filename = "data/simulation" + cfg.xpid + ".json";
 
 var infile = routes_filename;
 

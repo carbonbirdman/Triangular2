@@ -25,11 +25,11 @@ let tokens = cfg.tokens;
 const simulate = require("../scripts/simulate");
 const shortlist = require("../scripts/shortlist");
 const merge_shortlist = require("../scripts/merge_shortlist");
-var shortlist_filename_i = "data/shortlist.json";
+var shortlist_filename_i = "data/shortlist" + cfg.xpid + ".json";
 var merged_filename_i = "data/merged_shortlist_" + cfg.xpid + ".json";
 
-var infile = "data/routes.json";
-var simulate_filename = "data/simulation.json";
+var infile = "data/routes" + cfg.xpid + ".json";
+var simulate_filename = "data/simulation" + cfg.xpid + ".json";
 var nrun = 20;
 
 const argv = yargs

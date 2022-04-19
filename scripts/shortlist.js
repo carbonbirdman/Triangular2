@@ -1,6 +1,9 @@
 const fs = require("fs");
+require("dotenv").config();
+console.log(process.env.CONFIG);
+const cfg = require(process.env.CONFIG);
 
-const simulate_filename = "data/simulation.json";
+const simulate_filename = "data/simulation" + cfg.xpid + ".json";
 
 function shortlist(
   inputFile = simulate_filename,
@@ -26,7 +29,7 @@ function shortlist(
 
 function save_shortlist(
   inputFile = simulate_filename,
-  shortlistFile = "data/shortlist.json",
+  shortlistFile = "data/shortlist" + cfg.xpid + ".json",
   myfilter = (i) => parseFloat(i.output_dollars) > parseFloat(i.input_dollars)
 ) {
   //get the shortlist

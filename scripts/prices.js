@@ -18,7 +18,7 @@ let factory_address = cfg.factory_address;
 let dexes = cfg.dexs;
 let all_tokens = cfg.tokens;
 
-const prices_filename = "data/token_price.json";
+const prices_filename = "data/token_price" + cfg.xpid + ".json";
 
 console.log(all_tokens);
 
