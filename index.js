@@ -17,13 +17,14 @@ app.set("view engine", "eta");
 const port = 3000;
 
 const tokens_filename = "data/tokens" + cfg.xpid + ".json";
-const prices_filename = "data/token_price.json";
+const prices_filename = "data/token_price" + cfg.xpid + ".json";
 const pairs_filename = "data/all_pairs" + cfg.xpid + ".json";
-const validated_pairs_filename = "data/validated_pairs.json";
+const validated_pairs_filename = "data/validated_pairs" + cfg.xpid + ".json";
 const reserves_filename = "data/reserves" + cfg.xpid + ".json";
-const routes_filename = "data/routes.json";
-const simulate_filename = "data/simulation.json";
+const routes_filename = "data/routes" + cfg.xpid + ".json";
+const simulate_filename = "data/simulation" + cfg.xpid + ".json";
 var merged_filename = "data/merged_shortlist_" + cfg.xpid + ".json";
+const last_run_filename = "data/last_run" + cfg.xpid + ".txt";
 
 // INDEX PAGE
 var indexTemplate = `

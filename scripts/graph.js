@@ -1,8 +1,6 @@
 // Examine historical prices and liquidity using
 // GraphQL
 
-// FIRST USE APOLLO TO LOOK AT POOLS
-
 import { request, gql } from "graphql-request";
 //  gql string literal which is a fancy string template
 const POOLS = gql`
