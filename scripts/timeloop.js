@@ -103,10 +103,7 @@ async function timeLoop() {
 
 async function main() {
   await timeLoop();
-  merge_shortlist.merge_shortlist(
-    (shortlist_filename = shortlist_filename_i),
-    (merged_filename = merged_filename_i)
-  );
+  merge_shortlist.merge_shortlist(shortlist_filename_i, merged_filename_i);
 }
 
 if (require.main === module) {

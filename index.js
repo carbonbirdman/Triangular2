@@ -6,7 +6,7 @@ var path = require("path");
 const fs = require("fs");
 
 require("dotenv").config();
-console.log(process.env.CONFIG_WEB);
+console.log("Config:", process.env.CONFIG_WEB);
 const cfg = require(process.env.CONFIG_WEB);
 console.log("xp", cfg.xpid);
 

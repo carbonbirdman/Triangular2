@@ -4,7 +4,7 @@ const fs = require("fs");
 const axios = require("axios");
 
 require("dotenv").config();
-console.log(process.env.CONFIG);
+console.log("Config:", process.env.CONFIG);
 const cfg = require(process.env.CONFIG);
 
 console.log("Starting up simulate");

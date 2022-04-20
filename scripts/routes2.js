@@ -1,3 +1,4 @@
+// calculates 2 token arb ops
 const ethers = require("ethers");
 const yargs = require("yargs");
 const fs = require("fs");
