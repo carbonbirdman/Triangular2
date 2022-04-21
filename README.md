@@ -79,3 +79,26 @@ res.send(dx.token_address);
 app.get("/json", (req, res) => {
 res.json(dx.token_address);
 });
+
+npm install --save node-cron
+
+cron.schedule(cronExpression: string, task: Function, options: Object)
+
+scheduled: A boolean to set if the created task is scheduled (default is true)
+timezone: The timezone used for job scheduling
+Take a look at the following example.
+
+import _ as cron from 'node-cron'
+cron.schedule('5 _ \* \* \* \*', () => {
+console.log('running a task every minute at the 5th second');
+});
+
+import _ as cron from 'node-cron'
+cron.schedule('3 5 _ \* \*', () => {
+console.log('running a task every day at 5:03 am');
+});
+
+import _ as cron from 'node-cron'
+cron.schedule('0 _ \* \* \*', () => {
+console.log('running a task every hour at 00');
+});

@@ -265,9 +265,40 @@ app.get("/simulate", function (req, res) {
   }
 });
 
+async function runJob() {
+  currentTime = Date.now();
+  var shortlist_filename_hourly =
+    "data/shortlist" + "_" + cfg.xpid + "_" + currentTime + ".json";
+  var merged_filename_hourly =
+    "data/merged_shortlist_" + cfg.xpid + "_hourly.json";
+  var sim_filename_hourly = "data/sim_" + cfg.xpid + "_hourly.json";
+  var resultsArray = await simulate.runSim(
+    routes,
+    "data/simulation_hourly.csv",
+    "2"
+  );
+  fs.writeFileSync(sim_filename_hourly, JSON.stringify(resultsArray), "utf8");
+  console.log("Simulation done");
+  shortlist.save_shortlist(sim_filename_hourly, shortlist_filename_hourly);
+  merge_shortlist.merge_shortlist(
+    shortlist_filename_hourly,
+    merged_filename_hourly
+  );
+  console.log("Shortlist done");
+}
+
+const cron = require("node-cron");
+cron.schedule("7 44 * * * *", () => {
+  console.log("running a task every hour");
+  runJob();
+});
+//import _ as cron from 'node-cron'
+//cron.schedule('0 _ \* \* \*', () => {
+//console.log('running a task every hour at 00');
+//});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
   //var conn = dexes.get_connection();
   console.log(cfg.tokens);
-  console.log(cfg.dexes);
 });
