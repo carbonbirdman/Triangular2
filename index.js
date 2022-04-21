@@ -265,8 +265,13 @@ app.get("/simulate", function (req, res) {
   }
 });
 
+const simulate = require("./scripts/simulate");
+const shortlist = require("./scripts/shortlist");
+const merge_shortlist = require("./scripts/merge_shortlist");
 async function runJob() {
-  currentTime = Date.now();
+  var infile = "data/routes" + cfg.xpid + ".json";
+  let routes = JSON.parse(fs.readFileSync(infile));
+  let currentTime = Date.now();
   var shortlist_filename_hourly =
     "data/shortlist" + "_" + cfg.xpid + "_" + currentTime + ".json";
   var merged_filename_hourly =
