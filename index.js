@@ -293,7 +293,7 @@ async function runJob() {
 }
 
 const cron = require("node-cron");
-cron.schedule("7 44 * * * *", () => {
+cron.schedule("7 47 * * * *", () => {
   console.log("running a task every hour");
   runJob();
 });
