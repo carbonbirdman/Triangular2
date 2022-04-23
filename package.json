@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "nodemon --ignore data/*.json index.js",
     "test": "jest",
     "tokens": "node scripts/decimals.js && node scripts/prices.js && node scripts/factories.js",
     "pairs": "node scripts/pairs.js && node scripts/reserves.js && node scripts/validate_pairs.js",
