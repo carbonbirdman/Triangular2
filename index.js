@@ -23,7 +23,7 @@ const validated_pairs_filename = "data/validated_pairs" + cfg.xpid + ".json";
 const reserves_filename = "data/reserves" + cfg.xpid + ".json";
 const routes_filename = "data/routes" + cfg.xpid + ".json";
 const simulate_filename = "data/simulation" + cfg.xpid + ".json";
-var merged_filename = "data/merged_hourly_shortlist_" + cfg.xpid + ".json";
+var merged_filename = "data/merged_shortlist_" + cfg.xpid + "_hourly.json";
 const last_run_filename = "data/last_run" + cfg.xpid + ".txt";
 
 // INDEX PAGE
