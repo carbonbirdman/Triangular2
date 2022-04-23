@@ -1,5 +1,13 @@
 # Triangular searcher
 
+Instructions
+
+run.sh
+
+shell.sh
+cd triangular
+yarn install
+
 - Scripts create json files which are then served by index.js
 - Use .env to set the path to the configuration file
 - Config files contains tokens, routers and other detail
