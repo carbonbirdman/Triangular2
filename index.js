@@ -50,7 +50,8 @@ app.get("/", (req, res) => {
         "routes",
         "simulation",
         "shortlist",
-        "merged_shortlist"
+        "merged_shortlist",
+        "hourly_shortlist"
       ]
     })
   );
@@ -268,6 +269,8 @@ app.get("/simulate", function (req, res) {
 const simulate = require("./scripts/simulate");
 const shortlist = require("./scripts/shortlist");
 const merge_shortlist = require("./scripts/merge_shortlist");
+var merged_filename_hourly =
+  "data/merged_shortlist_" + cfg.xpid + "_hourly.json";
 async function runJob() {
   var infile = "data/routes" + cfg.xpid + ".json";
   let routes = JSON.parse(fs.readFileSync(infile));
@@ -275,9 +278,7 @@ async function runJob() {
   var sim_filename_hourly = "data/sim_" + cfg.xpid + "_hourly.json";
   var shortlist_filename_hourly =
     "data/shortlist" + "_" + cfg.xpid + "_" + currentTime + ".json";
-  var merged_filename_hourly =
-    "data/merged_shortlist_" + cfg.xpid + "_hourly.json";
-  var resultsArray = await simulate.runSim(routes, sim_filename_hourly, "2");
+  var resultsArray = await simulate.runSim(routes, sim_filename_hourly, "10");
   fs.writeFileSync(sim_filename_hourly, JSON.stringify(resultsArray), "utf8");
   console.log("Hourly simulation done");
   shortlist.save_shortlist(sim_filename_hourly, shortlist_filename_hourly);
@@ -297,6 +298,16 @@ cron.schedule("7 47 * * * *", () => {
 //cron.schedule('0 _ \* \* \*', () => {
 //console.log('running a task every hour at 00');
 //});
+
+app.get("/hourly_shortlist", function (req, res) {
+  let items = JSON.parse(fs.readFileSync(merged_filename_hourly));
+  console.log(items);
+  res.send(eta.render(simTemplate, items));
+});
+
+app.get("/hourly_shortlist/json", (req, res) => {
+  res.json(JSON.parse(fs.readFileSync(merged_filename_hourly)));
+});
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
