@@ -31,8 +31,8 @@ const last_run_filename = "data/last_run" + cfg.xpid + ".txt";
 // INDEX PAGE
 var indexTemplate = `
 <!DOCTYPE html>
-<h1>Welcome to Kestrel</h1>
-<p>A service for defi arbitrage search and modelling.</p>
+<h1>Kestrel</h1>
+<p>Welcome to Kestrel, a service for defi arbitrage search and modelling.</p>
 <p>Current experiment ID: <%= it.xp %></p>
 <p>Kestrel currently searches basic and triangular opportunities.</p>
 <p>On this page you can examine the merged shortlist of profitable 
@@ -44,6 +44,8 @@ and be added to 'merged shortlist' below)</p>
   <a href=" <%= item %> "><%= item %> </a>
   <a href="<%= item %>/json">[json]</a></br>
 <% }) %>
+<p>To execute the opportunities identified here, 
+use my <b>Farrier</b> package, available via Github.</p>
 `;
 
 app.get("/", (req, res) => {
