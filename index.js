@@ -22,16 +22,24 @@ const pairs_filename = "data/all_pairs" + cfg.xpid + ".json";
 const validated_pairs_filename = "data/validated_pairs" + cfg.xpid + ".json";
 const reserves_filename = "data/reserves" + cfg.xpid + ".json";
 const routes_filename = "data/routes" + cfg.xpid + ".json";
+const routes2_filename = "data/routes2" + cfg.xpid + ".json";
 const simulate_filename = "data/simulation" + cfg.xpid + ".json";
 var merged_filename = "data/merged_shortlist_" + cfg.xpid + ".json";
+var merged2_filename = "data/merged_shortlist2_" + cfg.xpid + ".json";
 const last_run_filename = "data/last_run" + cfg.xpid + ".txt";
 
 // INDEX PAGE
 var indexTemplate = `
 <!DOCTYPE html>
-<p>Triangular arbitrage search.</p>
-<p>Experiment ID: <%= it.xp %></p>
-<p><a href="/simulate">RUN SEARCH</a></p>
+<h1>Welcome to Kestrel</h1>
+<p>A service for defi arbitrage search and modelling.</p>
+<p>Current experiment ID: <%= it.xp %></p>
+<p>Kestrel currently searches basic and triangular opportunities.</p>
+<p>On this page you can examine the merged shortlist of profitable 
+trades assessed hourly, look up the pool reserves and IDs for 
+valid pairs, and even <a href="/simulate">run a search</a>
+ in real time (results will replace 'simulation'
+and be added to 'merged shortlist' below)</p>
 <% it.links.forEach(function(item){ %>
   <a href=" <%= item %> "><%= item %> </a>
   <a href="<%= item %>/json">[json]</a></br>
@@ -47,10 +55,12 @@ app.get("/", (req, res) => {
         "price",
         "pairs",
         "validpairs",
+        "routes2",
         "routes",
         "simulation",
         "shortlist",
         "merged_shortlist",
+        "merged_shortlist2",
         "hourly_shortlist"
       ]
     })
@@ -203,6 +213,31 @@ app.get("/routes/json", (req, res) => {
   res.json(JSON.parse(fs.readFileSync(routes_filename)));
 });
 
+// ROUTES2
+var routes2Template = `
+<!DOCTYPE html>
+<a href="/">home</a>
+<ul>
+<% it.forEach(function(entry) {%>
+  <li>
+  (<%= entry.token0%>,
+    <%= entry.token1%>,
+    (<%= entry.dexa%>,
+    <%= entry.dexb%>
+</li>
+<%});%>
+</ul>
+`;
+
+app.get("/routes2", function (req, res) {
+  let items = JSON.parse(fs.readFileSync(routes2_filename));
+  res.send(eta.render(routes2Template, items));
+});
+
+app.get("/routes2/json", (req, res) => {
+  res.json(JSON.parse(fs.readFileSync(routes2_filename)));
+});
+
 //SIMULATION
 var simTemplate = `
 <!DOCTYPE html>
@@ -221,10 +256,29 @@ var simTemplate = `
 </ul>
 `;
 
+var sim2Template = `
+<!DOCTYPE html>
+<a href="/">home</a>
+<ul>
+<% it.forEach(function(entry) {%>
+<li> <%= entry.input_dollars%> -> <%= entry.output_dollars.toPrecision(3)%> 
+(<%= entry.token0%>,
+<%= entry.token1%>
+(<%= entry.dexa%>,
+<%= entry.dexb%>
+</li>
+<%});%>
+</ul>
+`;
+
 app.get("/simulation", function (req, res) {
   let items = JSON.parse(fs.readFileSync(simulate_filename));
   console.log(items);
   res.send(eta.render(simTemplate, items));
+});
+
+app.get("/simulation/json", (req, res) => {
+  res.json(JSON.parse(fs.readFileSync(simulate_filename)));
 });
 
 app.get("/shortlist", function (req, res) {
@@ -244,6 +298,17 @@ app.get("/merged_shortlist", function (req, res) {
 
 app.get("/merged_shortlist/json", (req, res) => {
   res.json(JSON.parse(fs.readFileSync(merged_filename)));
+});
+
+// MERGED2
+app.get("/merged_shortlist2", function (req, res) {
+  let items = JSON.parse(fs.readFileSync(merged2_filename));
+  console.log(items);
+  res.send(eta.render(sim2Template, items));
+});
+
+app.get("/merged_shortlist2/json", (req, res) => {
+  res.json(JSON.parse(fs.readFileSync(merged2_filename)));
 });
 
 async function runsim(req, res) {
@@ -269,24 +334,28 @@ app.get("/simulate", function (req, res) {
 const simulate = require("./scripts/simulate");
 const shortlist = require("./scripts/shortlist");
 const merge_shortlist = require("./scripts/merge_shortlist");
+var sim_csv_filename = "data/simulation2.csv";
 var merged_filename_hourly =
   "data/merged_shortlist_" + cfg.xpid + "_hourly.json";
+// This function runs a trade sim against the routes for the
+// selected config. The simulation file is overwritten, the shortlist
+// file is merged.
 async function runJob() {
   var infile = "data/routes" + cfg.xpid + ".json";
   let routes = JSON.parse(fs.readFileSync(infile));
   let currentTime = Date.now();
   var sim_filename_hourly = "data/sim_" + cfg.xpid + "_hourly.json";
+  console.log("routes:" + infile);
+  var resultsArray = await simulate.runSim(routes, sim_csv_filename, "10");
+  fs.writeFileSync(sim_filename_hourly, JSON.stringify(resultsArray), "utf8");
   var shortlist_filename_hourly =
     "data/shortlist" + "_" + cfg.xpid + "_" + currentTime + ".json";
-  var resultsArray = await simulate.runSim(routes, sim_filename_hourly, "10");
-  fs.writeFileSync(sim_filename_hourly, JSON.stringify(resultsArray), "utf8");
-  console.log("Hourly simulation done");
   shortlist.save_shortlist(sim_filename_hourly, shortlist_filename_hourly);
   merge_shortlist.merge_shortlist(
     shortlist_filename_hourly,
     merged_filename_hourly
   );
-  console.log("Shortlist done");
+  console.log("Hourly simulation done and shortlisted.");
 }
 
 const cron = require("node-cron");

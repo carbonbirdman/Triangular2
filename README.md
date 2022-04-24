@@ -51,9 +51,11 @@ simulate_solid.js
 
 ## ROADMAP
 
-Use obj["key3"] = "value3"; to add properties to the token and
-pair data objects, reduce proliferation.
-Or spread:
+- Replace dollar value assessment with number of tokens
+
+- Use obj["key3"] = "value3"; to add properties to the token and
+  pair data objects, reduce proliferation.
+- Investigate spread operator for object merging:
 
 let remoteJob = {
 ...job,
