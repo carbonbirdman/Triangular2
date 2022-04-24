@@ -1,6 +1,6 @@
 // ecosystem tokens
 const rpc_url = "https://rpc.ftm.tools/";
-const xpid = "12x5"; // experiment id
+const xpid = "ecosys"; // experiment id
 const token_abi = "../src/token.json";
 const pairs_abi = "../src/pairs.json";
 const factory_abi = "../src/factory.json";
