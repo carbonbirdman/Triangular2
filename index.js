@@ -240,13 +240,21 @@ app.get("/routes2/json", (req, res) => {
   res.json(JSON.parse(fs.readFileSync(routes2_filename)));
 });
 
+let currentTime = Date.now();
+let dtime = Date(currentTime);
+console.log(dtime);
+const d = new Date(currentTime);
+let text = d.toISOString();
+console.log(text);
 //SIMULATION
 var simTemplate = `
 <!DOCTYPE html>
 <a href="/">home</a>
 <ul>
 <% it.forEach(function(entry) {%>
-<li> <%= entry.input_dollars%> -> <%= entry.output_dollars.toPrecision(3)%> 
+<li> 
+<%= new Date(entry.time).toISOString()%> 
+<%= entry.input_dollars%> -> <%= entry.output_dollars.toPrecision(3)%> 
 (<%= entry.token0%>,
 <%= entry.token1%>,
 <%= entry.token2%>)
@@ -263,7 +271,9 @@ var sim2Template = `
 <a href="/">home</a>
 <ul>
 <% it.forEach(function(entry) {%>
-<li> <%= entry.input_dollars%> -> <%= entry.output_dollars.toPrecision(3)%> 
+<li> 
+<%= new Date(entry.time).toISOString()%> 
+<%= entry.input_dollars%> -> <%= entry.output_dollars.toPrecision(3)%> 
 (<%= entry.token0%>,
 <%= entry.token1%>
 (<%= entry.dexa%>,
