@@ -63,7 +63,8 @@ app.get("/", (req, res) => {
         "shortlist",
         "merged_shortlist",
         "merged_shortlist2",
-        "hourly_shortlist"
+        "hourly_shortlist",
+        "hourly_shortlist_basic"
       ]
     })
   );
