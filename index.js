@@ -313,6 +313,7 @@ app.get("/merged_shortlist2/json", (req, res) => {
   res.json(JSON.parse(fs.readFileSync(merged2_filename)));
 });
 
+// Run interactively
 async function runsim(req, res) {
   let goodTriangles = JSON.parse(fs.readFileSync(routes_filename));
   await sim.runSim(goodTriangles);
@@ -360,15 +361,12 @@ async function runJob() {
   console.log("Hourly simulation done and shortlisted.");
 }
 
+// TRIANGULAR HOURLY
 const cron = require("node-cron");
 cron.schedule("7 47 * * * *", () => {
   console.log("running a task every hour");
   runJob();
 });
-//import _ as cron from 'node-cron'
-//cron.schedule('0 _ \* \* \*', () => {
-//console.log('running a task every hour at 00');
-//});
 
 app.get("/hourly_shortlist", function (req, res) {
   let items = JSON.parse(fs.readFileSync(merged_filename_hourly));
@@ -379,6 +377,45 @@ app.get("/hourly_shortlist", function (req, res) {
 app.get("/hourly_shortlist/json", (req, res) => {
   res.json(JSON.parse(fs.readFileSync(merged_filename_hourly)));
 });
+
+// SIMPLE HOURLY
+cron.schedule("7 27 * * * *", () => {
+  console.log("running a task every hour");
+  runJob2();
+});
+
+const simulate2 = require("./scripts/simulate2");
+const shortlist2 = require("./scripts/shortlist2");
+var sim_csv_filename = "data/simulation2.csv";
+var merged_filename_hourly2 =
+  "data/merged_shortlistx2_" + cfg.xpid + "_hourly.json";
+
+app.get("/hourly_shortlist_basic", function (req, res) {
+  let items = JSON.parse(fs.readFileSync(merged_filename_hourly2));
+  console.log(items);
+  res.send(eta.render(sim2Template, items));
+});
+
+app.get("/hourly_shortlist_basic/json", (req, res) => {
+  res.json(JSON.parse(fs.readFileSync(merged_filename_hourly2)));
+});
+
+async function runJob2() {
+  var infile = "data/routes2" + cfg.xpid + ".json";
+  let routes = JSON.parse(fs.readFileSync(infile));
+  let currentTime = Date.now();
+  var sim_filename_hourly2 = "data/sim2_" + cfg.xpid + "_hourly.json";
+  console.log("routes:" + infile);
+  var resultsArray = await simulate2.runSim(routes, sim_csv_filename, "10");
+  fs.writeFileSync(sim_filename_hourly2, JSON.stringify(resultsArray), "utf8");
+  var shortlist_filename_hourly2 = "data/shortlist2" + "_" + cfg.xpid + ".json";
+  shortlist.save_shortlist(sim_filename_hourly2, shortlist_filename_hourly2);
+  merge_shortlist.merge_shortlist(
+    shortlist_filename_hourly2,
+    merged_filename_hourly2
+  );
+  console.log("Hourly simulation done and shortlisted.");
+}
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
