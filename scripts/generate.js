@@ -243,4 +243,10 @@ async function main() {
   fs.writeFileSync(routes_filename, tristring, "utf8");
   //console.log(triangleArray);
 }
-main();
+
+if (require.main === module) {
+  main();
+}
+module.exports = {
+  main
+};

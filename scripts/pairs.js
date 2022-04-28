@@ -166,4 +166,10 @@ async function pairsMain() {
   });
 }
 
-pairsMain();
+if (require.main === module) {
+  pairsMain();
+}
+
+module.exports = {
+  pairsMain
+};

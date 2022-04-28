@@ -86,6 +86,7 @@ if (require.main === module) {
 
 //exports.token_address = token_address;
 module.exports = {
+  mainPrice,
   prices_filename,
   getPrice: getPrice,
   getUSDPrice: getUSDPrice

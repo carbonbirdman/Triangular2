@@ -43,4 +43,9 @@ function main() {
   console.log("wrote");
 }
 
-main();
+if (require.main === module) {
+  main();
+}
+module.exports = {
+  main
+};

@@ -267,3 +267,7 @@ function getFilteredPairs() {
 function getShortlistPairs() {
   return JSON.parse(fs.readFileSync(shortlist_filename));
 }
+
+module.exports = {
+  main
+};

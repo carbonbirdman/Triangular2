@@ -1,3 +1,4 @@
+// what does this do?
 const ethers = require("ethers");
 var rpc_url = "https://rpc.ftm.tools/";
 const factoryABI = require("../src/factory.json");

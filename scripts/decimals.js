@@ -50,3 +50,7 @@ async function allDecimals() {
 if (require.main === module) {
   allDecimals();
 }
+
+module.exports = {
+  allDecimals
+};

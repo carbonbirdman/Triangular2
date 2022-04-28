@@ -85,7 +85,7 @@ function pairstring(pair) {
   );
 }
 
-async function main() {
+async function routes_main() {
   var dexa_address;
   var dexb_address;
 
@@ -193,4 +193,11 @@ async function main() {
   fs.writeFileSync(routes_filename, bistring, "utf8");
   //console.log(triangleArray);
 }
-main();
+
+if (require.main === module) {
+  routes_main();
+}
+
+module.exports = {
+  routes_main
+};
