@@ -80,8 +80,8 @@ let token_address = {
 
 //let tokens = ["FTM", "LQDR", "SPIRIT", "MIMATIC",
 //"BASED", "TOMB", "TSHARE"];
-let tokens = ["FTM", "TOMB", "SPIRIT"];
-let dexs = ["spooky", "spirit", "tomb"];
+let tokens = ["FTM", "WBTC", "ETH"];
+let dexs = ["spooky", "spirit"];
 
 module.exports = {
   xpid,
