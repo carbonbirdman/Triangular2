@@ -111,13 +111,10 @@ async function routes2() {
 }
 
 async function main() {
-  await tokens();
-  await prices();
-  await pairs();
-  await reserves();
-  await validated();
-  await routes();
-  await routes2();
+  const list = [tokens, prices, pairs, reserves, validated, routes, routes2];
+  for (const fn of list) {
+    await fn(); // call function to get returned Promise
+  }
 }
 
 main();
