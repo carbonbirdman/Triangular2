@@ -112,9 +112,29 @@ async function routes2() {
 
 async function main() {
   const list = [tokens, prices, pairs, reserves, validated, routes, routes2];
-  for (const fn of list) {
-    await fn(); // call function to get returned Promise
-  }
+  //fetchPromise.then((response) => {
+  //  console.log(`Received response: ${response.status}`);
+  //});
+
+  tokens().then(() => {
+    prices().then(() => {
+      pairs().then(() => {
+        reserves().then(() => {
+          validated().then(() => {
+            routes().then(() => {
+              routes2();
+            });
+          });
+        });
+      });
+    });
+  });
+
+  //pairs().then(console.log("done"))
+  //await list.reduce((p, spec) => p.then(() => spec.then(log)), starterPromise);
+  //for (const fn of list) {
+  //  await fn(); // call function to get returned Promise
+  //}
 }
 
 main();
