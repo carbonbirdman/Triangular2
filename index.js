@@ -10,6 +10,9 @@ console.log("Config:", process.env.CONFIG_WEB);
 const cfg = require(process.env.CONFIG_WEB);
 console.log("xp", cfg.xpid);
 
+const prep = require("./scripts/prep");
+//await prep.main();
+
 const app = express();
 var eta = require("eta");
 app.set("view engine", "eta");
@@ -428,10 +431,8 @@ async function runJob2() {
   console.log("Hourly simulation done and shortlisted.");
 }
 
-const prep = require("./scripts/prep");
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
-  prep.main();
   //var conn = dexes.get_connection();
   console.log(cfg.tokens);
 });
