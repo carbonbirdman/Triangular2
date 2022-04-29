@@ -26,8 +26,6 @@ const reserves_filename = "data/reserves" + cfg.xpid + ".json";
 const tokens_filename = "data/tokens" + cfg.xpid + ".json";
 //-----
 
-let pairs = JSON.parse(fs.readFileSync(pairs_filename));
-
 function newElement(
   dex,
   token0,
@@ -91,6 +89,7 @@ function reservePrices(pair) {
 }
 
 async function getReserves() {
+  let pairs = JSON.parse(fs.readFileSync(pairs_filename));
   var pairArray = [];
   for (const pair of pairs) {
     let reserves0 = 0;
@@ -134,7 +133,7 @@ async function getReserves() {
 
 async function main() {
   getReserves().then((allpairs) => {
-    //console.log(allpairs);
+    console.log("writing reserves");
     let pair_string = JSON.stringify(allpairs, undefined, 4);
     fs.writeFileSync(reserves_filename, pair_string, "utf8");
   });

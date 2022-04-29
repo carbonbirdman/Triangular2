@@ -158,11 +158,13 @@ async function getAllPairs() {
 }
 
 async function pairsMain() {
-  getAllPairs().then((allpairs) => {
-    //console.log(allpairs);
-    let pair_string = JSON.stringify(allpairs, undefined, 4);
-
-    fs.writeFileSync(pairs_filename, pair_string, "utf8");
+  return new Promise(function (resolve, reject) {
+    getAllPairs().then((allpairs) => {
+      //console.log(allpairs);
+      let pair_string = JSON.stringify(allpairs, undefined, 4);
+      fs.writeFileSync(pairs_filename, pair_string, "utf8");
+      resolve(pairs_filename);
+    });
   });
 }
 

@@ -4,55 +4,72 @@ const fs = require("fs");
 console.log(process.env.CONFIG);
 const cfg = require(process.env.CONFIG);
 
+const tokens_filename = "data/tokens" + cfg.xpid + ".json";
+console.log(tokens_filename);
+const decimals = require("../scripts/decimals");
+const factories = require("../scripts/factories");
+
 async function tokens() {
-  // tokens.json
-  const tokens_filename = "data/tokens" + cfg.xpid + ".json";
-  console.log(tokens_filename);
-  const decimals = require("../scripts/decimals");
-  const factories = require("../scripts/factories");
-  try {
-    if (fs.existsSync(tokens_filename)) {
-      console.log("Tokens file exists.");
-    } else {
-      await decimals.allDecimals();
-      factories.main();
+  return new Promise(function (resolve, reject) {
+    try {
+      if (fs.existsSync(tokens_filename)) {
+        console.log("Tokens file exists.");
+        resolve(tokens_filename);
+      } else {
+        decimals.allDecimals();
+        factories.main();
+        resolve(tokens_filename);
+      }
+    } catch (err) {
+      reject(new Error(`error`));
     }
-  } catch (err) {
-    console.error(err);
-  }
-}
-async function prices() {
-  // prices.json
-  const prices_filename = "data/token_price" + cfg.xpid + ".json";
-  console.log(prices_filename);
-  const prices = require("../scripts/prices");
-  try {
-    if (fs.existsSync(prices_filename)) {
-      console.log("prices_filename file exists.");
-    } else {
-      await prices.mainPrice();
-    }
-  } catch (err) {
-    console.error(err);
-  }
-}
-async function pairs() {
-  const pairs_filename = "data/all_pairs" + cfg.xpid + ".json";
-  const pairs = require("../scripts/pairs");
-  console.log(pairs_filename);
-  try {
-    if (fs.existsSync(pairs_filename)) {
-      console.log("pairs_filename file exists.");
-    } else {
-      await pairs.pairsMain();
-    }
-  } catch (err) {
-    console.error(err);
-  }
+  });
 }
 
+const prices_filename = "data/token_price" + cfg.xpid + ".json";
+async function prices() {
+  console.log(prices_filename);
+  const prices = require("../scripts/prices");
+  return new Promise(function (resolve, reject) {
+    try {
+      if (fs.existsSync(prices_filename)) {
+        console.log("prices_filename file exists.");
+        resolve(prices_filename);
+      } else {
+        prices.mainPrice();
+        resolve(prices_filename);
+      }
+    } catch (err) {
+      console.error(err);
+      reject(new Error(`error`));
+    }
+  });
+}
+
+const pairs_filename = "data/all_pairs" + cfg.xpid + ".json";
+async function pairs() {
+  const pairs = require("../scripts/pairs");
+  console.log(pairs_filename);
+  return new Promise(function (resolve, reject) {
+    try {
+      if (fs.existsSync(pairs_filename)) {
+        console.log("pairs_filename file exists.");
+        resolve(pairs_filename);
+      } else {
+        pairs.pairsMain().then(() => {
+          console.log("pairs done");
+          resolve(pairs_filename);
+        });
+      }
+    } catch (err) {
+      console.error(err);
+      reject(new Error(`error`));
+    }
+  });
+}
+
+const reserves_filename = "data/reserves" + cfg.xpid + ".json";
 async function reserves() {
-  const reserves_filename = "data/reserves" + cfg.xpid + ".json";
   const reserves = require("../scripts/reserves");
   console.log(reserves_filename);
   try {
@@ -64,6 +81,7 @@ async function reserves() {
   } catch (err) {
     console.error(err);
   }
+  return true;
 }
 async function validated() {
   const validated_pairs_filename = "data/validated_pairs" + cfg.xpid + ".json";
@@ -78,6 +96,7 @@ async function validated() {
   } catch (err) {
     console.error(err);
   }
+  return true;
 }
 
 async function routes() {
@@ -93,6 +112,7 @@ async function routes() {
   } catch (err) {
     console.error(err);
   }
+  return true;
 }
 
 async function routes2() {
@@ -103,38 +123,22 @@ async function routes2() {
     if (fs.existsSync(routes2_filename)) {
       console.log("routes2_filename file exists.");
     } else {
-      await routes_bi.routes_main();
+      routes_bi.routes_main();
     }
   } catch (err) {
     console.error(err);
   }
+  return true;
 }
 
 async function main() {
-  const list = [tokens, prices, pairs, reserves, validated, routes, routes2];
-  //fetchPromise.then((response) => {
-  //  console.log(`Received response: ${response.status}`);
-  //});
-
-  tokens().then(() => {
-    prices().then(() => {
-      pairs().then(() => {
-        reserves().then(() => {
-          validated().then(() => {
-            routes().then(() => {
-              routes2();
-            });
-          });
-        });
-      });
-    });
-  });
-
-  //pairs().then(console.log("done"))
-  //await list.reduce((p, spec) => p.then(() => spec.then(log)), starterPromise);
-  //for (const fn of list) {
-  //  await fn(); // call function to get returned Promise
-  //}
+  await tokens();
+  await prices();
+  await pairs();
+  await reserves();
+  await validated();
+  await routes();
+  await routes2();
 }
 
 main();

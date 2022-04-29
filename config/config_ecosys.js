@@ -83,12 +83,10 @@ let token_address = {
 let tokens = [
   "FTM",
   "LQDR",
-  "MIM",
   "TOMB",
   "SPIRIT",
   "BOO",
   "FANG",
-  "BASED",
   "TSHARE",
   "FHM",
   "SCREAM",
@@ -96,7 +94,7 @@ let tokens = [
   "OATH",
   "TAROT"
 ];
-let dexs = ["spooky", "spirit", "sushi", "solid", "tomb"];
+let dexs = ["spooky", "spirit", "solid", "tomb"];
 
 //const dx = require("../src/dexes");
 //token_address = dx.token_address;
