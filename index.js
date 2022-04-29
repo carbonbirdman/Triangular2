@@ -428,8 +428,10 @@ async function runJob2() {
   console.log("Hourly simulation done and shortlisted.");
 }
 
+const prep = require("./scripts/prep");
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
+  prep.main();
   //var conn = dexes.get_connection();
   console.log(cfg.tokens);
 });
