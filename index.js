@@ -257,7 +257,7 @@ var simTemplate = `
 <ul>
 <% it.forEach(function(entry) {%>
 <li> 
-<%= new Date(entry.time).toISOString()[0:10]%> 
+<%= new Date(entry.time).toISOString().substring(1,9)%> 
 <%= entry.input_dollars%> -> <%= entry.output_dollars.toPrecision(3)%> 
 (<%= entry.token0%>,
 <%= entry.token1%>,
@@ -276,7 +276,7 @@ var sim2Template = `
 <ul>
 <% it.forEach(function(entry) {%>
 <li> 
-<%= new Date(entry.time).toISOString()%> 
+<%= new Date(entry.time).toISOString().substring(1,9)%> 
 <%= entry.input_dollars%> -> <%= entry.output_dollars.toPrecision(3)%> 
 (<%= entry.token0%>,
 <%= entry.token1%>
