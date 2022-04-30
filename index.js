@@ -18,7 +18,7 @@ const prep = require("./scripts/prep");
 const app = express();
 var eta = require("eta");
 app.set("view engine", "eta");
-app.use(cors());
+//app.use(cors());
 
 const port = 3000;
 
@@ -260,7 +260,7 @@ var simTemplate = `
 <ul>
 <% it.forEach(function(entry) {%>
 <li> 
-<%= new Date(entry.time).toISOString().substring(1,9)%> 
+<%= new Date(entry.time).toISOString().substring(1,10)%> 
 <%= entry.input_dollars%> -> <%= entry.output_dollars.toPrecision(3)%> 
 (<%= entry.token0%>,
 <%= entry.token1%>,
@@ -279,7 +279,7 @@ var sim2Template = `
 <ul>
 <% it.forEach(function(entry) {%>
 <li> 
-<%= new Date(entry.time).toISOString().substring(1,9)%> 
+<%= new Date(entry.time).toISOString().substring(1,10)%> 
 <%= entry.input_dollars%> -> <%= entry.output_dollars.toPrecision(3)%> 
 (<%= entry.token0%>,
 <%= entry.token1%>
@@ -434,13 +434,18 @@ async function runJob2() {
   console.log("Hourly simulation done and shortlisted.");
 }
 
-https.createServer(
-{key: fs.readFileSync("key.pem"),
- cert: fs.readFileSync("cert.pem"),
-},
-    app
-    )
-    .listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-  console.log(cfg.tokens);
+//https.createServer(
+//{key: fs.readFileSync("key.pem"),
+// cert: fs.readFileSync("cert.pem"),
+//},
+//    app
+//    )
+//    .listen(port, () => {
+//  console.log(`App listening on port ${port}`);
+//  console.log(cfg.tokens);
+//});
+
+app.listen(port, () => {
+  console.log(`App listening on port ${port}`);
+  console.log(dx.token_address);
 });
