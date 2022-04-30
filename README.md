@@ -112,3 +112,51 @@ import _ as cron from 'node-cron'
 cron.schedule('0 _ \* \* \*', () => {
 console.log('running a task every hour at 00');
 });
+
+
+npm init -y
+npm install express
+touch index.js
+// Import builtin NodeJS modules to instantiate the service
+const https = require("https");
+const fs = request("fs");
+// Import the express module
+const express = require("express");
+// Instantiate an Express application
+const app = express();
+// Create a NodeJS HTTPS listener on port 4000 that points to the Express app
+// Use a callback function to tell when the server is created.
+https
+  .createServer(app)
+  .listen(4000, ()=>{
+    console.log('server is runing at port 4000')
+  });
+
+app.get('/', (req,res)=>{
+    res.send("Hello from express server.")
+})
+
+node index.js
+
+4. Finally, test the service by bringing up a web browser and navigating to http://localhost:4000/ in your browser. If successful, you should see a message “Hello from express server.”.
+
+Creating an SSL Certificate
+
+openssl genrsa 
+openssl req -new -key key.pem -out csr.pem
+openssl x509 -req -days 9999 -in csr.pem -signkey key.pem -out cert.pem
+
+
+https
+  .createServer(
+		// Provide the private and public key to the server by reading each
+		// file's content with the readFileSync() method.
+    {
+      key: fs.readFileSync("key.pem"),
+      cert: fs.readFileSync("cert.pem"),
+    },
+    app
+  )
+  .listen(4000, () => {
+    console.log("serever is runing at port 4000");
+  });
