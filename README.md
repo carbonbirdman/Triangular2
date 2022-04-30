@@ -73,6 +73,10 @@ https://dev.to/lennythedev/quick-server-with-node-and-express-in-5-minutes-17m7
 
 https://betterprogramming.pub/build-a-simple-web-server-using-node-js-and-express-27f3d6eb4e86
 
+https://dev.to/omergulen/step-by-step-node-express-ssl-certificate-run-https-server-from-scratch-in-5-steps-5b87
+
+doing https: https://adamtheautomator.com/https-nodejs/
+
 server.get("/", (req, res) => {
 res.sendFile(\_\_dirname + '/index.html');
 });
@@ -89,6 +93,25 @@ res.send(dx.token_address);
 app.get("/json", (req, res) => {
 res.json(dx.token_address);
 });
+
+server.get("/", (req, res) => {
+res.sendFile(\_\_dirname + '/index.html');
+});
+
+server.get("/json", (req, res) => {
+res.json({ message: "Hello world" });
+});
+
+app.get("/header", (req, res) => {
+res.setHeader("Content-Type", "application/json");
+res.send(dx.token_address);
+});
+
+app.get("/json", (req, res) => {
+res.json(dx.token_address);
+});
+
+npm install --save node-cron
 
 npm install --save node-cron
 
@@ -111,8 +134,25 @@ console.log('running a task every day at 5:03 am');
 import _ as cron from 'node-cron'
 cron.schedule('0 _ \* \* \*', () => {
 console.log('running a task every hour at 00');
+
+scheduled: A boolean to set if the created task is scheduled (default is true)
+timezone: The timezone used for job scheduling
+Take a look at the following example.
+
+import _ as cron from 'node-cron'
+cron.schedule('5 _ \* \* \* \*', () => {
+console.log('running a task every minute at the 5th second');
 });
 
+import _ as cron from 'node-cron'
+cron.schedule('3 5 _ \* \*', () => {
+console.log('running a task every day at 5:03 am');
+});
+
+import _ as cron from 'node-cron'
+cron.schedule('0 _ \* \* \*', () => {
+console.log('running a task every hour at 00');
+});
 
 npm init -y
 npm install express
@@ -127,13 +167,13 @@ const app = express();
 // Create a NodeJS HTTPS listener on port 4000 that points to the Express app
 // Use a callback function to tell when the server is created.
 https
-  .createServer(app)
-  .listen(4000, ()=>{
-    console.log('server is runing at port 4000')
-  });
+.createServer(app)
+.listen(4000, ()=>{
+console.log('server is runing at port 4000')
+});
 
 app.get('/', (req,res)=>{
-    res.send("Hello from express server.")
+res.send("Hello from express server.")
 })
 
 node index.js
@@ -142,21 +182,20 @@ node index.js
 
 Creating an SSL Certificate
 
-openssl genrsa 
+openssl genrsa
 openssl req -new -key key.pem -out csr.pem
 openssl x509 -req -days 9999 -in csr.pem -signkey key.pem -out cert.pem
 
-
 https
-  .createServer(
-		// Provide the private and public key to the server by reading each
-		// file's content with the readFileSync() method.
-    {
-      key: fs.readFileSync("key.pem"),
-      cert: fs.readFileSync("cert.pem"),
-    },
-    app
-  )
-  .listen(4000, () => {
-    console.log("serever is runing at port 4000");
-  });
+.createServer(
+// Provide the private and public key to the server by reading each
+// file's content with the readFileSync() method.
+{
+key: fs.readFileSync("key.pem"),
+cert: fs.readFileSync("cert.pem"),
+},
+app
+)
+.listen(4000, () => {
+console.log("serever is runing at port 4000");
+});
