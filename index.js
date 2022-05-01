@@ -380,7 +380,7 @@ async function runJob() {
 
 // TRIANGULAR HOURLY
 const cron = require("node-cron");
-cron.schedule("7 47 * * * *", () => {
+cron.schedule("7 02 * * * *", () => {
   console.log("running a task every hour");
   runJob();
 });
@@ -396,7 +396,7 @@ app.get("/hourly_shortlist/json", (req, res) => {
 });
 
 // SIMPLE HOURLY
-cron.schedule("7 27 * * * *", () => {
+cron.schedule("7 30 * * * *", () => {
   console.log("running a task every hour");
   runJob2();
 });
@@ -444,6 +444,7 @@ async function runJob2() {
 //  console.log(`App listening on port ${port}`);
 //  console.log(cfg.tokens);
 //});
+//must keep this code
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
