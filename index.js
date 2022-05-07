@@ -4,8 +4,6 @@ const sl = require("./scripts/shortlist");
 const sim = require("./scripts/simulate");
 var path = require("path");
 const fs = require("fs");
-const https = require("https");
-const cors = require('cors');
 
 require("dotenv").config();
 console.log("Config:", process.env.CONFIG_WEB);
@@ -18,7 +16,6 @@ const prep = require("./scripts/prep");
 const app = express();
 var eta = require("eta");
 app.set("view engine", "eta");
-app.use(cors());
 
 const port = 3000;
 
@@ -417,6 +414,7 @@ app.get("/hourly_shortlist_basic/json", (req, res) => {
   res.json(JSON.parse(fs.readFileSync(merged_filename_hourly2)));
 });
 
+
 async function runJob2() {
   var infile = "data/routes2" + cfg.xpid + ".json";
   let routes = JSON.parse(fs.readFileSync(infile));
@@ -434,13 +432,8 @@ async function runJob2() {
   console.log("Hourly simulation done and shortlisted.");
 }
 
-https.createServer(
-{key: fs.readFileSync("key.pem"),
- cert: fs.readFileSync("cert.pem"),
-},
-    app
-    )
-    .listen(port, () => {
+app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
+  //var conn = dexes.get_connection();
   console.log(cfg.tokens);
 });
