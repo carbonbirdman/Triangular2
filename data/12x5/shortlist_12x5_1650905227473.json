@@ -1,0 +1,19 @@
+[
+    {
+        "dexa": "spooky",
+        "dexb": "solid",
+        "dexc": "spooky",
+        "token0": "BASED",
+        "token1": "TOMB",
+        "token2": "FTM",
+        "token0_address": "0x8D7d3409881b51466B483B11Ea1B8A03cdEd89ae",
+        "token1_address": "0x6c021Ae822BEa943b2E66552bDe1D2696a53fbB7",
+        "token2_address": "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83",
+        "paira": "0xaB2ddCBB346327bBDF97120b0dD5eE172a9c8f9E",
+        "pairb": "0x60a861Cd30778678E3d613db96139440Bd333143",
+        "pairc": "0x1Edb5AcF57ABCf95ce537812190AA2F8D26B053F",
+        "input_dollars": "10",
+        "output_dollars": 10.022937798834988,
+        "time": 1650905381062
+    }
+]

@@ -1,0 +1,53 @@
+[
+    {
+        "dexa": "spirit",
+        "dexb": "spooky",
+        "dexc": "spirit",
+        "token0": "SPIRIT",
+        "token1": "FTM",
+        "token2": "DAI",
+        "token0_address": "0x5Cc61A78F164885776AA610fb0FE1257df78E59B",
+        "token1_address": "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83",
+        "token2_address": "0x8d11ec38a3eb5e956b052f67da8bdc9bef8abf3e",
+        "paira": "0x30748322B6E34545DBe0788C421886AEB5297789",
+        "pairb": "0xe120ffBDA0d14f3Bb6d6053E90E63c572A66a428",
+        "pairc": "0xfFbfc0446cA725b21256461e214E9D472f9be390",
+        "input_dollars": "10",
+        "output_dollars": 10.002195572739383,
+        "time": 1650793807230
+    },
+    {
+        "dexa": "spirit",
+        "dexb": "spirit",
+        "dexc": "spooky",
+        "token0": "DAI",
+        "token1": "SPIRIT",
+        "token2": "FTM",
+        "token0_address": "0x8d11ec38a3eb5e956b052f67da8bdc9bef8abf3e",
+        "token1_address": "0x5Cc61A78F164885776AA610fb0FE1257df78E59B",
+        "token2_address": "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83",
+        "paira": "0xfFbfc0446cA725b21256461e214E9D472f9be390",
+        "pairb": "0x30748322B6E34545DBe0788C421886AEB5297789",
+        "pairc": "0xe120ffBDA0d14f3Bb6d6053E90E63c572A66a428",
+        "input_dollars": "10",
+        "output_dollars": 10.007953896244087,
+        "time": 1650793833110
+    },
+    {
+        "dexa": "solid",
+        "dexb": "spirit",
+        "dexc": "spirit",
+        "token0": "FTM",
+        "token1": "LQDR",
+        "token2": "SPIRIT",
+        "token0_address": "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83",
+        "token1_address": "0x10b620b2dbac4faa7d7ffd71da486f5d44cd86f9",
+        "token2_address": "0x5Cc61A78F164885776AA610fb0FE1257df78E59B",
+        "paira": "0x9861B8a9Acc9B4f249981164bFe7f84202068bfE",
+        "pairb": "0xFeBbfeA7674720cEdD35e9384d07F235365c1B3e",
+        "pairc": "0x30748322B6E34545DBe0788C421886AEB5297789",
+        "input_dollars": "10",
+        "output_dollars": 10.003084773158019,
+        "time": 1650794075876
+    }
+]

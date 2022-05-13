@@ -1,0 +1,19 @@
+[
+    {
+        "dexa": "spooky",
+        "dexb": "sushi",
+        "dexc": "solid",
+        "token0": "FTM",
+        "token1": "WBTC",
+        "token2": "ETH",
+        "token0_address": "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83",
+        "token1_address": "0x321162Cd933E2Be498Cd2267a90534A804051b11",
+        "token2_address": "0x74b23882a30290451A17c44f4F05243b6b58C76d",
+        "paira": "0xFdb9Ab8B9513Ad9E419Cf19530feE49d412C3Ee3",
+        "pairb": "0x33e29a9eBdD370a8D50656e822aBFD3A910dA1b6",
+        "pairc": "0xb0ffAE1c213EAA031AA20a1DAC86f543438e8202",
+        "input_dollars": "10",
+        "output_dollars": 10.008059718868571,
+        "time": 1650786550936
+    }
+]

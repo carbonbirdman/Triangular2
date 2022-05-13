@@ -1,0 +1,53 @@
+[
+    {
+        "dexa": "spooky",
+        "dexb": "spooky",
+        "dexc": "spooky",
+        "token0": "FTM",
+        "token1": "BASED",
+        "token2": "TOMB",
+        "token0_address": "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83",
+        "token1_address": "0x8D7d3409881b51466B483B11Ea1B8A03cdEd89ae",
+        "token2_address": "0x6c021Ae822BEa943b2E66552bDe1D2696a53fbB7",
+        "paira": "0x1Edb5AcF57ABCf95ce537812190AA2F8D26B053F",
+        "pairb": "0xaB2ddCBB346327bBDF97120b0dD5eE172a9c8f9E",
+        "pairc": "0x2A651563C9d3Af67aE0388a5c8F89b867038089e",
+        "input_dollars": "10",
+        "output_dollars": 10.00083010918568,
+        "time": 1650854835438
+    },
+    {
+        "dexa": "spooky",
+        "dexb": "spooky",
+        "dexc": "spooky",
+        "token0": "TOMB",
+        "token1": "FTM",
+        "token2": "BASED",
+        "token0_address": "0x6c021Ae822BEa943b2E66552bDe1D2696a53fbB7",
+        "token1_address": "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83",
+        "token2_address": "0x8D7d3409881b51466B483B11Ea1B8A03cdEd89ae",
+        "paira": "0x2A651563C9d3Af67aE0388a5c8F89b867038089e",
+        "pairb": "0x1Edb5AcF57ABCf95ce537812190AA2F8D26B053F",
+        "pairc": "0xaB2ddCBB346327bBDF97120b0dD5eE172a9c8f9E",
+        "input_dollars": "10",
+        "output_dollars": 10.000958123094058,
+        "time": 1650854847241
+    },
+    {
+        "dexa": "spooky",
+        "dexb": "spooky",
+        "dexc": "spooky",
+        "token0": "BASED",
+        "token1": "TOMB",
+        "token2": "FTM",
+        "token0_address": "0x8D7d3409881b51466B483B11Ea1B8A03cdEd89ae",
+        "token1_address": "0x6c021Ae822BEa943b2E66552bDe1D2696a53fbB7",
+        "token2_address": "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83",
+        "paira": "0xaB2ddCBB346327bBDF97120b0dD5eE172a9c8f9E",
+        "pairb": "0x2A651563C9d3Af67aE0388a5c8F89b867038089e",
+        "pairc": "0x1Edb5AcF57ABCf95ce537812190AA2F8D26B053F",
+        "input_dollars": "10",
+        "output_dollars": 10.001021644236909,
+        "time": 1650854862920
+    }
+]

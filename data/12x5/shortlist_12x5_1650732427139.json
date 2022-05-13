@@ -1,0 +1,19 @@
+[
+    {
+        "dexa": "spooky",
+        "dexb": "sushi",
+        "dexc": "solid",
+        "token0": "FTM",
+        "token1": "DAI",
+        "token2": "ETH",
+        "token0_address": "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83",
+        "token1_address": "0x8d11ec38a3eb5e956b052f67da8bdc9bef8abf3e",
+        "token2_address": "0x74b23882a30290451A17c44f4F05243b6b58C76d",
+        "paira": "0xe120ffBDA0d14f3Bb6d6053E90E63c572A66a428",
+        "pairb": "0x71C8BceEcE3dAf9E27741D2Cc1F03170f862555f",
+        "pairc": "0xb0ffAE1c213EAA031AA20a1DAC86f543438e8202",
+        "input_dollars": "10",
+        "output_dollars": 10.003675978230573,
+        "time": 1650732555613
+    }
+]

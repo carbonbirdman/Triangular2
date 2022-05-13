@@ -1,0 +1,53 @@
+[
+    {
+        "dexa": "spooky",
+        "dexb": "spooky",
+        "dexc": "solid",
+        "token0": "FTM",
+        "token1": "WBTC",
+        "token2": "ETH",
+        "token0_address": "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83",
+        "token1_address": "0x321162Cd933E2Be498Cd2267a90534A804051b11",
+        "token2_address": "0x74b23882a30290451A17c44f4F05243b6b58C76d",
+        "paira": "0xFdb9Ab8B9513Ad9E419Cf19530feE49d412C3Ee3",
+        "pairb": "0xEc454EdA10accdD66209C57aF8C12924556F3aBD",
+        "pairc": "0xb0ffAE1c213EAA031AA20a1DAC86f543438e8202",
+        "input_dollars": "10",
+        "output_dollars": 10.00460471577624,
+        "time": 1650707270131
+    },
+    {
+        "dexa": "spooky",
+        "dexb": "sushi",
+        "dexc": "solid",
+        "token0": "FTM",
+        "token1": "WBTC",
+        "token2": "ETH",
+        "token0_address": "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83",
+        "token1_address": "0x321162Cd933E2Be498Cd2267a90534A804051b11",
+        "token2_address": "0x74b23882a30290451A17c44f4F05243b6b58C76d",
+        "paira": "0xFdb9Ab8B9513Ad9E419Cf19530feE49d412C3Ee3",
+        "pairb": "0x33e29a9eBdD370a8D50656e822aBFD3A910dA1b6",
+        "pairc": "0xb0ffAE1c213EAA031AA20a1DAC86f543438e8202",
+        "input_dollars": "10",
+        "output_dollars": 10.003630494511109,
+        "time": 1650707468558
+    },
+    {
+        "dexa": "spooky",
+        "dexb": "solid",
+        "dexc": "spooky",
+        "token0": "WBTC",
+        "token1": "ETH",
+        "token2": "FTM",
+        "token0_address": "0x321162Cd933E2Be498Cd2267a90534A804051b11",
+        "token1_address": "0x74b23882a30290451A17c44f4F05243b6b58C76d",
+        "token2_address": "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83",
+        "paira": "0xEc454EdA10accdD66209C57aF8C12924556F3aBD",
+        "pairb": "0xb0ffAE1c213EAA031AA20a1DAC86f543438e8202",
+        "pairc": "0xFdb9Ab8B9513Ad9E419Cf19530feE49d412C3Ee3",
+        "input_dollars": "10",
+        "output_dollars": 10.001377750000001,
+        "time": 1650707478031
+    }
+]

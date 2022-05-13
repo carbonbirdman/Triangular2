@@ -1,0 +1,19 @@
+[
+    {
+        "dexa": "spooky",
+        "dexb": "spooky",
+        "dexc": "tomb",
+        "token0": "TOMB",
+        "token1": "TSHARE",
+        "token2": "FTM",
+        "token0_address": "0x6c021Ae822BEa943b2E66552bDe1D2696a53fbB7",
+        "token1_address": "0x4cdF39285D7Ca8eB3f090fDA0C069ba5F4145B37",
+        "token2_address": "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83",
+        "paira": "0x44Ca5eEf4313cb76c11e87FeaAacb39268c15Af8",
+        "pairb": "0x4733bc45eF91cF7CcEcaeeDb794727075fB209F2",
+        "pairc": "0xfca12A13ac324C09e9F43B5e5cfC9262f3Ab3223",
+        "input_dollars": "10",
+        "output_dollars": 10.001131551859112,
+        "time": 1650887314823
+    }
+]

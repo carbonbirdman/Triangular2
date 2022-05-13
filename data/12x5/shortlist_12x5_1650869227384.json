@@ -1,0 +1,36 @@
+[
+    {
+        "dexa": "spooky",
+        "dexb": "spooky",
+        "dexc": "spooky",
+        "token0": "FTM",
+        "token1": "TOMB",
+        "token2": "TSHARE",
+        "token0_address": "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83",
+        "token1_address": "0x6c021Ae822BEa943b2E66552bDe1D2696a53fbB7",
+        "token2_address": "0x4cdF39285D7Ca8eB3f090fDA0C069ba5F4145B37",
+        "paira": "0x2A651563C9d3Af67aE0388a5c8F89b867038089e",
+        "pairb": "0x44Ca5eEf4313cb76c11e87FeaAacb39268c15Af8",
+        "pairc": "0x4733bc45eF91cF7CcEcaeeDb794727075fB209F2",
+        "input_dollars": "10",
+        "output_dollars": 10.036604113970585,
+        "time": 1650869231425
+    },
+    {
+        "dexa": "tomb",
+        "dexb": "spooky",
+        "dexc": "spooky",
+        "token0": "FTM",
+        "token1": "TOMB",
+        "token2": "BASED",
+        "token0_address": "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83",
+        "token1_address": "0x6c021Ae822BEa943b2E66552bDe1D2696a53fbB7",
+        "token2_address": "0x8D7d3409881b51466B483B11Ea1B8A03cdEd89ae",
+        "paira": "0xfca12A13ac324C09e9F43B5e5cfC9262f3Ab3223",
+        "pairb": "0xaB2ddCBB346327bBDF97120b0dD5eE172a9c8f9E",
+        "pairc": "0x1Edb5AcF57ABCf95ce537812190AA2F8D26B053F",
+        "input_dollars": "10",
+        "output_dollars": 10.001338703196957,
+        "time": 1650869579513
+    }
+]

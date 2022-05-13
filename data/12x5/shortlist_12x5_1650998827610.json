@@ -1,0 +1,53 @@
+[
+    {
+        "dexa": "spooky",
+        "dexb": "spooky",
+        "dexc": "spooky",
+        "token0": "TOMB",
+        "token1": "FTM",
+        "token2": "TSHARE",
+        "token0_address": "0x6c021Ae822BEa943b2E66552bDe1D2696a53fbB7",
+        "token1_address": "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83",
+        "token2_address": "0x4cdF39285D7Ca8eB3f090fDA0C069ba5F4145B37",
+        "paira": "0x2A651563C9d3Af67aE0388a5c8F89b867038089e",
+        "pairb": "0x4733bc45eF91cF7CcEcaeeDb794727075fB209F2",
+        "pairc": "0x44Ca5eEf4313cb76c11e87FeaAacb39268c15Af8",
+        "input_dollars": "10",
+        "output_dollars": 10.035508135322784,
+        "time": 1650998847656
+    },
+    {
+        "dexa": "spirit",
+        "dexb": "spirit",
+        "dexc": "solid",
+        "token0": "FTM",
+        "token1": "SPIRIT",
+        "token2": "LQDR",
+        "token0_address": "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83",
+        "token1_address": "0x5Cc61A78F164885776AA610fb0FE1257df78E59B",
+        "token2_address": "0x10b620b2dbac4faa7d7ffd71da486f5d44cd86f9",
+        "paira": "0x30748322B6E34545DBe0788C421886AEB5297789",
+        "pairb": "0xFeBbfeA7674720cEdD35e9384d07F235365c1B3e",
+        "pairc": "0x9861B8a9Acc9B4f249981164bFe7f84202068bfE",
+        "input_dollars": "10",
+        "output_dollars": 10.015082719217332,
+        "time": 1650999118894
+    },
+    {
+        "dexa": "spirit",
+        "dexb": "solid",
+        "dexc": "spirit",
+        "token0": "SPIRIT",
+        "token1": "LQDR",
+        "token2": "FTM",
+        "token0_address": "0x5Cc61A78F164885776AA610fb0FE1257df78E59B",
+        "token1_address": "0x10b620b2dbac4faa7d7ffd71da486f5d44cd86f9",
+        "token2_address": "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83",
+        "paira": "0xFeBbfeA7674720cEdD35e9384d07F235365c1B3e",
+        "pairb": "0x9861B8a9Acc9B4f249981164bFe7f84202068bfE",
+        "pairc": "0x30748322B6E34545DBe0788C421886AEB5297789",
+        "input_dollars": "10",
+        "output_dollars": 10.015113744349598,
+        "time": 1650999147621
+    }
+]
