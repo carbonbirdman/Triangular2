@@ -21,7 +21,9 @@ app.set("view engine", "eta");
 //app.use(cors());
 
 const port = 3000;
+const HTTPS = false;
 
+if (HTTPS) {
 https.createServer(
 {key: fs.readFileSync("server.key"),
  cert: fs.readFileSync("server.cert"),
@@ -32,12 +34,13 @@ https.createServer(
   console.log(`App listening on port ${port}`);
   console.log(cfg.tokens);
 });
+} else {
 //must keep this code
-
-//app.listen(port, () => {
-//  console.log(`App listening on port ${port}`);
-//  console.log(dx.token_address);
-//});
+app.listen(port, () => {
+  console.log(`App listening on port ${port}`);
+  console.log(dx.token_address);
+});
+}
 
 
 const tokens_filename = "data/tokens" + cfg.xpid + ".json";
