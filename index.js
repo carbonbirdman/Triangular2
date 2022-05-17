@@ -12,7 +12,7 @@ console.log("Config:", process.env.CONFIG_WEB);
 const cfg = require(process.env.CONFIG_WEB);
 console.log("xp", cfg.xpid);
 
-const prep = require("./scripts/prep");
+//const prep = require("./scripts/prep");
 //await prep.main();
 
 const app = express();
@@ -21,6 +21,24 @@ app.set("view engine", "eta");
 //app.use(cors());
 
 const port = 3000;
+
+https.createServer(
+{key: fs.readFileSync("server.key"),
+ cert: fs.readFileSync("server.cert"),
+},
+    app
+    )
+    .listen(port, () => {
+  console.log(`App listening on port ${port}`);
+  console.log(cfg.tokens);
+});
+//must keep this code
+
+//app.listen(port, () => {
+//  console.log(`App listening on port ${port}`);
+//  console.log(dx.token_address);
+//});
+
 
 const tokens_filename = "data/tokens" + cfg.xpid + ".json";
 const prices_filename = "data/token_price" + cfg.xpid + ".json";
@@ -434,19 +452,3 @@ async function runJob2() {
   console.log("Hourly simulation done and shortlisted.");
 }
 
-//https.createServer(
-//{key: fs.readFileSync("key.pem"),
-// cert: fs.readFileSync("cert.pem"),
-//},
-//    app
-//    )
-//    .listen(port, () => {
-//  console.log(`App listening on port ${port}`);
-//  console.log(cfg.tokens);
-//});
-//must keep this code
-
-app.listen(port, () => {
-  console.log(`App listening on port ${port}`);
-  console.log(dx.token_address);
-});
