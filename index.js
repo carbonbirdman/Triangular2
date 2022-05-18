@@ -396,6 +396,7 @@ async function runJob() {
     shortlist_filename_hourly,
     merged_filename_hourly
   );
+  fs.unlink(shortlist_filename_hourly);
   console.log("Hourly simulation done and shortlisted.");
 }
 
@@ -452,6 +453,7 @@ async function runJob2() {
     shortlist_filename_hourly2,
     merged_filename_hourly2
   );
+  fs.unlink(shortlist_filename_hourly2);
   console.log("Hourly simulation done and shortlisted.");
 }
 
