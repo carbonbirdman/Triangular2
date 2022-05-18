@@ -115,6 +115,7 @@ app.get("/tokens", function (req, res) {
 });
 
 app.get("/tokens/json", (req, res) => {
+  res.header("Access-Control-Allow-Origin", process.env.ORIGIN || "*");
   res.json(JSON.parse(fs.readFileSync(tokens_filename)));
 });
 
@@ -136,6 +137,7 @@ app.get("/price", function (req, res) {
 });
 
 app.get("/price/json", (req, res) => {
+  res.header("Access-Control-Allow-Origin", process.env.ORIGIN || "*");
   res.json(JSON.parse(fs.readFileSync(prices_filename)));
 });
 
@@ -161,6 +163,7 @@ app.get("/pairs", function (req, res) {
 });
 
 app.get("/pairs/json", (req, res) => {
+  res.header("Access-Control-Allow-Origin", process.env.ORIGIN || "*");
   res.json(JSON.parse(fs.readFileSync(pairs_filename)));
 });
 
@@ -187,6 +190,7 @@ app.get("/validpairs", function (req, res) {
 });
 
 app.get("/validpairs/json", (req, res) => {
+  res.header("Access-Control-Allow-Origin", process.env.ORIGIN || "*");
   res.json(JSON.parse(fs.readFileSync(validated_pairs_filename)));
 });
 
@@ -213,6 +217,7 @@ app.get("/reserves", function (req, res) {
 });
 
 app.get("/reserves/json", (req, res) => {
+  res.header("Access-Control-Allow-Origin", process.env.ORIGIN || "*");
   res.json(JSON.parse(fs.readFileSync(reserves_filename)));
 });
 
@@ -240,6 +245,7 @@ app.get("/routes", function (req, res) {
 });
 
 app.get("/routes/json", (req, res) => {
+  res.header("Access-Control-Allow-Origin", process.env.ORIGIN || "*");
   res.json(JSON.parse(fs.readFileSync(routes_filename)));
 });
 
@@ -265,6 +271,7 @@ app.get("/routes2", function (req, res) {
 });
 
 app.get("/routes2/json", (req, res) => {
+  res.header("Access-Control-Allow-Origin", process.env.ORIGIN || "*");
   res.json(JSON.parse(fs.readFileSync(routes2_filename)));
 });
 
@@ -318,6 +325,7 @@ app.get("/simulation", function (req, res) {
 });
 
 app.get("/simulation/json", (req, res) => {
+  res.header("Access-Control-Allow-Origin", process.env.ORIGIN || "*");
   res.json(JSON.parse(fs.readFileSync(simulate_filename)));
 });
 
@@ -337,6 +345,7 @@ app.get("/merged_shortlist", function (req, res) {
 });
 
 app.get("/merged_shortlist/json", (req, res) => {
+  res.header("Access-Control-Allow-Origin", process.env.ORIGIN || "*");
   res.json(JSON.parse(fs.readFileSync(merged_filename)));
 });
 
@@ -348,6 +357,7 @@ app.get("/merged_shortlist2", function (req, res) {
 });
 
 app.get("/merged_shortlist2/json", (req, res) => {
+  res.header("Access-Control-Allow-Origin", process.env.ORIGIN || "*");
   res.json(JSON.parse(fs.readFileSync(merged2_filename)));
 });
 
@@ -414,6 +424,7 @@ app.get("/hourly_shortlist", function (req, res) {
 });
 
 app.get("/hourly_shortlist/json", (req, res) => {
+  res.header("Access-Control-Allow-Origin", process.env.ORIGIN || "*");
   res.json(JSON.parse(fs.readFileSync(merged_filename_hourly)));
 });
 
@@ -436,6 +447,7 @@ app.get("/hourly_shortlist_basic", function (req, res) {
 });
 
 app.get("/hourly_shortlist_basic/json", (req, res) => {
+  res.header("Access-Control-Allow-Origin", process.env.ORIGIN || "*");
   res.json(JSON.parse(fs.readFileSync(merged_filename_hourly2)));
 });
 
