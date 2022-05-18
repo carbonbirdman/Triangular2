@@ -1,0 +1,80 @@
+[
+    {
+        "dexa": "spooky",
+        "dexb": "spirit",
+        "token0": "TAROT",
+        "token1": "FTM",
+        "token0_address": "0xC5e2B037D30a390e62180970B3aa4E91868764cD",
+        "token1_address": "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83",
+        "paira": "0x11D90eA9d16e1Ee5879B299A819F6D618816D70F",
+        "pairb": "0xF050133847bb537C7476D054B8bE6e30253Fbd05",
+        "input_dollars": "10",
+        "output_dollars": 10.003103258389709,
+        "time": 1652837431144
+    },
+    {
+        "dexa": "spooky",
+        "dexb": "solid",
+        "token0": "FTM",
+        "token1": "OATH",
+        "token0_address": "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83",
+        "token1_address": "0x21ada0d2ac28c3a5fa3cd2ee30882da8812279b6",
+        "paira": "0x084f5041F5d8d202AD958230A7E56BB32dFd38Bb",
+        "pairb": "0x6B987e02Ca5eAE26D8B2bCAc724D4e03b3B0c295",
+        "input_dollars": "10",
+        "output_dollars": 10.005832682538363,
+        "time": 1652837434473
+    },
+    {
+        "dexa": "spirit",
+        "dexb": "spooky",
+        "token0": "FTM",
+        "token1": "TAROT",
+        "token0_address": "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83",
+        "token1_address": "0xC5e2B037D30a390e62180970B3aa4E91868764cD",
+        "paira": "0xF050133847bb537C7476D054B8bE6e30253Fbd05",
+        "pairb": "0x11D90eA9d16e1Ee5879B299A819F6D618816D70F",
+        "input_dollars": "10",
+        "output_dollars": 10.003166818605182,
+        "time": 1652837447111
+    },
+    {
+        "dexa": "spirit",
+        "dexb": "solid",
+        "token0": "FTM",
+        "token1": "TAROT",
+        "token0_address": "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83",
+        "token1_address": "0xC5e2B037D30a390e62180970B3aa4E91868764cD",
+        "paira": "0xF050133847bb537C7476D054B8bE6e30253Fbd05",
+        "pairb": "0x783f1eDBE336981dFCb74Bd0B803655F55AaDF48",
+        "input_dollars": "10",
+        "output_dollars": 10.004882270078715,
+        "time": 1652837464726
+    },
+    {
+        "dexa": "solid",
+        "dexb": "spooky",
+        "token0": "SCREAM",
+        "token1": "FTM",
+        "token0_address": "0xe0654c8e6fd4d733349ac7e09f6f23da256bf475",
+        "token1_address": "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83",
+        "paira": "0x86dD79265814756713e631Dde7E162bdD538b7B1",
+        "pairb": "0x30872e4fc4edbFD7a352bFC2463eb4fAe9C09086",
+        "input_dollars": "10",
+        "output_dollars": 10.000780277839043,
+        "time": 1652837476311
+    },
+    {
+        "dexa": "solid",
+        "dexb": "spirit",
+        "token0": "TAROT",
+        "token1": "FTM",
+        "token0_address": "0xC5e2B037D30a390e62180970B3aa4E91868764cD",
+        "token1_address": "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83",
+        "paira": "0x783f1eDBE336981dFCb74Bd0B803655F55AaDF48",
+        "pairb": "0xF050133847bb537C7476D054B8bE6e30253Fbd05",
+        "input_dollars": "10",
+        "output_dollars": 10.004722185473124,
+        "time": 1652837484232
+    }
+]

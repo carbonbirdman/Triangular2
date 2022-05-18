@@ -1,0 +1,62 @@
+[
+    {
+        "symbol": "FTM",
+        "address": "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83",
+        "decimal": 18
+    },
+    {
+        "symbol": "LQDR",
+        "address": "0x10b620b2dbac4faa7d7ffd71da486f5d44cd86f9",
+        "decimal": 18
+    },
+    {
+        "symbol": "TOMB",
+        "address": "0x6c021Ae822BEa943b2E66552bDe1D2696a53fbB7",
+        "decimal": 18
+    },
+    {
+        "symbol": "SPIRIT",
+        "address": "0x5Cc61A78F164885776AA610fb0FE1257df78E59B",
+        "decimal": 18
+    },
+    {
+        "symbol": "BOO",
+        "address": "0x841FAD6EAe12c286d1Fd18d1d525DFfA75C7EFFE",
+        "decimal": 18
+    },
+    {
+        "symbol": "FANG",
+        "address": "0x49894fCC07233957c35462cfC3418Ef0CC26129f",
+        "decimal": 18
+    },
+    {
+        "symbol": "TSHARE",
+        "address": "0x4cdF39285D7Ca8eB3f090fDA0C069ba5F4145B37",
+        "decimal": 18
+    },
+    {
+        "symbol": "FHM",
+        "address": "0xfa1FBb8Ef55A4855E5688C0eE13aC3f202486286",
+        "decimal": 9
+    },
+    {
+        "symbol": "SCREAM",
+        "address": "0xe0654c8e6fd4d733349ac7e09f6f23da256bf475",
+        "decimal": 18
+    },
+    {
+        "symbol": "CREDIT",
+        "address": "0x77128dfdd0ac859b33f44050c6fa272f34872b5e",
+        "decimal": 18
+    },
+    {
+        "symbol": "OATH",
+        "address": "0x21ada0d2ac28c3a5fa3cd2ee30882da8812279b6",
+        "decimal": 18
+    },
+    {
+        "symbol": "TAROT",
+        "address": "0xC5e2B037D30a390e62180970B3aa4E91868764cD",
+        "decimal": 18
+    }
+]

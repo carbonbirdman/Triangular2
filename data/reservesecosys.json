@@ -1,0 +1,452 @@
+[
+    {
+        "dex": "spooky",
+        "token0": "LQDR",
+        "token1": "FTM",
+        "pair_address": "0x506DdcC751C7d500F983FfdA6DdEfbE458Ba2c33",
+        "price0": 8.03,
+        "price1": 0.956163,
+        "dollars": 548925.4206354388
+    },
+    {
+        "dex": "spooky",
+        "token0": "FTM",
+        "token1": "TOMB",
+        "pair_address": "0x2A651563C9d3Af67aE0388a5c8F89b867038089e",
+        "price0": 0.956163,
+        "price1": 0.944404,
+        "dollars": 82349162.48183326
+    },
+    {
+        "dex": "spooky",
+        "token0": "FTM",
+        "token1": "SPIRIT",
+        "pair_address": "0x67deB4877b129fe324285e47C0c419e34649E250",
+        "price0": 0.956163,
+        "price1": 0.04698496,
+        "dollars": 280.6723636872497
+    },
+    {
+        "dex": "spooky",
+        "token0": "FTM",
+        "token1": "BOO",
+        "pair_address": "0xEc7178F4C41f346b2721907F5cF7628E388A7a58",
+        "price0": 0.956163,
+        "price1": 8.76,
+        "dollars": 31312922.78608609
+    },
+    {
+        "dex": "spooky",
+        "token0": "FTM",
+        "token1": "FANG",
+        "pair_address": "0x19dCe7bdE30cd966FF123d272E5f688E0b4B8B78",
+        "price0": 0.956163,
+        "price1": 0.564704,
+        "dollars": 2625.7913468917923
+    },
+    {
+        "dex": "spooky",
+        "token0": "FTM",
+        "token1": "TSHARE",
+        "pair_address": "0x4733bc45eF91cF7CcEcaeeDb794727075fB209F2",
+        "price0": 0.956163,
+        "price1": 3140.77,
+        "dollars": 27562838.88921531
+    },
+    {
+        "dex": "spooky",
+        "token0": "FTM",
+        "token1": "FHM",
+        "pair_address": "0xaa572E307518f967C5a9b1FdbabE368cC62C160c",
+        "price0": 0.956163,
+        "price1": 3.14,
+        "dollars": 34.39909066351703
+    },
+    {
+        "dex": "spooky",
+        "token0": "FTM",
+        "token1": "SCREAM",
+        "pair_address": "0x30872e4fc4edbFD7a352bFC2463eb4fAe9C09086",
+        "price0": 0.956163,
+        "price1": 11.94,
+        "dollars": 5799817.873008849
+    },
+    {
+        "dex": "spooky",
+        "token0": "FTM",
+        "token1": "CREDIT",
+        "pair_address": "0x06F3Cb227781A836feFAEa7E686Bdc857e80eAa7",
+        "price0": 0.956163,
+        "price1": 0.278317,
+        "dollars": 1234569.0198204801
+    },
+    {
+        "dex": "spooky",
+        "token0": "OATH",
+        "token1": "FTM",
+        "pair_address": "0x084f5041F5d8d202AD958230A7E56BB32dFd38Bb",
+        "price0": 0.160516,
+        "price1": 0.956163,
+        "dollars": 6252020.18123721
+    },
+    {
+        "dex": "spooky",
+        "token0": "FTM",
+        "token1": "TAROT",
+        "pair_address": "0x11D90eA9d16e1Ee5879B299A819F6D618816D70F",
+        "price0": 0.956163,
+        "price1": 0.186489,
+        "dollars": 2559298.7321833214
+    },
+    {
+        "dex": "spooky",
+        "token0": "LQDR",
+        "token1": "BOO",
+        "pair_address": "0x95E2df42EE89ce0bDa1a0027417C0a31bD8aE40D",
+        "price0": 8.03,
+        "price1": 8.76,
+        "dollars": 20.589537942203705
+    },
+    {
+        "dex": "spooky",
+        "token0": "LQDR",
+        "token1": "TSHARE",
+        "pair_address": "0xaBFf5bC0bDB9D23De6DbA4a4C9F42DCb7BfE5D83",
+        "price0": 8.03,
+        "price1": 3140.77,
+        "dollars": 3.2061687999999996e-13
+    },
+    {
+        "dex": "spooky",
+        "token0": "TOMB",
+        "token1": "BOO",
+        "pair_address": "0xe193De3E2ADE715A87A339AB7a1825fBc468aEF8",
+        "price0": 0.944404,
+        "price1": 8.76,
+        "dollars": 3468.20273826645
+    },
+    {
+        "dex": "spooky",
+        "token0": "FANG",
+        "token1": "TOMB",
+        "pair_address": "0x670D86356eA4112bD92919c6413b288313B41484",
+        "price0": 0.564704,
+        "price1": 0.944404,
+        "dollars": 10.153129578523458
+    },
+    {
+        "dex": "spooky",
+        "token0": "TSHARE",
+        "token1": "TOMB",
+        "pair_address": "0x44Ca5eEf4313cb76c11e87FeaAacb39268c15Af8",
+        "price0": 3140.77,
+        "price1": 0.944404,
+        "dollars": 11318.426262648245
+    },
+    {
+        "dex": "spooky",
+        "token0": "SPIRIT",
+        "token1": "BOO",
+        "pair_address": "0x06d03EEC20167867c46EEBD1B192A7Bf3DC27ecC",
+        "price0": 0.04698496,
+        "price1": 8.76,
+        "dollars": 20.001500323623084
+    },
+    {
+        "dex": "spooky",
+        "token0": "TSHARE",
+        "token1": "BOO",
+        "pair_address": "0xFA5831d8F50A8ecB9459513c0162aEB7a9575C8f",
+        "price0": 3140.77,
+        "price1": 8.76,
+        "dollars": 247.83598349609153
+    },
+    {
+        "dex": "spooky",
+        "token0": "BOO",
+        "token1": "SCREAM",
+        "pair_address": "0x71Bf506E473A2f0465141C1F246729AD34DF3BE8",
+        "price0": 8.76,
+        "price1": 11.94,
+        "dollars": 163.7178601551041
+    },
+    {
+        "dex": "spooky",
+        "token0": "OATH",
+        "token1": "BOO",
+        "pair_address": "0x8e0a4330b930B30f9Ab8b1A4860FC4Aef9650fDA",
+        "price0": 0.160516,
+        "price1": 8.76,
+        "dollars": 2.415534948e-15
+    },
+    {
+        "dex": "spooky",
+        "token0": "BOO",
+        "token1": "TAROT",
+        "pair_address": "0x271E95EE7796945bF422f72E35d94F87D90BE748",
+        "price0": 8.76,
+        "price1": 0.186489,
+        "dollars": 2.944425273871868
+    },
+    {
+        "dex": "spooky",
+        "token0": "TSHARE",
+        "token1": "SCREAM",
+        "pair_address": "0x8731ce5B43B30408166F65e303B51D76A2a6E216",
+        "price0": 3140.77,
+        "price1": 11.94,
+        "dollars": 286.2752573208014
+    },
+    {
+        "dex": "spooky",
+        "token0": "TSHARE",
+        "token1": "CREDIT",
+        "pair_address": "0x0d257afDd24Cb8dc305FF7B257471f1A7BBEBD0D",
+        "price0": 3140.77,
+        "price1": 0.278317,
+        "dollars": 7.0744763365e-14
+    },
+    {
+        "dex": "spirit",
+        "token0": "LQDR",
+        "token1": "FTM",
+        "pair_address": "0x4Fe6f19031239F105F753D1DF8A0d24857D0cAA2",
+        "price0": 8.03,
+        "price1": 0.956163,
+        "dollars": 10131226.75242921
+    },
+    {
+        "dex": "spirit",
+        "token0": "FTM",
+        "token1": "TOMB",
+        "pair_address": "0xd473Ff135305F2fC7BC82D6B6831c911eBd55ed6",
+        "price0": 0.956163,
+        "price1": 0.944404,
+        "dollars": 3694.079863485658
+    },
+    {
+        "dex": "spirit",
+        "token0": "FTM",
+        "token1": "SPIRIT",
+        "pair_address": "0x30748322B6E34545DBe0788C421886AEB5297789",
+        "price0": 0.956163,
+        "price1": 0.04698496,
+        "dollars": 8684234.535747927
+    },
+    {
+        "dex": "spirit",
+        "token0": "FTM",
+        "token1": "BOO",
+        "pair_address": "0xf476D2b77192A34C7cf81E2A7C61f8673C8191e5",
+        "price0": 0.956163,
+        "price1": 8.76,
+        "dollars": 63.696170245963444
+    },
+    {
+        "dex": "spirit",
+        "token0": "FTM",
+        "token1": "FANG",
+        "pair_address": "0x871DD566AB3De61E5Cc8fb16fEE82595b17e9cc6",
+        "price0": 0.956163,
+        "price1": 0.564704,
+        "dollars": 461482.6053139486
+    },
+    {
+        "dex": "spirit",
+        "token0": "FTM",
+        "token1": "SCREAM",
+        "pair_address": "0x69081E5B1271AE3a8F3920D9CC4DfB4a92Bca362",
+        "price0": 0.956163,
+        "price1": 11.94,
+        "dollars": 7940.134756400551
+    },
+    {
+        "dex": "spirit",
+        "token0": "OATH",
+        "token1": "FTM",
+        "pair_address": "0xD0891213C87D68773477428aC800B5F7eECF641e",
+        "price0": 0.160516,
+        "price1": 0.956163,
+        "dollars": 1437505.2538473532
+    },
+    {
+        "dex": "spirit",
+        "token0": "FTM",
+        "token1": "TAROT",
+        "pair_address": "0xF050133847bb537C7476D054B8bE6e30253Fbd05",
+        "price0": 0.956163,
+        "price1": 0.186489,
+        "dollars": 3455946.8602856565
+    },
+    {
+        "dex": "spirit",
+        "token0": "LQDR",
+        "token1": "SPIRIT",
+        "pair_address": "0xFeBbfeA7674720cEdD35e9384d07F235365c1B3e",
+        "price0": 8.03,
+        "price1": 0.04698496,
+        "dollars": 267331.29365810764
+    },
+    {
+        "dex": "spirit",
+        "token0": "SPIRIT",
+        "token1": "TOMB",
+        "pair_address": "0x95eD4bC28f21F97695a1dc460DB9814d5aAF6519",
+        "price0": 0.04698496,
+        "price1": 0.944404,
+        "dollars": 10.942106296062097
+    },
+    {
+        "dex": "spirit",
+        "token0": "FANG",
+        "token1": "TOMB",
+        "pair_address": "0x917Bda5Ad37caAEa70dC7FD671d54130cbA7Af7B",
+        "price0": 0.564704,
+        "price1": 0.944404,
+        "dollars": 14.349665463219313
+    },
+    {
+        "dex": "spirit",
+        "token0": "SPIRIT",
+        "token1": "BOO",
+        "pair_address": "0x632280394c7155dF4bf03c1b3faed7857DA19a4b",
+        "price0": 0.04698496,
+        "price1": 8.76,
+        "dollars": 2.001144333060295
+    },
+    {
+        "dex": "spirit",
+        "token0": "SPIRIT",
+        "token1": "SCREAM",
+        "pair_address": "0xd22DE79Fd1534B413e6167371374481Acd5f5833",
+        "price0": 0.04698496,
+        "price1": 11.94,
+        "dollars": 0.000005349962516656322
+    },
+    {
+        "dex": "spirit",
+        "token0": "OATH",
+        "token1": "SPIRIT",
+        "pair_address": "0x1ba0F723221A1FB0d7FACe361e1F217649d822e1",
+        "price0": 0.160516,
+        "price1": 0.04698496,
+        "dollars": 0.0029661109810041096
+    },
+    {
+        "dex": "spirit",
+        "token0": "SPIRIT",
+        "token1": "TAROT",
+        "pair_address": "0x73d04bE7FcD67a865eFc4FB3F111D6cf2b03A72b",
+        "price0": 0.04698496,
+        "price1": 0.186489,
+        "dollars": 0.016728359920777848
+    },
+    {
+        "dex": "solid",
+        "token0": "LQDR",
+        "token1": "FTM",
+        "pair_address": "0x9861B8a9Acc9B4f249981164bFe7f84202068bfE",
+        "price0": 8.03,
+        "price1": 0.956163,
+        "dollars": 461714.23650758725
+    },
+    {
+        "dex": "solid",
+        "token0": "FTM",
+        "token1": "TOMB",
+        "pair_address": "0x60a861Cd30778678E3d613db96139440Bd333143",
+        "price0": 0.956163,
+        "price1": 0.944404,
+        "dollars": 1725808.5422969286
+    },
+    {
+        "dex": "solid",
+        "token0": "FTM",
+        "token1": "SPIRIT",
+        "pair_address": "0xD11c9e19726d775e10e324C3cF02687994A022b3",
+        "price0": 0.956163,
+        "price1": 0.04698496,
+        "dollars": 931.3160259327376
+    },
+    {
+        "dex": "solid",
+        "token0": "FTM",
+        "token1": "BOO",
+        "pair_address": "0xDD56B20073E4cc049DC93EF6425C27F047b4Ae93",
+        "price0": 0.956163,
+        "price1": 8.76,
+        "dollars": 1236.5380925405402
+    },
+    {
+        "dex": "solid",
+        "token0": "FTM",
+        "token1": "FANG",
+        "pair_address": "0x4A800FBc29F53f2b1f9c7aA7Eddb4Dd14eeF7978",
+        "price0": 0.956163,
+        "price1": 0.564704,
+        "dollars": 28.842405110575292
+    },
+    {
+        "dex": "solid",
+        "token0": "FTM",
+        "token1": "TSHARE",
+        "pair_address": "0xf18cFF0491DCd41ff3Ad334C95fD8D812c6E9f56",
+        "price0": 0.956163,
+        "price1": 3140.77,
+        "dollars": 21.142342936910488
+    },
+    {
+        "dex": "solid",
+        "token0": "FTM",
+        "token1": "SCREAM",
+        "pair_address": "0x86dD79265814756713e631Dde7E162bdD538b7B1",
+        "price0": 0.956163,
+        "price1": 11.94,
+        "dollars": 70588.99172114904
+    },
+    {
+        "dex": "solid",
+        "token0": "OATH",
+        "token1": "FTM",
+        "pair_address": "0x6B987e02Ca5eAE26D8B2bCAc724D4e03b3B0c295",
+        "price0": 0.160516,
+        "price1": 0.956163,
+        "dollars": 939909.5152547527
+    },
+    {
+        "dex": "solid",
+        "token0": "FTM",
+        "token1": "TAROT",
+        "pair_address": "0x783f1eDBE336981dFCb74Bd0B803655F55AaDF48",
+        "price0": 0.956163,
+        "price1": 0.186489,
+        "dollars": 1270343.7524209393
+    },
+    {
+        "dex": "tomb",
+        "token0": "FTM",
+        "token1": "TOMB",
+        "pair_address": "0xfca12A13ac324C09e9F43B5e5cfC9262f3Ab3223",
+        "price0": 0.956163,
+        "price1": 0.944404,
+        "dollars": 124127800.67327216
+    },
+    {
+        "dex": "tomb",
+        "token0": "FTM",
+        "token1": "TSHARE",
+        "pair_address": "0x846f03785F665AC77862ED0F8F5061C0f5B3c7Bf",
+        "price0": 0.956163,
+        "price1": 3140.77,
+        "dollars": 47514.95993164308
+    },
+    {
+        "dex": "tomb",
+        "token0": "TSHARE",
+        "token1": "TOMB",
+        "pair_address": "0x9d2f00f684960Ec83a3d042F3EAdD70e105f83cb",
+        "price0": 3140.77,
+        "price1": 0.944404,
+        "dollars": 1477.370617519115
+    }
+]

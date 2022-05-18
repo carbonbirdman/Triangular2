@@ -1,0 +1,302 @@
+[
+    {
+        "dex": "spooky",
+        "token0": "LQDR",
+        "token1": "FTM",
+        "pair_address": "0x506DdcC751C7d500F983FfdA6DdEfbE458Ba2c33"
+    },
+    {
+        "dex": "spooky",
+        "token0": "FTM",
+        "token1": "TOMB",
+        "pair_address": "0x2A651563C9d3Af67aE0388a5c8F89b867038089e"
+    },
+    {
+        "dex": "spooky",
+        "token0": "FTM",
+        "token1": "SPIRIT",
+        "pair_address": "0x67deB4877b129fe324285e47C0c419e34649E250"
+    },
+    {
+        "dex": "spooky",
+        "token0": "FTM",
+        "token1": "BOO",
+        "pair_address": "0xEc7178F4C41f346b2721907F5cF7628E388A7a58"
+    },
+    {
+        "dex": "spooky",
+        "token0": "FTM",
+        "token1": "FANG",
+        "pair_address": "0x19dCe7bdE30cd966FF123d272E5f688E0b4B8B78"
+    },
+    {
+        "dex": "spooky",
+        "token0": "FTM",
+        "token1": "TSHARE",
+        "pair_address": "0x4733bc45eF91cF7CcEcaeeDb794727075fB209F2"
+    },
+    {
+        "dex": "spooky",
+        "token0": "FTM",
+        "token1": "FHM",
+        "pair_address": "0xaa572E307518f967C5a9b1FdbabE368cC62C160c"
+    },
+    {
+        "dex": "spooky",
+        "token0": "FTM",
+        "token1": "SCREAM",
+        "pair_address": "0x30872e4fc4edbFD7a352bFC2463eb4fAe9C09086"
+    },
+    {
+        "dex": "spooky",
+        "token0": "FTM",
+        "token1": "CREDIT",
+        "pair_address": "0x06F3Cb227781A836feFAEa7E686Bdc857e80eAa7"
+    },
+    {
+        "dex": "spooky",
+        "token0": "OATH",
+        "token1": "FTM",
+        "pair_address": "0x084f5041F5d8d202AD958230A7E56BB32dFd38Bb"
+    },
+    {
+        "dex": "spooky",
+        "token0": "FTM",
+        "token1": "TAROT",
+        "pair_address": "0x11D90eA9d16e1Ee5879B299A819F6D618816D70F"
+    },
+    {
+        "dex": "spooky",
+        "token0": "LQDR",
+        "token1": "BOO",
+        "pair_address": "0x95E2df42EE89ce0bDa1a0027417C0a31bD8aE40D"
+    },
+    {
+        "dex": "spooky",
+        "token0": "LQDR",
+        "token1": "TSHARE",
+        "pair_address": "0xaBFf5bC0bDB9D23De6DbA4a4C9F42DCb7BfE5D83"
+    },
+    {
+        "dex": "spooky",
+        "token0": "TOMB",
+        "token1": "BOO",
+        "pair_address": "0xe193De3E2ADE715A87A339AB7a1825fBc468aEF8"
+    },
+    {
+        "dex": "spooky",
+        "token0": "FANG",
+        "token1": "TOMB",
+        "pair_address": "0x670D86356eA4112bD92919c6413b288313B41484"
+    },
+    {
+        "dex": "spooky",
+        "token0": "TSHARE",
+        "token1": "TOMB",
+        "pair_address": "0x44Ca5eEf4313cb76c11e87FeaAacb39268c15Af8"
+    },
+    {
+        "dex": "spooky",
+        "token0": "SPIRIT",
+        "token1": "BOO",
+        "pair_address": "0x06d03EEC20167867c46EEBD1B192A7Bf3DC27ecC"
+    },
+    {
+        "dex": "spooky",
+        "token0": "TSHARE",
+        "token1": "BOO",
+        "pair_address": "0xFA5831d8F50A8ecB9459513c0162aEB7a9575C8f"
+    },
+    {
+        "dex": "spooky",
+        "token0": "BOO",
+        "token1": "SCREAM",
+        "pair_address": "0x71Bf506E473A2f0465141C1F246729AD34DF3BE8"
+    },
+    {
+        "dex": "spooky",
+        "token0": "OATH",
+        "token1": "BOO",
+        "pair_address": "0x8e0a4330b930B30f9Ab8b1A4860FC4Aef9650fDA"
+    },
+    {
+        "dex": "spooky",
+        "token0": "BOO",
+        "token1": "TAROT",
+        "pair_address": "0x271E95EE7796945bF422f72E35d94F87D90BE748"
+    },
+    {
+        "dex": "spooky",
+        "token0": "TSHARE",
+        "token1": "SCREAM",
+        "pair_address": "0x8731ce5B43B30408166F65e303B51D76A2a6E216"
+    },
+    {
+        "dex": "spooky",
+        "token0": "TSHARE",
+        "token1": "CREDIT",
+        "pair_address": "0x0d257afDd24Cb8dc305FF7B257471f1A7BBEBD0D"
+    },
+    {
+        "dex": "spirit",
+        "token0": "LQDR",
+        "token1": "FTM",
+        "pair_address": "0x4Fe6f19031239F105F753D1DF8A0d24857D0cAA2"
+    },
+    {
+        "dex": "spirit",
+        "token0": "FTM",
+        "token1": "TOMB",
+        "pair_address": "0xd473Ff135305F2fC7BC82D6B6831c911eBd55ed6"
+    },
+    {
+        "dex": "spirit",
+        "token0": "FTM",
+        "token1": "SPIRIT",
+        "pair_address": "0x30748322B6E34545DBe0788C421886AEB5297789"
+    },
+    {
+        "dex": "spirit",
+        "token0": "FTM",
+        "token1": "BOO",
+        "pair_address": "0xf476D2b77192A34C7cf81E2A7C61f8673C8191e5"
+    },
+    {
+        "dex": "spirit",
+        "token0": "FTM",
+        "token1": "FANG",
+        "pair_address": "0x871DD566AB3De61E5Cc8fb16fEE82595b17e9cc6"
+    },
+    {
+        "dex": "spirit",
+        "token0": "FTM",
+        "token1": "SCREAM",
+        "pair_address": "0x69081E5B1271AE3a8F3920D9CC4DfB4a92Bca362"
+    },
+    {
+        "dex": "spirit",
+        "token0": "OATH",
+        "token1": "FTM",
+        "pair_address": "0xD0891213C87D68773477428aC800B5F7eECF641e"
+    },
+    {
+        "dex": "spirit",
+        "token0": "FTM",
+        "token1": "TAROT",
+        "pair_address": "0xF050133847bb537C7476D054B8bE6e30253Fbd05"
+    },
+    {
+        "dex": "spirit",
+        "token0": "LQDR",
+        "token1": "SPIRIT",
+        "pair_address": "0xFeBbfeA7674720cEdD35e9384d07F235365c1B3e"
+    },
+    {
+        "dex": "spirit",
+        "token0": "SPIRIT",
+        "token1": "TOMB",
+        "pair_address": "0x95eD4bC28f21F97695a1dc460DB9814d5aAF6519"
+    },
+    {
+        "dex": "spirit",
+        "token0": "FANG",
+        "token1": "TOMB",
+        "pair_address": "0x917Bda5Ad37caAEa70dC7FD671d54130cbA7Af7B"
+    },
+    {
+        "dex": "spirit",
+        "token0": "SPIRIT",
+        "token1": "BOO",
+        "pair_address": "0x632280394c7155dF4bf03c1b3faed7857DA19a4b"
+    },
+    {
+        "dex": "spirit",
+        "token0": "SPIRIT",
+        "token1": "SCREAM",
+        "pair_address": "0xd22DE79Fd1534B413e6167371374481Acd5f5833"
+    },
+    {
+        "dex": "spirit",
+        "token0": "OATH",
+        "token1": "SPIRIT",
+        "pair_address": "0x1ba0F723221A1FB0d7FACe361e1F217649d822e1"
+    },
+    {
+        "dex": "spirit",
+        "token0": "SPIRIT",
+        "token1": "TAROT",
+        "pair_address": "0x73d04bE7FcD67a865eFc4FB3F111D6cf2b03A72b"
+    },
+    {
+        "dex": "solid",
+        "token0": "LQDR",
+        "token1": "FTM",
+        "pair_address": "0x9861B8a9Acc9B4f249981164bFe7f84202068bfE"
+    },
+    {
+        "dex": "solid",
+        "token0": "FTM",
+        "token1": "TOMB",
+        "pair_address": "0x60a861Cd30778678E3d613db96139440Bd333143"
+    },
+    {
+        "dex": "solid",
+        "token0": "FTM",
+        "token1": "SPIRIT",
+        "pair_address": "0xD11c9e19726d775e10e324C3cF02687994A022b3"
+    },
+    {
+        "dex": "solid",
+        "token0": "FTM",
+        "token1": "BOO",
+        "pair_address": "0xDD56B20073E4cc049DC93EF6425C27F047b4Ae93"
+    },
+    {
+        "dex": "solid",
+        "token0": "FTM",
+        "token1": "FANG",
+        "pair_address": "0x4A800FBc29F53f2b1f9c7aA7Eddb4Dd14eeF7978"
+    },
+    {
+        "dex": "solid",
+        "token0": "FTM",
+        "token1": "TSHARE",
+        "pair_address": "0xf18cFF0491DCd41ff3Ad334C95fD8D812c6E9f56"
+    },
+    {
+        "dex": "solid",
+        "token0": "FTM",
+        "token1": "SCREAM",
+        "pair_address": "0x86dD79265814756713e631Dde7E162bdD538b7B1"
+    },
+    {
+        "dex": "solid",
+        "token0": "OATH",
+        "token1": "FTM",
+        "pair_address": "0x6B987e02Ca5eAE26D8B2bCAc724D4e03b3B0c295"
+    },
+    {
+        "dex": "solid",
+        "token0": "FTM",
+        "token1": "TAROT",
+        "pair_address": "0x783f1eDBE336981dFCb74Bd0B803655F55AaDF48"
+    },
+    {
+        "dex": "tomb",
+        "token0": "FTM",
+        "token1": "TOMB",
+        "pair_address": "0xfca12A13ac324C09e9F43B5e5cfC9262f3Ab3223"
+    },
+    {
+        "dex": "tomb",
+        "token0": "FTM",
+        "token1": "TSHARE",
+        "pair_address": "0x846f03785F665AC77862ED0F8F5061C0f5B3c7Bf"
+    },
+    {
+        "dex": "tomb",
+        "token0": "TSHARE",
+        "token1": "TOMB",
+        "pair_address": "0x9d2f00f684960Ec83a3d042F3EAdD70e105f83cb"
+    }
+]

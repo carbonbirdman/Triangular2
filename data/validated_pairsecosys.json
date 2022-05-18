@@ -1,0 +1,322 @@
+[
+    {
+        "dex": "spooky",
+        "token0": "LQDR",
+        "token1": "FTM",
+        "pair_address": "0x506DdcC751C7d500F983FfdA6DdEfbE458Ba2c33",
+        "input_tokens": 12.453300124533003,
+        "output_tokens": "104.541797437749942103",
+        "input_dollars": "100",
+        "output_dollars": "99.9589986634713"
+    },
+    {
+        "dex": "spooky",
+        "token0": "FTM",
+        "token1": "TOMB",
+        "pair_address": "0x2A651563C9d3Af67aE0388a5c8F89b867038089e",
+        "input_tokens": 104.58467855376124,
+        "output_tokens": "106.287540443947145348",
+        "input_dollars": "100",
+        "output_dollars": "100.37837834542546"
+    },
+    {
+        "dex": "spooky",
+        "token0": "FTM",
+        "token1": "SPIRIT",
+        "pair_address": "0x67deB4877b129fe324285e47C0c419e34649E250",
+        "input_tokens": 104.58467855376124,
+        "output_tokens": "1229.003878176723318107",
+        "input_dollars": "100",
+        "output_dollars": "57.74469805597821"
+    },
+    {
+        "dex": "spooky",
+        "token0": "FTM",
+        "token1": "BOO",
+        "pair_address": "0xEc7178F4C41f346b2721907F5cF7628E388A7a58",
+        "input_tokens": 104.58467855376124,
+        "output_tokens": "11.388577627807243129",
+        "input_dollars": "100",
+        "output_dollars": "99.76394001959144"
+    },
+    {
+        "dex": "spooky",
+        "token0": "FTM",
+        "token1": "FANG",
+        "pair_address": "0x19dCe7bdE30cd966FF123d272E5f688E0b4B8B78",
+        "input_tokens": 104.58467855376124,
+        "output_tokens": "163.842516795731685074",
+        "input_dollars": "100",
+        "output_dollars": "92.52252460461686"
+    },
+    {
+        "dex": "spooky",
+        "token0": "FTM",
+        "token1": "TSHARE",
+        "pair_address": "0x4733bc45eF91cF7CcEcaeeDb794727075fB209F2",
+        "input_tokens": 104.58467855376124,
+        "output_tokens": "0.031580586867063752",
+        "input_dollars": "100",
+        "output_dollars": "99.18735981446783"
+    },
+    {
+        "dex": "spooky",
+        "token0": "FTM",
+        "token1": "SCREAM",
+        "pair_address": "0x30872e4fc4edbFD7a352bFC2463eb4fAe9C09086",
+        "input_tokens": 104.58467855376124,
+        "output_tokens": "8.559881491228841829",
+        "input_dollars": "100",
+        "output_dollars": "102.20498500527236"
+    },
+    {
+        "dex": "spooky",
+        "token0": "FTM",
+        "token1": "CREDIT",
+        "pair_address": "0x06F3Cb227781A836feFAEa7E686Bdc857e80eAa7",
+        "input_tokens": 104.58467855376124,
+        "output_tokens": "358.740399045742809924",
+        "input_dollars": "100",
+        "output_dollars": "99.843551641214"
+    },
+    {
+        "dex": "spooky",
+        "token0": "OATH",
+        "token1": "FTM",
+        "pair_address": "0x084f5041F5d8d202AD958230A7E56BB32dFd38Bb",
+        "input_tokens": 622.990854494256,
+        "output_tokens": "103.954326736431977366",
+        "input_dollars": "100",
+        "output_dollars": "99.39728091528701"
+    },
+    {
+        "dex": "spooky",
+        "token0": "FTM",
+        "token1": "TAROT",
+        "pair_address": "0x11D90eA9d16e1Ee5879B299A819F6D618816D70F",
+        "input_tokens": 104.58467855376124,
+        "output_tokens": "555.623990288957151717",
+        "input_dollars": "100",
+        "output_dollars": "103.61776232499733"
+    },
+    {
+        "dex": "spooky",
+        "token0": "TOMB",
+        "token1": "BOO",
+        "pair_address": "0xe193De3E2ADE715A87A339AB7a1825fBc468aEF8",
+        "input_tokens": 105.886887391413,
+        "output_tokens": "10.730028773695681907",
+        "input_dollars": "100",
+        "output_dollars": "93.99505205757417"
+    },
+    {
+        "dex": "spooky",
+        "token0": "TSHARE",
+        "token1": "TOMB",
+        "pair_address": "0x44Ca5eEf4313cb76c11e87FeaAacb39268c15Af8",
+        "input_tokens": 0.0318393260251467,
+        "output_tokens": "105.185283371674289581",
+        "input_dollars": "100",
+        "output_dollars": "99.33740235734268"
+    },
+    {
+        "dex": "spooky",
+        "token0": "TSHARE",
+        "token1": "BOO",
+        "pair_address": "0xFA5831d8F50A8ecB9459513c0162aEB7a9575C8f",
+        "input_tokens": 0.0318393260251467,
+        "output_tokens": "6.36865363582675778",
+        "input_dollars": "100",
+        "output_dollars": "55.789405849842396"
+    },
+    {
+        "dex": "spooky",
+        "token0": "TSHARE",
+        "token1": "SCREAM",
+        "pair_address": "0x8731ce5B43B30408166F65e303B51D76A2a6E216",
+        "input_tokens": 0.0318393260251467,
+        "output_tokens": "5.115718151201094265",
+        "input_dollars": "100",
+        "output_dollars": "61.08167472534107"
+    },
+    {
+        "dex": "spirit",
+        "token0": "LQDR",
+        "token1": "FTM",
+        "pair_address": "0x4Fe6f19031239F105F753D1DF8A0d24857D0cAA2",
+        "input_tokens": 12.453300124533003,
+        "output_tokens": "104.2468761432155717",
+        "input_dollars": "100",
+        "output_dollars": "99.67700583372543"
+    },
+    {
+        "dex": "spirit",
+        "token0": "FTM",
+        "token1": "TOMB",
+        "pair_address": "0xd473Ff135305F2fC7BC82D6B6831c911eBd55ed6",
+        "input_tokens": 104.58467855376124,
+        "output_tokens": "100.565004242880699544",
+        "input_dollars": "100",
+        "output_dollars": "94.9739922669935"
+    },
+    {
+        "dex": "spirit",
+        "token0": "FTM",
+        "token1": "SPIRIT",
+        "pair_address": "0x30748322B6E34545DBe0788C421886AEB5297789",
+        "input_tokens": 104.58467855376124,
+        "output_tokens": "2128.169024851815129639",
+        "input_dollars": "100",
+        "output_dollars": "99.99193650590155"
+    },
+    {
+        "dex": "spirit",
+        "token0": "FTM",
+        "token1": "FANG",
+        "pair_address": "0x871DD566AB3De61E5Cc8fb16fEE82595b17e9cc6",
+        "input_tokens": 104.58467855376124,
+        "output_tokens": "176.69133685412731343",
+        "input_dollars": "100",
+        "output_dollars": "99.77830468687311"
+    },
+    {
+        "dex": "spirit",
+        "token0": "FTM",
+        "token1": "SCREAM",
+        "pair_address": "0x69081E5B1271AE3a8F3920D9CC4DfB4a92Bca362",
+        "input_tokens": 104.58467855376124,
+        "output_tokens": "8.338729489886856173",
+        "input_dollars": "100",
+        "output_dollars": "99.56443010924905"
+    },
+    {
+        "dex": "spirit",
+        "token0": "OATH",
+        "token1": "FTM",
+        "pair_address": "0xD0891213C87D68773477428aC800B5F7eECF641e",
+        "input_tokens": 622.990854494256,
+        "output_tokens": "104.080395047043461467",
+        "input_dollars": "100",
+        "output_dollars": "99.51782276936622"
+    },
+    {
+        "dex": "spirit",
+        "token0": "FTM",
+        "token1": "TAROT",
+        "pair_address": "0xF050133847bb537C7476D054B8bE6e30253Fbd05",
+        "input_tokens": 104.58467855376124,
+        "output_tokens": "555.33300871078754354",
+        "input_dollars": "100",
+        "output_dollars": "103.56349746146606"
+    },
+    {
+        "dex": "spirit",
+        "token0": "LQDR",
+        "token1": "SPIRIT",
+        "pair_address": "0xFeBbfeA7674720cEdD35e9384d07F235365c1B3e",
+        "input_tokens": 12.453300124533003,
+        "output_tokens": "2112.714016045367015189",
+        "input_dollars": "100",
+        "output_dollars": "99.26578353533093"
+    },
+    {
+        "dex": "solid",
+        "token0": "LQDR",
+        "token1": "FTM",
+        "pair_address": "0x9861B8a9Acc9B4f249981164bFe7f84202068bfE",
+        "input_tokens": 12.453300124533003,
+        "output_tokens": "104.366165228105481782",
+        "input_dollars": "100",
+        "output_dollars": "99.79106564300102"
+    },
+    {
+        "dex": "solid",
+        "token0": "FTM",
+        "token1": "TOMB",
+        "pair_address": "0x60a861Cd30778678E3d613db96139440Bd333143",
+        "input_tokens": 104.58467855376124,
+        "output_tokens": "106.621596213987176112",
+        "input_dollars": "100",
+        "output_dollars": "100.69386195087435"
+    },
+    {
+        "dex": "solid",
+        "token0": "FTM",
+        "token1": "SPIRIT",
+        "pair_address": "0xD11c9e19726d775e10e324C3cF02687994A022b3",
+        "input_tokens": 104.58467855376124,
+        "output_tokens": "1751.234522600574165476",
+        "input_dollars": "100",
+        "output_dollars": "82.28168399500707"
+    },
+    {
+        "dex": "solid",
+        "token0": "FTM",
+        "token1": "BOO",
+        "pair_address": "0xDD56B20073E4cc049DC93EF6425C27F047b4Ae93",
+        "input_tokens": 104.58467855376124,
+        "output_tokens": "9.940403967869671927",
+        "input_dollars": "100",
+        "output_dollars": "87.07793875853832"
+    },
+    {
+        "dex": "solid",
+        "token0": "FTM",
+        "token1": "SCREAM",
+        "pair_address": "0x86dD79265814756713e631Dde7E162bdD538b7B1",
+        "input_tokens": 104.58467855376124,
+        "output_tokens": "8.519294031223825622",
+        "input_dollars": "100",
+        "output_dollars": "101.72037073281247"
+    },
+    {
+        "dex": "solid",
+        "token0": "OATH",
+        "token1": "FTM",
+        "pair_address": "0x6B987e02Ca5eAE26D8B2bCAc724D4e03b3B0c295",
+        "input_tokens": 622.990854494256,
+        "output_tokens": "104.341655069311654981",
+        "input_dollars": "100",
+        "output_dollars": "99.76762993603823"
+    },
+    {
+        "dex": "solid",
+        "token0": "FTM",
+        "token1": "TAROT",
+        "pair_address": "0x783f1eDBE336981dFCb74Bd0B803655F55AaDF48",
+        "input_tokens": 104.58467855376124,
+        "output_tokens": "557.330641977181671232",
+        "input_dollars": "100",
+        "output_dollars": "103.93603409168263"
+    },
+    {
+        "dex": "tomb",
+        "token0": "FTM",
+        "token1": "TOMB",
+        "pair_address": "0xfca12A13ac324C09e9F43B5e5cfC9262f3Ab3223",
+        "input_tokens": 104.58467855376124,
+        "output_tokens": "105.653570318390214397",
+        "input_dollars": "100",
+        "output_dollars": "99.77965442296899"
+    },
+    {
+        "dex": "tomb",
+        "token0": "FTM",
+        "token1": "TSHARE",
+        "pair_address": "0x846f03785F665AC77862ED0F8F5061C0f5B3c7Bf",
+        "input_tokens": 104.58467855376124,
+        "output_tokens": "0.031493613248017186",
+        "input_dollars": "100",
+        "output_dollars": "98.91419568097494"
+    },
+    {
+        "dex": "tomb",
+        "token0": "TSHARE",
+        "token1": "TOMB",
+        "pair_address": "0x9d2f00f684960Ec83a3d042F3EAdD70e105f83cb",
+        "input_tokens": 0.0318393260251467,
+        "output_tokens": "93.210859452003594361",
+        "input_dollars": "100",
+        "output_dollars": "88.02870850991"
+    }
+]
