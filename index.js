@@ -20,7 +20,7 @@ var eta = require("eta");
 app.set("view engine", "eta");
 //app.use(cors());
 
-const port = 3000;
+const port = (process.env.PORT || 3000);
 const HTTPS = false;
 
 if (HTTPS) {
