@@ -434,6 +434,12 @@ cron.schedule("7 30 * * * *", () => {
   runJob2();
 });
 
+// SIMPLE MINUTELY
+cron.schedule("7 _ * * * *", () => {
+  console.log("running a task every hour");
+  runJob2();
+});
+
 const simulate2 = require("./scripts/simulate2");
 const shortlist2 = require("./scripts/shortlist2");
 var sim_csv_filename = "data/simulation2.csv";
