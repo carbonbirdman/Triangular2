@@ -435,10 +435,10 @@ cron.schedule("7 30 * * * *", () => {
 });
 
 // SIMPLE MINUTELY
-cron.schedule("7 * * * * *", () => {
-  console.log("running a task every hour");
-  runJob2();
-});
+//cron.schedule("7 * * * * *", () => {
+//  console.log("running a task every hour");
+//  runJob2();
+//});
 
 const simulate2 = require("./scripts/simulate2");
 const shortlist2 = require("./scripts/shortlist2");
