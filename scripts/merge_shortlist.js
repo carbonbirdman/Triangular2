@@ -22,6 +22,8 @@ function merge_shortlist(
     JSON.stringify(merged, undefined, 4),
     "utf8"
   );
+
+  fs.unlinkSync(shortlist_filename);
 }
 
 if (require.main === module) {
