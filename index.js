@@ -406,7 +406,7 @@ async function runJob() {
     shortlist_filename_hourly,
     merged_filename_hourly
   );
-  fs.unlinkSync(shortlist_filename_hourly);
+  //fs.unlinkSync(shortlist_filename_hourly);
   console.log("Hourly simulation done and shortlisted.");
 }
 
@@ -435,7 +435,7 @@ cron.schedule("7 30 * * * *", () => {
 });
 
 // SIMPLE MINUTELY
-cron.schedule("7 _ * * * *", () => {
+cron.schedule("7 * * * * *", () => {
   console.log("running a task every hour");
   runJob2();
 });
@@ -471,7 +471,7 @@ async function runJob2() {
     shortlist_filename_hourly2,
     merged_filename_hourly2
   );
-  fs.unlinkSync(shortlist_filename_hourly2);
+  //fs.unlinkSync(shortlist_filename_hourly2);
   console.log("Hourly simulation done and shortlisted.");
 }
 
